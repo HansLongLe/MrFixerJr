@@ -1,5 +1,6 @@
-package ViewModel;
+package Client.ViewModel;
 
+import Client.Model.*;
 public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;

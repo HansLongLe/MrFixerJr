@@ -1,6 +1,6 @@
 package Client.View;
 
-import ViewModel.ViewModelFactory;
+import Client.ViewModel.*;
 import javafx.stage.Stage;
 
 public class ViewHandler
