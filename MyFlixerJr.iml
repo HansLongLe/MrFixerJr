@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JavaFX" level="application" />
+<<<<<<< Updated upstream
     <orderEntry type="library" name="lib1" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
@@ -37,5 +38,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+=======
+    <orderEntry type="library" exported="" name="lib" level="project" />
+>>>>>>> Stashed changes
   </component>
 </module>
