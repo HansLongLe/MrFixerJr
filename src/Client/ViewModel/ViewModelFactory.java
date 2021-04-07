@@ -6,8 +6,8 @@ public class ViewModelFactory {
     private LoginViewModel loginViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
-        createAccountViewModel=new CreateAccountViewModel(modelFactory.getDataModel());
-        loginViewModel=new LoginViewModel(modelFactory.getDataModel());
+        createAccountViewModel=new CreateAccountViewModel((DataModel) modelFactory);
+        loginViewModel=new LoginViewModel((DataModel) modelFactory);
     }
 
     public CreateAccountViewModel getCreateAccountViewModel() {
