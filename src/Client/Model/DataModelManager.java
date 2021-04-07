@@ -22,7 +22,6 @@ public class DataModelManager implements DataModel
 
   @Override public User getUser()
   {
-    User user=null;
     if(user instanceof SimpleUser){
     for(int i=0; i<simpleUsers.size(); i++){
       if(simpleUsers.get(i).getUserName().equals(userName)){
