@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
     private String userName;
     private String password;
+    private String ajajaja;
     private User user = new User("name", "123");
 
 
