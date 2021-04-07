@@ -1,6 +1,6 @@
 package ViewModel;
 
-import Model.DataModel;
+import Client.DataModel;
 
 public class CreateAccountViewModel {
     private DataModel model;

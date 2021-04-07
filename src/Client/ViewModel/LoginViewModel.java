@@ -1,6 +1,6 @@
 package ViewModel;
 
-import Model.DataModel;
+import Client.DataModel;
 
 public class LoginViewModel {
     private DataModel model;
