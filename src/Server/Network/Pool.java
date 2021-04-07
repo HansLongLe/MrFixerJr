@@ -1,5 +1,8 @@
 package Server.Network;
 
+import Client.Model.Moderator;
+import Client.Model.SimpleUser;
+
 import java.util.ArrayList;
 
 public class Pool
@@ -16,7 +19,7 @@ public class Pool
     connections.add(serverSocketHandler);
   }
 
-  public void broadcast(ArrayList<Model.Moderator> moderators, ArrayList<Model.SimpleUser> simpleUsers)
+  public void broadcast(ArrayList<Moderator> moderators, ArrayList<SimpleUser> simpleUsers)
   {
 
   }

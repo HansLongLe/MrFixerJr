@@ -1,4 +1,4 @@
-package Model;
+package Client.Model;
 
 public class Moderator extends User
 {

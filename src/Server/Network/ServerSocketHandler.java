@@ -1,5 +1,8 @@
 package Server.Network;
 
+import Client.Model.Moderator;
+import Client.Model.SimpleUser;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -22,7 +25,7 @@ public class ServerSocketHandler implements Runnable
 
   }
 
-  public void sendToAdmin(ArrayList<Model.Moderator> moderators, ArrayList<Model.SimpleUser> simpleUsers)
+  public void sendToAdmin(ArrayList<Moderator> moderators, ArrayList<SimpleUser> simpleUsers)
   {
 
   }
