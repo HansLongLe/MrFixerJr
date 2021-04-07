@@ -53,6 +53,7 @@ public class DataModelManager implements DataModel
     simpleUsers.add(simpleUser);
 
   }
+
   public void addModerator(SimpleUser simpleUser){
     if(!(admin.equals(user))){
       admin.createModerator(simpleUser);
