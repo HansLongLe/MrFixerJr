@@ -21,16 +21,11 @@ public class User
     this.password = password;
   }
   public boolean equals(Object obj){
-    if(!(userName.equals(obj))){
+    if(!(obj instanceof User)){
       return false;
     }
     User temp = (User)obj;
     return temp.getUserName().equals(userName) &&
         temp.getPassword().equals(password);
-  }
-
-  protected void changeToModerator()
-  {
-    Moderator newModerator = new Moderator(userName, password);
   }
 }
