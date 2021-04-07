@@ -1,8 +1,8 @@
 package Client.View;
 
 import Client.View.ViewHandler;
-import ViewModel.CreateAccountViewModel;
-import ViewModel.ViewModelFactory;
+import Client.ViewModel.CreateAccountViewModel;
+import Client.ViewModel.ViewModelFactory;
 
 public class CreateAccountController
 {
