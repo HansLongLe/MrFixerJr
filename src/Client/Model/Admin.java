@@ -15,11 +15,15 @@ public class Admin extends User
   {
     super(userName, password);
   }
+
+
   public void createModerator(SimpleUser simpleUser){
-    dataModelManager.getModerators().add(new Moderator(simpleUser.getUserName(),
-        simpleUser.getPassword()));
+    moderator = new Moderator(simpleUser.getUserName(), simpleUser.getPassword());
+    dataModelManager.getModerators().add(moderator);
     dataModelManager.getSimpleUsers().remove(simpleUser);
   }
+
+
   public boolean equals(Object obj){
     if(!(obj instanceof Admin)){
       return false;
