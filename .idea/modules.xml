@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MrFixerJr.iml" filepath="$PROJECT_DIR$/MrFixerJr.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyFlixerJr.iml" filepath="$PROJECT_DIR$/MyFlixerJr.iml" />
     </modules>
   </component>
