@@ -12,7 +12,11 @@ public class LoginController
 
   }
 
-  public void OnAction(){
+  public void LoginButton(){
+
+  }
+
+  public void CreateAccountButton(){
 
   }
 }
