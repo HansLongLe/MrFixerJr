@@ -2,6 +2,11 @@ package Client.View;
 
 import Client.ViewModel.*;
 
+import javafx.scene.layout.Region;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class LoginController
 {

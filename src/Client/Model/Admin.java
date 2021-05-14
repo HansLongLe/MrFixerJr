@@ -40,7 +40,7 @@ public class Admin implements User
 
   }
 
-  @Override public void register()
+  @Override public void createAccount()
   {
 
   }

@@ -25,6 +25,7 @@ public class CreateAccountController
 
   private CreateAccountViewModel cavm;
   private ViewHandler vh;
+
   private CreateAccountViewModel createAccountViewModel;
   private Region region;
   private ViewHandler viewHandler;
@@ -36,8 +37,7 @@ public class CreateAccountController
     this.region = region;
   }
   @FXML
-  public void CreateButton()
-  {
+  public void CreateButton(){
 
   }
 

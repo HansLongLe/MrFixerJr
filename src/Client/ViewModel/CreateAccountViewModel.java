@@ -15,6 +15,5 @@ public class CreateAccountViewModel {
         password = new SimpleStringProperty();
         repeatPassword = new SimpleStringProperty();
         email = new SimpleStringProperty();
-        user.addPropertyChangeListener();
     }
 }
