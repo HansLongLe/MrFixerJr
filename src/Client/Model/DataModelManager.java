@@ -21,7 +21,6 @@ public class DataModelManager implements DataModel
   }
 
 
-
   public String getType(){
     if (user instanceof SimpleUser){
       return "SimpleUser";
@@ -33,29 +32,49 @@ public class DataModelManager implements DataModel
   }
 
 
-  @Override
-  public User getUser()
-  {
-    if(user instanceof SimpleUser){
-    for(int i=0; i<simpleUsers.size(); i++){
-      if(simpleUsers.get(i).getUserName().equals(userName)){
-        user = simpleUsers.get(i);
-      }
-    }
-    }
-    else if(user instanceof Moderator){
-      for (int i = 0; i < moderators.size(); i++){
-        if(moderators.get(i).getUserName().equals(userName)){
-          user = simpleUsers.get(i);
-        }
-      }
-    }
-    return user;
-  }
+// @Override
+// public User getUser()
+// {
+//   if(user instanceof SimpleUser){
+//   for(int i=0; i<simpleUsers.size(); i++){
+//     if(simpleUsers.get(i).getUserName().equals(userName)){
+//       user = simpleUsers.get(i);
+//     }
+//   }
+//   }
+//   else if(user instanceof Moderator){
+//     for (int i = 0; i < moderators.size(); i++){
+//       if(moderators.get(i).getUserName().equals(userName)){
+//         user = simpleUsers.get(i);
+//       }
+//     }
+//   }
+//   return user;
+// }
+//  @Override public User getUser()
+//  {
+//    if(user instanceof SimpleUser){
+//    for(int i=0; i<simpleUsers.size(); i++){
+//      if(simpleUsers.get(i).getUserName().equals(userName)){
+//        user = simpleUsers.get(i);
+//      }
+//    }
+//    }
+//    else if(user instanceof Moderator){
+//      for (int i = 0; i < moderators.size(); i++){
+//        if(moderators.get(i).getUserName().equals(userName)){
+//          user = simpleUsers.get(i);
+//        }
+//      }
+//    }
+//    return user;
+//  }
+
 
   public ArrayList<Moderator> getModerators(){
     return moderators;
   }
+
 
 
   @Override
@@ -84,6 +103,11 @@ public class DataModelManager implements DataModel
   @Override
   public ArrayList<SimpleUser> allSimpleUsers() {
     return simpleUsers;
+  }
+
+  @Override
+  public User getUser() {
+    return null;
   }
 
   public ArrayList<Moderator> allModerators(){

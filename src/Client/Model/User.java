@@ -1,8 +1,8 @@
 package Client.Model;
 
-public interface User
+public interface User extends PropertyChangeSubject
 {
   void logIn();
-  void register();
+  void createAccount();
 
 }
