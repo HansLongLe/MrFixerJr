@@ -21,7 +21,7 @@ public class Admin implements User
 
 
   public void createModerator(SimpleUser simpleUser){
-    dataModelManager.getModerators().add(moderator);
+//    dataModelManager.getModerators().add(moderator);
     dataModelManager.getSimpleUsers().remove(simpleUser);
   }
 
