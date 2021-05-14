@@ -38,21 +38,21 @@ public class DataModelManager implements DataModel
 //    }
 //    return user;
 //  }
+
+  public ArrayList<Moderator> getModerators(){
+    return moderators;
+  }
+
+  //@Override public ArrayList<SimpleUser> getSimpleUser()
+  //{
+    //return simpleUsers;
+  //}
 //
-//  public ArrayList<Moderator> getModerators(){
-//    return moderators;
-//  }
+  //@Override public void addSimpleUser(SimpleUser simpleUser)
+  //{
+  //  simpleUsers.add(simpleUser);
 //
-//  @Override public ArrayList<SimpleUser> getSimpleUser()
-//  {
-//    return simpleUsers;
-//  }
-//
-//  @Override public void addSimpleUser(SimpleUser simpleUser)
-//  {
-//    simpleUsers.add(simpleUser);
-//
-//  }
+  //}
 
   public void addModerator(SimpleUser simpleUser){
     if(!(admin.equals(user))){

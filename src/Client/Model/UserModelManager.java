@@ -3,13 +3,8 @@ package Client.Model;
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 
-public class SimpleUser implements User
+public class UserModelManager implements User
 {
-  public SimpleUser(String userName, String password)
-  {
-
-  }
-
   @Override public void logIn()
   {
 

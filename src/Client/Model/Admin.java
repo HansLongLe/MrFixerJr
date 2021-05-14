@@ -1,8 +1,12 @@
 package Client.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
+
 public class Admin implements User
 {
-
+  private PropertyChangeSupport support = new PropertyChangeSupport(this);
   private final String adminName = "Admin";
   private final String adminPassword = "admin";
 
@@ -36,8 +40,32 @@ public class Admin implements User
 
   }
 
-  @Override public void register()
+  @Override public void createAccount()
   {
 
+  }
+
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener) throws RemoteException
+  {
+    support.addPropertyChangeListener(name, listener);
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener) throws RemoteException
+  {
+  support.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removePropertyChangeListener(String name,
+      PropertyChangeListener listener) throws RemoteException
+  {
+    support.removePropertyChangeListener(name, listener);
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener) throws RemoteException
+  {
+    support.removePropertyChangeListener(listener);
   }
 }
