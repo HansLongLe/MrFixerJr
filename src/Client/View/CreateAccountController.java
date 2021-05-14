@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 
 public class CreateAccountController
 {
@@ -17,17 +18,35 @@ public class CreateAccountController
   @FXML private TextField email;
   @FXML private Button create;
   @FXML private Button back;
+
   private CreateAccountViewModel createAccountViewModel;
-  public void init(ViewModelFactory viewModelFactory, ViewHandler viewHAndler)
+  private Region region;
+  private ViewHandler viewHandler;
+
+  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel, Region region)
+  {
+    this.viewHandler = viewHandler;
+    this.createAccountViewModel = createAccountViewModel;
+    this.region = region;
+  }
+  @FXML
+  public void CreateButton()
   {
 
   }
-  @FXML
-  public void CreateButton(){
+
+  @FXML public void goBack()
+  {
+    viewHandler.openView("LogIn");
+  }
+
+  public void reset()
+  {
 
   }
 
-  @FXML public void goBack(){
-
+  public Region getRegion()
+  {
+    return region;
   }
 }

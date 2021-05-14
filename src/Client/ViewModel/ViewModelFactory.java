@@ -5,7 +5,8 @@ public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;
 
-    public ViewModelFactory(ModelFactory modelFactory){
+    public ViewModelFactory(ModelFactory modelFactory)
+    {
         createAccountViewModel=new CreateAccountViewModel((DataModel) modelFactory);
         loginViewModel=new LoginViewModel((DataModel) modelFactory);
     }
