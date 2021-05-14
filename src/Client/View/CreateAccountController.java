@@ -5,10 +5,14 @@ import Client.View.ViewHandler;
 import Client.ViewModel.CreateAccountViewModel;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 public class CreateAccountController
 {
@@ -19,6 +23,8 @@ public class CreateAccountController
   @FXML private Button create;
   @FXML private Button back;
 
+  private CreateAccountViewModel cavm;
+  private ViewHandler vh;
   private CreateAccountViewModel createAccountViewModel;
   private Region region;
   private ViewHandler viewHandler;
