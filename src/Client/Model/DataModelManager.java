@@ -20,7 +20,21 @@ public class DataModelManager implements DataModel
     return simpleUsers;
   }
 
-  @Override public User getUser()
+
+
+  public String getType(){
+    if (user instanceof SimpleUser){
+      return "SimpleUser";
+    }
+    else if (user instanceof Moderator){
+      return "Moderator";
+    }
+    return null;
+  }
+
+
+  @Override
+  public User getUser()
   {
     if(user instanceof SimpleUser){
     for(int i=0; i<simpleUsers.size(); i++){
@@ -43,15 +57,17 @@ public class DataModelManager implements DataModel
     return moderators;
   }
 
-  @Override public ArrayList<SimpleUser> getSimpleUser()
-  {
-    return simpleUsers;
-  }
 
-  @Override public void addSimpleUser(SimpleUser simpleUser)
+  @Override
+  public void addSimpleUser(SimpleUser simpleUser)
   {
     simpleUsers.add(simpleUser);
 
+  }
+
+  @Override
+  public void addModerator(Moderator moderator) {
+    moderators.add(moderator);
   }
 
   public void addModerator(SimpleUser simpleUser){
@@ -65,5 +81,12 @@ public class DataModelManager implements DataModel
   }
 
 
+  @Override
+  public ArrayList<SimpleUser> allSimpleUsers() {
+    return simpleUsers;
+  }
 
+  public ArrayList<Moderator> allModerators(){
+    return moderators;
+  }
 }

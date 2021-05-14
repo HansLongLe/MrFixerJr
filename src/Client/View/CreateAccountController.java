@@ -17,17 +17,20 @@ public class CreateAccountController
   @FXML private TextField email;
   @FXML private Button create;
   @FXML private Button back;
-  private CreateAccountViewModel createAccountViewModel;
-  public void init(ViewModelFactory viewModelFactory, ViewHandler viewHAndler)
-  {
 
+  private ViewHandler viewHandler;
+  private CreateAccountViewModel createAccountViewModel;
+  public void init(CreateAccountViewModel createAccountViewModel, ViewHandler viewHAndler)
+  {
+    this.createAccountViewModel=createAccountViewModel;
+    this.viewHandler=viewHAndler;
   }
   @FXML
   public void CreateButton(){
-
+    viewHandler.openLogIn();
   }
 
   @FXML public void goBack(){
-
+    viewHandler.openLogIn();
   }
 }

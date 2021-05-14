@@ -7,4 +7,6 @@ public class CreateAccountViewModel {
     public CreateAccountViewModel(DataModel model){
         this.model=model;
     }
+
+
 }
