@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class CreateAccountController
 {
   @FXML private TextField username;
@@ -23,36 +25,32 @@ public class CreateAccountController
   @FXML private Button create;
   @FXML private Button back;
 
-  private CreateAccountViewModel cavm;
-  private ViewHandler vh;
-
   private CreateAccountViewModel createAccountViewModel;
   private Region region;
   private ViewHandler viewHandler;
 
-  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel, Region region)
+  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel)
   {
     this.viewHandler = viewHandler;
     this.createAccountViewModel = createAccountViewModel;
-    this.region = region;
+
   }
   @FXML
-  public void CreateButton(){
-
-  }
-
-  @FXML public void goBack()
-  {
-    viewHandler.openView("LogIn");
-  }
-
-  public void reset()
+  public void CreateButton()
   {
 
   }
 
-  public Region getRegion()
-  {
+    public void goBack () throws IOException
+    {
+    viewHandler.openView();
+  }
+
+    public void reset () {
+  }
+
+    public Region getRegion () {
     return region;
   }
-}
+  }
+

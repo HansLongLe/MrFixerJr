@@ -1,7 +1,9 @@
 package Client.View;
 
 import Client.ViewModel.*;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -14,91 +16,60 @@ public class ViewHandler
   private Scene currentScene;
   private Stage primaryStage;
   private ViewModelFactory modelFactory;
+  private LoginViewModel loginViewModel;
+
 
   private CreateAccountController createAccountController;
   private LoginController loginController;
 
-  public ViewHandler(ViewModelFactory ViewModel)
+  public ViewHandler(ViewModelFactory ViewModel, Stage primarySTgae)
   {
     this.modelFactory = ViewModel;
+    this.primaryStage = primarySTgae;
+
   }
 
-  public void start(Stage primaryStage)
+  public void start(Stage primaryStage) throws IOException
   {
     this.primaryStage = primaryStage;
-    openView("LogIn");
+    openView();
+
   }
 
-  public void openView(String id)
+
+
+
+  public void openView() throws IOException
   {
-    Region root = null;
-    switch (id)
-    {
-      case "CreateAccount":
-        root = openCreateAccount("CreateAccount.fxml");
-        break;
-      case "LogIn":
-        root = openLogIn("LogIn.fxml");
-        break;
-    }
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
 
-    currentScene.setRoot(root);
-    String title = "";
-    if (root.getUserData() != null)
-    {
-      title += root.getUserData();
-    }
-
-    primaryStage.setTitle(title);
-    primaryStage.setScene(currentScene);
+    loader.setLocation(getClass().getResource("LogIn.fxml"));
+    root = loader.load();
+    LoginController controller = loader.getController();
+    controller.init(this, loginViewModel);
+    primaryStage.setTitle("LogIn");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 
-  public Region openCreateAccount(String fxml)
+  public void openCreateAccount() throws IOException
   {
-    if (createAccountController == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
-        Region root = loader.load();
-        createAccountController = loader.getController();
-        createAccountController.init(this,modelFactory.getCreateAccountViewModel(), root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-    }
-    else
-    {
-      createAccountController.reset();
-    }
-    return createAccountController.getRegion();
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("CreateAccount.fxml"));
+    root = loader.load();
+    CreateAccountController controller = loader.getController();
+    controller.init(this, modelFactory.getCreateAccountViewModel());
+    primaryStage.setTitle("LogIn");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
-  public Region openLogIn(String fxml)
-  {
-    if (loginController == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
-        Region root = loader.load();
-        loginController = loader.getController();
-        loginController.init(this,modelFactory.getLoginViewModel(), root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-    }
-    else
-    {
-      loginController.reset();
-    }
-    return loginController.getRegion();
-  }
+
 }
