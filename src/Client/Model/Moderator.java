@@ -1,10 +1,18 @@
 package Client.Model;
 
-public class Moderator extends User
+public class Moderator implements User
 {
   public Moderator(String userName, String password)
   {
-    super(userName, password);
   }
 
+  @Override public void logIn()
+  {
+
+  }
+
+  @Override public void register()
+  {
+
+  }
 }

@@ -1,9 +1,19 @@
 package Client.Model;
 
-public class SimpleUser extends User
+public class SimpleUser implements User
 {
   public SimpleUser(String userName, String password)
   {
-    super(userName, password);
+
+  }
+
+  @Override public void logIn()
+  {
+
+  }
+
+  @Override public void register()
+  {
+
   }
 }
