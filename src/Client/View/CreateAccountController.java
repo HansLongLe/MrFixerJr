@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class CreateAccountController
@@ -21,25 +22,32 @@ public class CreateAccountController
   @FXML private TextField email;
   @FXML private Button create;
   @FXML private Button back;
-  private CreateAccountViewModel cavm;
-  private ViewHandler vh;
-  private CreateAccountViewModel createAccountViewModel;
-  public void init(ViewModelFactory viewModelFactory, ViewHandler viewHAndler)
-  {
-    this.vh =vh;
-    cavm = viewModelFactory.getCreateAccountViewModel();
-    username.textProperty().bind(cavm.);
-    password.textProperty().bind(cavm.);
-    repeatPassword.textProperty().bind(cavm.);
-    email.textProperty().bind(cavm.);
 
+  private CreateAccountViewModel createAccountViewModel;
+  private Region region;
+  private ViewHandler viewHandler;
+
+  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel, Region region)
+  {
+    this.viewHandler = viewHandler;
+    this.createAccountViewModel = createAccountViewModel;
+    this.region = region;
   }
   @FXML
   public void CreateButton(){
 
+  @FXML public void goBack()
+  {
+    viewHandler.openView("LogIn");
   }
 
-  @FXML public void goBack(){
+  public void reset()
+  {
 
+  }
+
+  public Region getRegion()
+  {
+    return region;
   }
 }

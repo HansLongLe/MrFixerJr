@@ -24,9 +24,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="username" layoutX="160.0" layoutY="80.0" />
-      <TextField fx:id="password" layoutX="160.0" layoutY="114.0" />
-      <Button fx:id="logIn" layoutX="160.0" layoutY="154.0" mnemonicParsing="false" onAction="#LoginButton" text="Log In" />
-      <Button fx:id="createAccount" layoutX="137.0" layoutY="211.0" mnemonicParsing="false" onAction="#CreateAccountButton" text="Create account" />
+      <TextField layoutX="160.0" layoutY="80.0" />
+      <TextField layoutX="160.0" layoutY="114.0" />
+      <Button layoutX="160.0" layoutY="154.0" mnemonicParsing="false" text="Log In" />
+      <Button layoutX="137.0" layoutY="211.0" mnemonicParsing="false" text="Create account" />
    </children>
 </Pane>
