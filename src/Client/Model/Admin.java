@@ -40,7 +40,28 @@ public class Admin implements User
 
   }
 
-  @Override public void createAccount()
+  @Override public void createAccount(String username, String password, String email)
+  {
+
+  }
+
+  @Override public String getUserName() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public String getPassword() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public String getEmail() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public void set(String username, String password, String email)
+      throws RemoteException
   {
 
   }
