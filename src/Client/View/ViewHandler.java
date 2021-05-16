@@ -71,5 +71,20 @@ public class ViewHandler
     primaryStage.show();
   }
 
+  public void openHomepageView() throws IOException{
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("HomepageController.fxml"));
+    root = loader.load();
+    CreateAccountController controller = loader.getController();
+    controller.init(this, modelFactory.getCreateAccountViewModel());
+    primaryStage.setTitle("Homepage");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
 
 }

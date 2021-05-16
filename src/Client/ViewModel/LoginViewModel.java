@@ -29,43 +29,6 @@ public class LoginViewModel {
     }
 
 
-    //public String validLogin() throws RemoteException {
-    //    if (model.getType().equals("SimpleUser")){
-    //        for (int i = 0; i < model.allSimpleUsers().size(); i++) {
-    //            if (model.allSimpleUsers().get(i).getUsername().equals(username.getValue()) && model.allSimpleUsers().get(i).getPassword().equals(password.getValue())){
-    //                return "true";
-    //            }else if (model.allSimpleUsers().get(i).getUsername().equals(username.getValue()) && !model.allSimpleUsers().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid password";
-    //            }
-    //            else if (!model.allSimpleUsers().get(i).getUsername().equals(username.getValue()) && model.allSimpleUsers().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid username";
-    //            }
-    //            else if (!model.allSimpleUsers().get(i).getUsername().equals(username.getValue()) && !model.allSimpleUsers().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid username or password";
-    //            }
-    //        }
-    //        return "error";
-    //    }
-    //    else if (model.getType().equals("Moderator")){
-    //        for (int i = 0; i < model.allModerators().size(); i++) {
-    //            if (model.allModerators().get(i).getUsername().equals(username.getValue()) && model.allModerators().get(i).getPassword().equals(password.getValue())){
-    //                return "true";
-    //            }else if (model.allModerators().get(i).getUsername().equals(username.getValue()) && !model.allModerators().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid password";
-    //            }
-    //            else if (!model.allModerators().get(i).getUsername().equals(username.getValue()) && model.allModerators().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid username";
-    //            }
-    //            else if (!model.allModerators().get(i).getUsername().equals(username.getValue()) && !model.allModerators().get(i).getPassword().equals(password.getValue())){
-    //                return "invalid username or password";
-    //            }
-    //        }
-    //        return "error";
-    //    }
-    //    return ""
-//
-    //}
-
 
     public StringProperty getEmail(){
         return email;
