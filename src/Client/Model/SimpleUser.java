@@ -1,5 +1,8 @@
 package Client.Model;
 
+import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
+
 public class SimpleUser implements User
 {
   private String username;
@@ -32,7 +35,31 @@ public class SimpleUser implements User
 
   }
 
-  @Override public void register()
+  @Override public void createAccount()
+  {
+
+  }
+
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener) throws RemoteException
+  {
+
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener) throws RemoteException
+  {
+
+  }
+
+  @Override public void removePropertyChangeListener(String name,
+      PropertyChangeListener listener) throws RemoteException
+  {
+
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener) throws RemoteException
   {
 
   }
