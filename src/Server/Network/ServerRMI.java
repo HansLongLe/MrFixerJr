@@ -11,17 +11,18 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ServerRMI implements ServerInterface{
 
     private ArrayList<ClientInterface> connectedUsers;
     private DatabaseConnection databaseConnection;
 
-    public ServerRMI() throws RemoteException
+    public ServerRMI(String databasePassword) throws RemoteException
     {
         UnicastRemoteObject.exportObject( this, 0);
         connectedUsers = new ArrayList<>();
-        databaseConnection = new DatabaseConnection();
+        databaseConnection = new DatabaseConnection(databasePassword);
     }
     @Override
     public void addBroadcast(ClientInterface clientReceiver) {
@@ -39,5 +40,6 @@ public class ServerRMI implements ServerInterface{
         Registry registry = LocateRegistry.createRegistry(1099);
         registry.bind("Server", this);
         System.out.println("Server started!");
+        Scanner scanner = new Scanner(System.in);
     }
 }

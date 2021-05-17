@@ -12,13 +12,13 @@ import java.sql.Statement;
 public class DatabaseConnection {
     private Connection connection;
 
-    public DatabaseConnection()
+    public DatabaseConnection(String password)
     {
         String driver = "org.postgresql.Driver";
 
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "Hoytt200117";
+
 
 
         connection = null;
