@@ -11,6 +11,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ClientRMI  implements ClientInterface
 {
@@ -37,5 +39,13 @@ public class ClientRMI  implements ClientInterface
         System.out.println(server + "!!!!!!!!");
         server.newUser(user);
 
+
+    }
+
+    @Override public ArrayList<SimpleUser> logIn()
+        throws RemoteException, NotBoundException
+    {
+
+        return server.logIn();
     }
 }

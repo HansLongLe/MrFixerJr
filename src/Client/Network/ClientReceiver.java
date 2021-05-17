@@ -7,6 +7,7 @@ import Client.ViewModel.ViewModelFactory;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class ClientReceiver implements ClientInterface{
     private ViewModelFactory viewModelFactory;
@@ -30,5 +31,10 @@ public class ClientReceiver implements ClientInterface{
     @Override public void newUser(User user) throws RemoteException
     {
 
+    }
+
+    @Override public ArrayList<SimpleUser> logIn() throws RemoteException
+    {
+        return null;
     }
 }

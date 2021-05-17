@@ -2,6 +2,7 @@ package Client.Model;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Moderator implements User
 {
@@ -9,9 +10,9 @@ public class Moderator implements User
   {
   }
 
-  @Override public void logIn()
+  @Override public ArrayList<SimpleUser> logIn()
   {
-
+    return null;
   }
 
   @Override public void createAccount(String username, String password, String email)

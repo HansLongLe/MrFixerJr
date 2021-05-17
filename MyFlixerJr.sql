@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS MyFlixerJr CASCADE;
 Create SCHEMA MyFlixerJr;
 
 SET SCHEMA 'MyFlixerJr';

@@ -5,6 +5,7 @@ import Client.Network.ClientInterface;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class SimpleUser implements User, Serializable
 {
@@ -23,9 +24,9 @@ public class SimpleUser implements User, Serializable
      this.email = email;
   }
 
-  @Override public void logIn()
+  @Override public ArrayList<SimpleUser> logIn()
   {
-
+    return null;
   }
 
   @Override public void createAccount(String username, String password, String email)

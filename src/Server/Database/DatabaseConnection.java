@@ -4,10 +4,8 @@ import Client.Model.SimpleUser;
 import Client.Model.User;
 
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseConnection {
     private Connection connection;
@@ -50,5 +48,29 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
 
+    }
+
+    public ResultSet logIn(){
+
+        String sql = "SELECT username, password FROM MyFlixerJr.GeneralUser = ?, ? WHERE role= 'SimpleUser';";
+        PreparedStatement preparedStatement = null;
+        try
+        {
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        try
+        {
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }

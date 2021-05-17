@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -21,6 +22,7 @@ import java.rmi.RemoteException;
 public class CreateAccountController
 {
   @FXML private TextField username;
+  @FXML private Label error;
   @FXML private PasswordField password;
   @FXML private PasswordField repeatPassword;
   @FXML private TextField email;
@@ -38,9 +40,17 @@ public class CreateAccountController
 
   }
   @FXML
-  public void CreateButton() throws RemoteException, NotBoundException
+  public void CreateButton() throws IOException, NotBoundException
   {
-    createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
+    if((password.getText().equals(repeatPassword.getText()))){
+      createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
+      error.setVisible(false);
+      viewHandler.openView();
+    }
+    else
+    {
+      error.setVisible(true);
+    }
 
   }
 

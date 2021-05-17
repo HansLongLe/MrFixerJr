@@ -10,6 +10,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,6 +20,7 @@ public class ServerRMI implements ServerInterface{
 
     private ArrayList<ClientInterface> connectedUsers;
     private DatabaseConnection databaseConnection;
+
 
     public ServerRMI(String databasePassword) throws RemoteException
     {
@@ -41,5 +45,32 @@ public class ServerRMI implements ServerInterface{
         registry.bind("Server", this);
         System.out.println("Server started!");
         Scanner scanner = new Scanner(System.in);
+
     }
+
+    @Override public ArrayList<SimpleUser> logIn()
+        throws RemoteException
+    {      ResultSet rs = null;
+            ArrayList<SimpleUser> simpleUsers = new ArrayList<>();
+
+        rs=databaseConnection.logIn() ;
+        try{
+                    while(rs.next()){
+                        String username1 = rs.getString("username");
+                        String password1 = rs.getString("password");
+
+                        User temp = new SimpleUser();
+                        temp.set(username1, password1, "");
+                        simpleUsers.add((SimpleUser) temp);
+                    }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        System.out.println(simpleUsers+ "!@#@#@#$%^&*()");
+
+        return simpleUsers;
+    }
+
 }
