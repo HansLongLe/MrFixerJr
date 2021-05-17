@@ -33,9 +33,10 @@ public class UserModelManager implements User{
   {
     User user = new SimpleUser();
     user.set(username, password, email);
+    System.out.println("UMM");
+
     clientInterface.newUser(user);
 
-    System.out.println("UMM");
 
   }
 

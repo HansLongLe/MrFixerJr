@@ -9,5 +9,5 @@ import java.rmi.RemoteException;
 
 public interface ClientInterface extends Remote {
   void startClient() throws RemoteException, NotBoundException;
-  public void newUser(User user) throws RemoteException;
+  public void newUser(User user) throws RemoteException, NotBoundException;
 }

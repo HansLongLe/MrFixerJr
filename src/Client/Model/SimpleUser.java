@@ -3,9 +3,10 @@ package Client.Model;
 import Client.Network.ClientInterface;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class SimpleUser implements User
+public class SimpleUser implements User, Serializable
 {
 
   private String name;
@@ -37,17 +38,17 @@ public class SimpleUser implements User
 
   @Override public String getUserName() throws RemoteException
   {
-    return null;
+    return name;
   }
 
   @Override public String getPassword() throws RemoteException
   {
-    return null;
+    return password;
   }
 
   @Override public String getEmail() throws RemoteException
   {
-    return null;
+    return email;
   }
 
   @Override public void addPropertyChangeListener(String name,
