@@ -30,7 +30,7 @@ public class ServerRMI implements ServerInterface{
 
     @Override
     public void newUser(User user) {
-       databaseConnection.addUser(user);
+       databaseConnection.addUser();
     }
 
     @Override public void start() throws RemoteException, AlreadyBoundException

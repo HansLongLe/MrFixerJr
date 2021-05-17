@@ -1,7 +1,5 @@
 package Server.Database;
 
-import Client.Model.SimpleUser;
-import Client.Model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,9 +12,9 @@ public class DatabaseConnection {
     {
         String driver = "org.postgresql.Driver";
 
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = "jdbc:postgresql://localhost:5432/Company";
         String user = "postgres";
-        String password = "postgres";
+        String password = "cjj2468830035";
 
 
         connection = null;
@@ -35,14 +33,16 @@ public class DatabaseConnection {
 
     }
 
-    public void addUser(User user)
+    public void addUser()
     {
-        System.out.println("Data got to the last class" + user);
 
-        String sql = "INSERT INTO GeneralUser VALUES(";
+
+        String sql = "insert into movie.role(movieId, personName, role)\n" +
+                "values (003, 'Chen', 'Actor');";
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
+            System.out.println("Data got to the last class");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

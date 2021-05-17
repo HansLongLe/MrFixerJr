@@ -1,6 +1,5 @@
 package Client.Network;
 
-import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.ViewModel.ViewModelFactory;
 import Server.Network.ServerInterface;

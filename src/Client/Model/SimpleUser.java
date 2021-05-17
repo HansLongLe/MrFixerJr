@@ -11,10 +11,7 @@ public class SimpleUser implements User
   private String name;
   private String password;
   private String email;
-  public SimpleUser()
-  {
-
-  }
+  public SimpleUser() {}
 
   public void set(String username, String password, String email){
     this.name = username;

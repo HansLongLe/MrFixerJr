@@ -44,11 +44,6 @@ public class Moderator implements User
     return null;
   }
 
-  @Override public String getPassword() throws RemoteException
-  {
-    return null;
-  }
-
   @Override public String getEmail() throws RemoteException
   {
     return null;
