@@ -29,8 +29,9 @@ public class ServerRMI implements ServerInterface{
     }
 
     @Override
-    public void newUser(User user) {
+    public void newUser(User user) throws RemoteException{
        databaseConnection.addUser(user);
+        System.out.println("new user in server");
     }
 
     @Override public void start() throws RemoteException, AlreadyBoundException
