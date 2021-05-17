@@ -31,7 +31,11 @@
          </font>
       </Label>
       <Button fx:id="create" layoutX="275.0" layoutY="273.0" mnemonicParsing="false" onAction="#CreateButton" prefHeight="30.0" prefWidth="97.0" text="Create" />
-      <Label layoutX="106.0" layoutY="232.0" prefHeight="17.0" prefWidth="103.0" text="Email" />
+      <Label layoutX="106.0" layoutY="232.0" prefHeight="17.0" prefWidth="103.0" text="Email">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
       <TextField fx:id="email" layoutX="275.0" layoutY="228.0" />
       <Button fx:id="back" layoutX="153.0" layoutY="273.0" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="97.0" text="Back" />
       <PasswordField fx:id="password" layoutX="275.0" layoutY="155.0" />
