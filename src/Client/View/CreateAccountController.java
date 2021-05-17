@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Model.ModelFactory;
 import Client.View.ViewHandler;
 
 import Client.ViewModel.CreateAccountViewModel;
@@ -36,9 +37,22 @@ public class CreateAccountController
 
   }
   @FXML
-  public void CreateButton()
-  {
+  public void CreateButton() throws IOException {
+    Stage stage = new Stage();
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
 
+    loader.setLocation(getClass().getResource("Homepage.fxml"));
+    root = loader.load();
+
+    HomepageController controller = loader.getController();
+    controller.init(new ViewModelFactory(new ModelFactory()));
+
+    stage.setTitle("MyFlixerJr");
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
   }
 
     public void goBack () throws IOException

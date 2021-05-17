@@ -4,6 +4,7 @@ public class ModelFactory
 {
     private DataModel model;
     private User user;
+    private MovieDataModel movie;
 
     public DataModel getDataModel()
     {
@@ -18,5 +19,11 @@ public class ModelFactory
             user = new UserModelManager();
         }
         return user;
+    }
+    public MovieDataModel getMovieDataModel(){
+        if (movie==null){
+            movie = new MovieDataModelManager();
+        }
+        return movie;
     }
 }

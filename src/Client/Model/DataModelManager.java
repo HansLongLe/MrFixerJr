@@ -20,8 +20,40 @@ public class DataModelManager implements DataModel
     return simpleUsers;
   }
 
-<<<<<<<<< Temporary merge branch 1
-//  @Override public User getUser()
+
+  @Override public User getUser()
+  {
+//    if(user instanceof SimpleUser){
+//    for(int i=0; i<simpleUsers.size(); i++){
+//      if(simpleUsers.get(i).getUserName().equals(userName)){
+//        user = simpleUsers.get(i);
+//      }
+//    }
+//    }
+//    else if(user instanceof Moderator){
+//      for (int i = 0; i < moderators.size(); i++){
+//        if(moderators.get(i).getUserName().equals(userName)){
+//          user = simpleUsers.get(i);
+//        }
+//      }
+//    }
+    return user;
+  }
+
+
+  public String getType(){
+    if (user instanceof SimpleUser){
+      return "SimpleUser";
+    }
+    else if (user instanceof Moderator){
+      return "Moderator";
+    }
+    return null;
+  }
+
+//
+//  @Override
+//  public User getUser()
 //  {
 //    if(user instanceof SimpleUser){
 //    for(int i=0; i<simpleUsers.size(); i++){
@@ -39,46 +71,13 @@ public class DataModelManager implements DataModel
 //    }
 //    return user;
 //  }
-=========
 
-
-  public String getType(){
-    if (user instanceof SimpleUser){
-      return "SimpleUser";
-    }
-    else if (user instanceof Moderator){
-      return "Moderator";
-    }
-    return null;
-  }
-
-
-  @Override
-  public User getUser()
-  {
-    if(user instanceof SimpleUser){
-    for(int i=0; i<simpleUsers.size(); i++){
-      if(simpleUsers.get(i).getUserName().equals(userName)){
-        user = simpleUsers.get(i);
-      }
-    }
-    }
-    else if(user instanceof Moderator){
-      for (int i = 0; i < moderators.size(); i++){
-        if(moderators.get(i).getUserName().equals(userName)){
-          user = simpleUsers.get(i);
-        }
-      }
-    }
-    return user;
-  }
->>>>>>>>> Temporary merge branch 2
 
   public ArrayList<Moderator> getModerators(){
     return moderators;
   }
 
-<<<<<<<<< Temporary merge branch 1
+
   //@Override public ArrayList<SimpleUser> getSimpleUser()
   //{
     //return simpleUsers;
@@ -89,7 +88,7 @@ public class DataModelManager implements DataModel
   //  simpleUsers.add(simpleUser);
 //
   //}
-=========
+
 
   @Override
   public void addSimpleUser(SimpleUser simpleUser)
@@ -97,7 +96,7 @@ public class DataModelManager implements DataModel
     simpleUsers.add(simpleUser);
 
   }
->>>>>>>>> Temporary merge branch 2
+
 
   @Override
   public void addModerator(Moderator moderator) {
