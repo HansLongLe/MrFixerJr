@@ -15,6 +15,8 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class CreateAccountController
 {
@@ -36,8 +38,9 @@ public class CreateAccountController
 
   }
   @FXML
-  public void CreateButton()
+  public void CreateButton() throws RemoteException, NotBoundException
   {
+    createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
 
   }
 

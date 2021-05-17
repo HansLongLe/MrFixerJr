@@ -1,5 +1,6 @@
 package Server.Database;
 
+import Client.Model.SimpleUser;
 import Client.Model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +17,7 @@ public class DatabaseConnection {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
         String password = "postgres";
+
 
         connection = null;
 
@@ -35,6 +37,8 @@ public class DatabaseConnection {
 
     public void addUser(User user)
     {
+        System.out.println("Data got to the last class" + user);
+
         String sql = "INSERT INTO GeneralUser VALUES(";
         try {
             Statement statement = connection.createStatement();
