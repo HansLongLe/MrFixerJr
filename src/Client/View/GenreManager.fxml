@@ -34,7 +34,16 @@
                 </HBox>
                 <VBox layoutX="206.0" layoutY="152.0" prefHeight="598.0" prefWidth="926.0" style="-fx-background-color: #545454;">
                     <children>
-                        <ScrollPane fx:id="genreList" prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #545454;" />
+                        <ScrollPane prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #545454;">
+                     <content>
+                        <VBox fx:id="genreList" alignment="TOP_CENTER" prefHeight="555.0" prefWidth="923.0" spacing="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="260.0" top="10.0" />
+                           </padding></VBox>
+                     </content></ScrollPane>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="46.0" prefWidth="926.0">
                             <children>
                                 <HBox prefHeight="34.0" prefWidth="1.0" />

@@ -9,6 +9,7 @@ public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;
     private MovieViewModel movieViewModel;
+    private GenreViewModel genreViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory)
         throws RemoteException, NotBoundException, InterruptedException
@@ -16,6 +17,7 @@ public class ViewModelFactory {
         createAccountViewModel=new CreateAccountViewModel(modelFactory.getUser());
         loginViewModel=new LoginViewModel(modelFactory.getUser());
         movieViewModel = new MovieViewModel(modelFactory.getMovieDataModel());
+        genreViewModel = new GenreViewModel(modelFactory.getGenreDataModel());
     }
 
     public CreateAccountViewModel getCreateAccountViewModel() {
@@ -28,5 +30,9 @@ public class ViewModelFactory {
 
     public MovieViewModel getMovieViewModel() {
         return movieViewModel;
+    }
+
+    public GenreViewModel getGenreViewModel() {
+        return genreViewModel;
     }
 }

@@ -13,4 +13,5 @@ public class MovieViewModel {
     public void createMovie(String title, String year, ArrayList<String> genres, String description, String actors){
         movieDataModel.addMovie(title, year, genres, description, actors);
     }
+
 }
