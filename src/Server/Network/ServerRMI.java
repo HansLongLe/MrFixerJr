@@ -52,6 +52,7 @@ public class ServerRMI implements ServerInterface{
         throws RemoteException
     {      ResultSet rs = null;
             ArrayList<SimpleUser> simpleUsers = new ArrayList<>();
+        System.out.println("array");
 
         rs=databaseConnection.logIn() ;
         try{
@@ -62,13 +63,13 @@ public class ServerRMI implements ServerInterface{
                         User temp = new SimpleUser();
                         temp.set(username1, password1, "");
                         simpleUsers.add((SimpleUser) temp);
+                        System.out.println(simpleUsers.size());
                     }
         }
         catch (SQLException throwables)
         {
             throwables.printStackTrace();
         }
-        System.out.println(simpleUsers+ "!@#@#@#$%^&*()");
 
         return simpleUsers;
     }

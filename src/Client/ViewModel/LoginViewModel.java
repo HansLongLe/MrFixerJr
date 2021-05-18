@@ -8,7 +8,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class LoginViewModel {
-    private DataModel model;
     private User user;
     private StringProperty username;
     private StringProperty password;
