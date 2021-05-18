@@ -2,6 +2,9 @@ package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 
 public class GenreManagerController {
@@ -17,11 +21,17 @@ public class GenreManagerController {
     private ScrollPane genreList;
 
     private ViewModelFactory viewModelFactory;
+    private Stage stage;
+    private Scene userScene;
+    private Scene movieScene;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage)
-    {
+    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
+        this.stage = stage;
+        userScene();
+        movieScene();
     }
+
     public void addGenre()
     {
         HBox newRow = new HBox();
@@ -33,4 +43,41 @@ public class GenreManagerController {
         newRow.setSpacing(10);
         genreList.setContent(newRow);
     }
+
+    private void userScene() throws IOException {
+        userScene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(getClass().getResource("UserManager.fxml"));
+
+        root = loader.load();
+
+        UserManagerController controller = loader.getController();
+        controller.init(viewModelFactory, stage);
+        userScene = new Scene(root);
+    }
+
+    private void movieScene() throws IOException {
+        movieScene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(getClass().getResource("MovieManager.fxml"));
+
+        root = loader.load();
+        GenreManagerController controller = loader.getController();
+        controller.init(viewModelFactory, stage);
+        movieScene = new Scene(root);
+    }
+
+    public void setSceneToUser()
+    {
+        stage.setScene(userScene);
+    }
+    public void setSceneToMovie()
+    {
+        stage.setScene(movieScene);
+    }
+
 }

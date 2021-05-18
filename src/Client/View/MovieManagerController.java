@@ -12,17 +12,6 @@ import java.io.IOException;
 
 public class MovieManagerController {
 
-    @FXML
-    private HBox addMovie;
-
-    @FXML
-    private HBox movies;
-
-    @FXML
-    private HBox users;
-
-    @FXML
-    private HBox genre;
 
     private ViewModelFactory viewModelFactory;
     private Stage stage;
