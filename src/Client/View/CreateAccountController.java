@@ -45,7 +45,7 @@ public class CreateAccountController {
 
   }
 
-  public void CreateButton() throws IOException, NotBoundException {
+  public void createButton() throws IOException, NotBoundException {
     if ((password.getText().equals(repeatPassword.getText()))) {
       createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
       error.setVisible(false);

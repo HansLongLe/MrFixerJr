@@ -13,7 +13,6 @@ public class Admin implements User
 
 
   private Moderator moderator;
-  private DataModelManager dataModelManager;
 
   public Admin(String userName, String password)
   {
@@ -23,7 +22,6 @@ public class Admin implements User
 
   public void createModerator(SimpleUser simpleUser){
 //    dataModelManager.getModerators().add(moderator);
-    dataModelManager.getSimpleUsers().remove(simpleUser);
   }
 
 
