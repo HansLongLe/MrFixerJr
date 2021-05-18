@@ -36,8 +36,8 @@ public class LoginController
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
     loginViewModel = viewModelFactory.getLoginViewModel();
-    username.textProperty().bind(loginViewModel.getUsername());
-    password.textProperty().bind(loginViewModel.getPassword());
+    username.textProperty().bindBidirectional(loginViewModel.getUsername());
+    password.textProperty().bindBidirectional(loginViewModel.getPassword());
   }
   @FXML
   public void LoginButton() throws IOException

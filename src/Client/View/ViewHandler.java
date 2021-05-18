@@ -27,15 +27,10 @@ public class ViewHandler
 
   }
 
-  public void start(Stage primaryStage) throws IOException
+  public void start() throws IOException
   {
-    this.primaryStage = primaryStage;
     openView();
-
   }
-
-
-
 
   public void openView() throws IOException
   {

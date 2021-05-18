@@ -31,6 +31,6 @@ public class MyApplication extends Application
     UserModelManager userModelManager = new UserModelManager(cf.getClientInterface());
 
     userModelManager.setClientInterface(clientInterface);
-    viewHandler.start(primaryStage);
+    viewHandler.start();
   }
 }
