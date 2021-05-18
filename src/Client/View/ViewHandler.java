@@ -13,31 +13,22 @@ import java.io.IOException;
 
 public class ViewHandler
 {
-  private Scene currentScene;
   private Stage primaryStage;
-  private ViewModelFactory modelFactory;
-  private LoginViewModel loginViewModel;
+  private ViewModelFactory viewModelFactory;
 
 
-  private CreateAccountController createAccountController;
-  private LoginController loginController;
 
   public ViewHandler(ViewModelFactory ViewModel, Stage primarySTgae)
   {
-    this.modelFactory = ViewModel;
+    this.viewModelFactory = ViewModel;
     this.primaryStage = primarySTgae;
 
   }
 
-  public void start(Stage primaryStage) throws IOException
+  public void start() throws IOException
   {
-    this.primaryStage = primaryStage;
     openView();
-
   }
-
-
-
 
   public void openView() throws IOException
   {
@@ -48,7 +39,7 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("LogIn.fxml"));
     root = loader.load();
     LoginController controller = loader.getController();
-    controller.init(this, loginViewModel);
+    controller.init(viewModelFactory, this);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
@@ -64,11 +55,16 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("CreateAccount.fxml"));
     root = loader.load();
     CreateAccountController controller = loader.getController();
-    controller.init(this, modelFactory);
+    controller.init(this, viewModelFactory);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
+  }
+
+  public void closeLogIn()
+  {
+    primaryStage.close();
   }
 
 

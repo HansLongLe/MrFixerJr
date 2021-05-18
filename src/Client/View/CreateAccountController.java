@@ -10,61 +10,54 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
-public class CreateAccountController
-{
-  @FXML private TextField username;
-  @FXML private PasswordField password;
-  @FXML private PasswordField repeatPassword;
-  @FXML private TextField email;
-  @FXML private Button create;
-  @FXML private Button back;
+public class CreateAccountController {
+  @FXML
+  private TextField username;
+  @FXML
+  private Label error;
+  @FXML
+  private PasswordField password;
+  @FXML
+  private PasswordField repeatPassword;
+  @FXML
+  private TextField email;
+
 
   private ViewModelFactory viewModelFactory;
-  private Region region;
+  private CreateAccountViewModel createAccountViewModel;
   private ViewHandler viewHandler;
 
   public void init( ViewHandler viewHandler, ViewModelFactory viewModelFactory)
   {
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
+    createAccountViewModel = viewModelFactory.getCreateAccountViewModel();
 
   }
-  @FXML
-  public void CreateButton() throws IOException {
-    Stage stage = new Stage();
-    Scene scene = null;
-    FXMLLoader loader = new FXMLLoader();
-    Parent root = null;
 
-    loader.setLocation(getClass().getResource("Homepage.fxml"));
-    root = loader.load();
-
-    HomepageController controller = loader.getController();
-    controller.init(viewModelFactory, stage);
-
-    stage.setTitle("MyFlixerJr");
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+  public void CreateButton() throws IOException, NotBoundException {
+    if ((password.getText().equals(repeatPassword.getText()))) {
+      createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
+      error.setVisible(false);
+      viewHandler.openView();
+    } else {
+      error.setVisible(true);
+    }
   }
 
-    public void goBack () throws IOException
-    {
+  public void goBack() throws IOException {
     viewHandler.openView();
   }
 
-    public void reset () {
-  }
-
-    public Region getRegion () {
-    return region;
-  }
-  }
+}
 

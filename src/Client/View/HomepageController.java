@@ -22,9 +22,7 @@ public class HomepageController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        watchLaterScene();
-        watchedScene();
-        favoriteScene();
+
     }
 
     public void openManageWindow() throws IOException {
@@ -43,7 +41,8 @@ public class HomepageController {
         stage.show();
     }
 
-    private void watchLaterScene() throws IOException {
+
+    public void setSceneToWatchLater() throws IOException {
         watchLaterScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -55,9 +54,9 @@ public class HomepageController {
         WatchLaterController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchLaterScene = new Scene(root);
+        stage.setScene(watchLaterScene);
     }
-
-    private void watchedScene() throws IOException {
+    public void setSceneToWatched() throws IOException {
         watchedScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -69,9 +68,9 @@ public class HomepageController {
         WatchedController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchedScene = new Scene(root);
+        stage.setScene(watchedScene);
     }
-
-    private void favoriteScene() throws IOException {
+    public void setSceneToFavorite() throws IOException {
         favoriteScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -83,18 +82,6 @@ public class HomepageController {
         FavoriteController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         favoriteScene = new Scene(root);
-    }
-
-    public void setSceneToWatchLater()
-    {
-        stage.setScene(watchLaterScene);
-    }
-    public void setSceneToWatched()
-    {
-        stage.setScene(watchedScene);
-    }
-    public void setSceneToFavorite()
-    {
         stage.setScene(favoriteScene);
     }
 

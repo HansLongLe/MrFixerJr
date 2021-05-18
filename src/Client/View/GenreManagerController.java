@@ -28,8 +28,6 @@ public class GenreManagerController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        userScene();
-        movieScene();
     }
 
     public void addGenre()
@@ -44,7 +42,7 @@ public class GenreManagerController {
         genreList.setContent(newRow);
     }
 
-    private void userScene() throws IOException {
+    public void setSceneToUser() throws IOException {
         userScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -56,9 +54,9 @@ public class GenreManagerController {
         UserManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         userScene = new Scene(root);
+        stage.setScene(userScene);
     }
-
-    private void movieScene() throws IOException {
+    public void setSceneToMovie() throws IOException {
         movieScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -69,14 +67,6 @@ public class GenreManagerController {
         MovieManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         movieScene = new Scene(root);
-    }
-
-    public void setSceneToUser()
-    {
-        stage.setScene(userScene);
-    }
-    public void setSceneToMovie()
-    {
         stage.setScene(movieScene);
     }
 

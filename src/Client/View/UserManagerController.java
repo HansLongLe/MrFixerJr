@@ -20,11 +20,11 @@ public class UserManagerController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        movieScene();
-        genreScene();
+
     }
 
-    private void movieScene() throws IOException {
+
+    public void setSceneToMovie() throws IOException {
         movieScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -33,12 +33,12 @@ public class UserManagerController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        MovieManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         movieScene = new Scene(root);
+        stage.setScene(movieScene);
     }
-
-    private void genreScene() throws IOException {
+    public void setSceneToGenre() throws IOException {
         genreScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -49,14 +49,6 @@ public class UserManagerController {
         GenreManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         genreScene = new Scene(root);
-    }
-
-    public void setSceneToMovie()
-    {
-        stage.setScene(movieScene);
-    }
-    public void setSceneToGenre()
-    {
         stage.setScene(genreScene);
     }
 }

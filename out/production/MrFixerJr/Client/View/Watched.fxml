@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1073.0" style="-fx-background-color: #363636#363636;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.HomepageController">
+<AnchorPane prefHeight="700.0" prefWidth="1073.0" style="-fx-background-color: #363636#363636;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.WatchedController">
     <children>
         <AnchorPane>
             <children>
@@ -87,7 +87,7 @@
                         <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
                     </effect>
                 </ImageView>
-                <Label fx:id="logout" onMouseClicked="#logout" text="Log out" textFill="WHITE">
+                <Label text="Log out" textFill="WHITE">
                     <HBox.margin>
                         <Insets left="5.0" top="22.0" />
                     </HBox.margin>
@@ -97,7 +97,7 @@
         <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="206.0" style="-fx-background-color: #30302f;">
             <children>
                 <Line endX="102.87867736816406" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
-                <HBox prefHeight="24.0" prefWidth="206.0">
+                <HBox onMouseClicked="#setSceneToHomepage" prefHeight="24.0" prefWidth="206.0">
                     <children>
                         <ImageView fitHeight="147.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -120,7 +120,7 @@
                         <Insets bottom="10.0" top="120.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="28.0" prefWidth="206.0">
+                <HBox onMouseClicked="#setSceneToWatchLater" prefHeight="28.0" prefWidth="206.0">
                     <children>
                         <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -166,7 +166,7 @@
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="28.0" prefWidth="206.0">
+                <HBox onMouseClicked="#setSceneToFavorite" prefHeight="28.0" prefWidth="206.0">
                     <children>
                         <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -189,7 +189,7 @@
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <ImageView fitHeight="44.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="44.0" fitWidth="116.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@picture1/manage.png" />
                     </image>

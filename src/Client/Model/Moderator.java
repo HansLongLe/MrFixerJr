@@ -2,6 +2,7 @@ package Client.Model;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Moderator implements User
 {
@@ -21,20 +22,34 @@ public class Moderator implements User
     this.username = username;
   }
 
-  public String getUsername() {
-    return username;
+
+  @Override public ArrayList<SimpleUser> logIn()
+  {
+    return null;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  @Override public void logIn()
+  @Override public void createAccount(String username, String password, String email)
   {
 
   }
 
-  @Override public void createAccount()
+  @Override public String getUserName() throws RemoteException
+  {
+    return username;
+  }
+
+  @Override public String getPassword() throws RemoteException
+  {
+    return password;
+  }
+
+  @Override public String getEmail() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public void set(String username, String password, String email)
+      throws RemoteException
   {
 
   }

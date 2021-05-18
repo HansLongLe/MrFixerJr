@@ -1,10 +1,28 @@
 package Client.Model;
 
+import Client.Network.ClientFactory;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 public class ModelFactory
 {
     private DataModel model;
     private User user;
+    private ClientFactory cf;
     private MovieDataModel movie;
+
+    //    private ClientInterface clientInterface;
+//
+//    public ClientInterface getClientInterface(){
+//        if(clientInterface==null){
+//            clientInterface = new ClientRMI()
+//        }
+//    }
+
+    public ModelFactory(ClientFactory cf){
+        this.cf = cf;
+    }
 
     public DataModel getDataModel()
     {
@@ -14,9 +32,11 @@ public class ModelFactory
         }
         return model;
     }
-    public User getUser(){
+    public User getUser()
+        throws RemoteException, NotBoundException, InterruptedException
+    {
         if(user==null){
-            user = new UserModelManager();
+            user = new UserModelManager(cf.getClientInterface());
         }
         return user;
     }

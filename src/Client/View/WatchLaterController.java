@@ -21,9 +21,6 @@ public class WatchLaterController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        watchedScene();
-        homepageScene();
-        favoriteScene();
     }
 
 
@@ -43,7 +40,8 @@ public class WatchLaterController {
         stage.show();
     }
 
-    private void homepageScene() throws IOException {
+
+    public void setSceneToHomepage() throws IOException {
         homepageScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -52,12 +50,12 @@ public class WatchLaterController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        HomepageController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         homepageScene = new Scene(root);
+        stage.setScene(homepageScene);
     }
-
-    private void watchedScene() throws IOException {
+    public void setSceneToWatched() throws IOException {
         watchedScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -66,12 +64,12 @@ public class WatchLaterController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        WatchedController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchedScene = new Scene(root);
+        stage.setScene(watchedScene);
     }
-
-    private void favoriteScene() throws IOException {
+    public void setSceneToFavorite() throws IOException {
         favoriteScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -80,21 +78,9 @@ public class WatchLaterController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        FavoriteController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         favoriteScene = new Scene(root);
-    }
-
-    public void setSceneToHomepage()
-    {
-        stage.setScene(homepageScene);
-    }
-    public void setSceneToWatched()
-    {
-        stage.setScene(watchedScene);
-    }
-    public void setSceneToFavorite()
-    {
         stage.setScene(favoriteScene);
     }
 }

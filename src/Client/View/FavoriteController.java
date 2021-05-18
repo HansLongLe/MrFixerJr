@@ -22,9 +22,6 @@ public class FavoriteController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        watchLaterScene();
-        watchedScene();
-        homepageScene();
     }
 
 
@@ -44,7 +41,8 @@ public class FavoriteController {
         stage.show();
     }
 
-    private void watchLaterScene() throws IOException {
+
+    public void setSceneToWatchLater() throws IOException {
         watchLaterScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -53,12 +51,12 @@ public class FavoriteController {
 
         root = loader.load();
 
-        WatchedController controller = loader.getController();
+        WatchLaterController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchLaterScene = new Scene(root);
+        stage.setScene(watchLaterScene);
     }
-
-    private void watchedScene() throws IOException {
+    public void setSceneToWatched() throws IOException {
         watchedScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -70,9 +68,9 @@ public class FavoriteController {
         WatchedController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchedScene = new Scene(root);
+        stage.setScene(watchedScene);
     }
-
-    private void homepageScene() throws IOException {
+    public void setSceneToHomepage() throws IOException {
         homepageScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -84,18 +82,6 @@ public class FavoriteController {
         HomepageController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         homepageScene = new Scene(root);
-    }
-
-    public void setSceneToWatchLater()
-    {
-        stage.setScene(watchLaterScene);
-    }
-    public void setSceneToWatched()
-    {
-        stage.setScene(watchedScene);
-    }
-    public void setSceneToHomepage()
-    {
         stage.setScene(homepageScene);
     }
 
