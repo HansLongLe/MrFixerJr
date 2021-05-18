@@ -60,6 +60,7 @@ public class LoginController
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        break;
       }
       case "Wrong password":
         System.out.println("Wrong password");

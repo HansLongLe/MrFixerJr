@@ -46,7 +46,7 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("LogIn.fxml"));
     root = loader.load();
     LoginController controller = loader.getController();
-    controller.init(this, viewModelFactory);
+    controller.init(viewModelFactory, this);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
