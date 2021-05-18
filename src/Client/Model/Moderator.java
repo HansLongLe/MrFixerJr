@@ -6,9 +6,22 @@ import java.util.ArrayList;
 
 public class Moderator implements User
 {
+  private String username;
+  private String password;
   public Moderator(String userName, String password)
   {
+    this.username=userName;
+    this.password=password;
   }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
 
   @Override public ArrayList<SimpleUser> logIn()
   {
@@ -22,12 +35,12 @@ public class Moderator implements User
 
   @Override public String getUserName() throws RemoteException
   {
-    return null;
+    return username;
   }
 
   @Override public String getPassword() throws RemoteException
   {
-    return null;
+    return password;
   }
 
   @Override public String getEmail() throws RemoteException
