@@ -7,10 +7,10 @@ import java.rmi.RemoteException;
 
 public class ModelFactory
 {
-    private DataModel model;
     private User user;
     private ClientFactory cf;
     private MovieDataModel movie;
+    private GenreDataModel genre;
 
     //    private ClientInterface clientInterface;
 //
@@ -24,14 +24,7 @@ public class ModelFactory
         this.cf = cf;
     }
 
-    public DataModel getDataModel()
-    {
-        if (model == null)
-        {
-            model = new DataModelManager();
-        }
-        return model;
-    }
+
     public User getUser()
         throws RemoteException, NotBoundException, InterruptedException
     {
@@ -45,5 +38,13 @@ public class ModelFactory
             movie = new MovieDataModelManager();
         }
         return movie;
+    }
+
+    public GenreDataModel getGenreDataModel() {
+        if (genre == null)
+        {
+            genre = new GenreModelManager(cf.getClientInterface());
+        }
+        return genre;
     }
 }

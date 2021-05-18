@@ -1,4 +1,6 @@
 import Client.Model.ModelFactory;
+import Client.Model.MovieDataModel;
+import Client.Model.MovieDataModelManager;
 import Client.View.CreateMovieController;
 import Client.View.HomepageController;
 import Client.Model.UserModelManager;
@@ -28,9 +30,6 @@ public class MyApplication extends Application
     ViewHandler viewHandler = new ViewHandler(viewModelFactory, primaryStage);
     ClientInterface clientInterface = new ClientRMI();
     System.out.println(clientInterface);
-    UserModelManager userModelManager = new UserModelManager(cf.getClientInterface());
-
-    userModelManager.setClientInterface(clientInterface);
     viewHandler.start();
   }
 }
