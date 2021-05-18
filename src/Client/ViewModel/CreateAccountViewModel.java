@@ -25,7 +25,6 @@ public class CreateAccountViewModel {
     public void createAccount(String username, String password, String email)
         throws RemoteException, NotBoundException
     {
-        System.out.println("Controller");
         user.createAccount(username, password, email);
     }
 }

@@ -75,7 +75,7 @@ public class LoginController
     return username.getText();
   }
 
-  public void CreateAccountButton() throws IOException
+  public void createAccountButton() throws IOException
   {
   viewHandler.openCreateAccount();
   }
