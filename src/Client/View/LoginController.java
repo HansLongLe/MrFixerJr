@@ -32,6 +32,7 @@ public class LoginController
 
   public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler)
   {
+    this.loginViewModel = loginViewModel;
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
     loginViewModel = viewModelFactory.getLoginViewModel();
@@ -62,10 +63,13 @@ public class LoginController
       }
       case "Wrong password":
         System.out.println("Wrong password");
+        break;
       case "Wrong username":
         System.out.println("Wrong username");
+        break;
       case "false":
         System.out.println("false");
+        break;
     }
 
   }

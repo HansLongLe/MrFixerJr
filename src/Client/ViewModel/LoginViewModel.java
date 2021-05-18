@@ -10,27 +10,27 @@ import java.util.ArrayList;
 public class LoginViewModel {
     private DataModel model;
     private User user;
-    private SimpleStringProperty username;
-    private SimpleStringProperty password;
+    private StringProperty username;
+    private StringProperty password;
 
 
 
     public LoginViewModel(User user){
-        this.user=user;
         username = new SimpleStringProperty();
         password = new SimpleStringProperty();
+        this.user=user;
     }
 
     public String logIn() throws RemoteException
     {
         for(int i=0; i<user.logIn().size(); i++){
-            if(username.getValue().equals(user.logIn().get(i).getUserName()) && password.getValue().equals(user.logIn().get(i).getPassword())){
+            if(user.logIn().get(i).getUserName().equals(username.getValue()) && user.logIn().get(i).getPassword().equals(password.getValue())){
                 return "true";
             }
-            else if(username.getValue().equals(user.logIn().get(i).getUserName()) && !(password.getValue().equals(user.logIn().get(i).getPassword()))){
+            else if(user.logIn().get(i).getUserName().equals(username.getValue()) && !(user.logIn().get(i).getPassword().equals(password.getValue()))){
                 return "Wrong password";
             }
-            else if(!(username.getValue().equals(user.logIn().get(i).getUserName())) && password.getValue().equals(user.logIn().get(i).getPassword())){
+            else if(!(user.logIn().get(i).getUserName().equals(username.getValue())) && user.logIn().get(i).getPassword().equals(password.getValue())){
                 return "Wrong username";
             }
 
