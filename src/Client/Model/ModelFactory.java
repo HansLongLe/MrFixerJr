@@ -11,6 +11,7 @@ public class ModelFactory
     private User user;
     private ClientFactory cf;
     private MovieDataModel movie;
+    private GenreDataModel genre;
 
     //    private ClientInterface clientInterface;
 //
@@ -45,5 +46,13 @@ public class ModelFactory
             movie = new MovieDataModelManager();
         }
         return movie;
+    }
+
+    public GenreDataModel getGenreDataModel() {
+        if (genre == null)
+        {
+            genre = new GenreModelManager(cf.getClientInterface());
+        }
+        return genre;
     }
 }
