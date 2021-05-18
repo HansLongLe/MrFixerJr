@@ -66,7 +66,7 @@ public class GenreManagerController {
         loader.setLocation(getClass().getResource("MovieManager.fxml"));
 
         root = loader.load();
-        GenreManagerController controller = loader.getController();
+        MovieManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         movieScene = new Scene(root);
     }

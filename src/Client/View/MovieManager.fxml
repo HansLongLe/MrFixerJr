@@ -45,7 +45,7 @@
                                     <Image url="@picture1/plus.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="32.0" prefWidth="138.0" text=" Add movies" textFill="WHITE">
+                              <Label onMouseClicked="#addMovie" prefHeight="32.0" prefWidth="138.0" text=" Add movies" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="24.0" />
                                  </font>

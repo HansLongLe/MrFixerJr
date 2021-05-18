@@ -52,7 +52,7 @@ public class HomepageController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        WatchLaterController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchLaterScene = new Scene(root);
     }
@@ -66,7 +66,7 @@ public class HomepageController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        WatchedController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         watchedScene = new Scene(root);
     }
@@ -80,7 +80,7 @@ public class HomepageController {
 
         root = loader.load();
 
-        UserManagerController controller = loader.getController();
+        FavoriteController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         favoriteScene = new Scene(root);
     }

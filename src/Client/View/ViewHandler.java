@@ -64,7 +64,7 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("CreateAccount.fxml"));
     root = loader.load();
     CreateAccountController controller = loader.getController();
-    controller.init(this, modelFactory.getCreateAccountViewModel());
+    controller.init(this, modelFactory);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);

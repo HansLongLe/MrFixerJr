@@ -26,14 +26,14 @@ public class CreateAccountController
   @FXML private Button create;
   @FXML private Button back;
 
-  private CreateAccountViewModel createAccountViewModel;
+  private ViewModelFactory viewModelFactory;
   private Region region;
   private ViewHandler viewHandler;
 
-  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel)
+  public void init( ViewHandler viewHandler, ViewModelFactory viewModelFactory)
   {
     this.viewHandler = viewHandler;
-    this.createAccountViewModel = createAccountViewModel;
+    this.viewModelFactory = viewModelFactory;
 
   }
   @FXML
@@ -47,7 +47,7 @@ public class CreateAccountController
     root = loader.load();
 
     HomepageController controller = loader.getController();
-    controller.init(new ViewModelFactory(new ModelFactory()));
+    controller.init(viewModelFactory, stage);
 
     stage.setTitle("MyFlixerJr");
     scene = new Scene(root);

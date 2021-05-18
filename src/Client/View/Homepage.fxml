@@ -110,7 +110,7 @@
                   <Insets bottom="10.0" top="120.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="28.0" prefWidth="206.0">
+            <HBox onMouseClicked="#setSceneToWatchLater" prefHeight="28.0" prefWidth="206.0">
                <children>
                   <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="40.0" prefWidth="206.0">
+            <HBox onMouseClicked="#setSceneToWatched" prefHeight="40.0" prefWidth="206.0">
                <children>
                   <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -156,7 +156,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="28.0" prefWidth="206.0">
+            <HBox onMouseClicked="#setSceneToFavorite" prefHeight="28.0" prefWidth="206.0">
                <children>
                   <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
