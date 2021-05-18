@@ -45,7 +45,8 @@ public class ClientRMI  implements ClientInterface
     @Override public ArrayList<SimpleUser> logIn()
         throws RemoteException, NotBoundException
     {
-
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server  = (ServerInterface) registry.lookup("Server");
         return server.logIn();
     }
 }

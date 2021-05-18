@@ -29,25 +29,29 @@ public class LoginController
 
 
 
-  public void init(ViewHandler viewHandler, LoginViewModel loginViewModel)
+  public void init(ViewHandler viewHandler, ViewModelFactory vmf)
   {
-    this.loginViewModel = loginViewModel;
+    this.loginViewModel = vmf.getLoginViewModel();
     this.viewHandler = viewHandler;
-    username.textProperty().bind(loginViewModel.getUsername());
-    password.textProperty().bind(loginViewModel.getPassword());
+    username.textProperty().bindBidirectional(loginViewModel.getUsername());
+    password.textProperty().bindBidirectional(loginViewModel.getPassword());
   }
   @FXML
   public void LoginButton() throws RemoteException
   {
     switch(loginViewModel.logIn()){
       case "true":
-        System.out.println("Logge in!");
+        System.out.println("Logged in!");
+        break;
       case "Wrong password":
         System.out.println("Wrong password");
+        break;
       case "Wrong username":
         System.out.println("Wrong username");
+        break;
       case "false":
         System.out.println("false");
+        break;
     }
 
   }

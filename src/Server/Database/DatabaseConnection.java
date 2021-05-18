@@ -52,7 +52,7 @@ public class DatabaseConnection {
 
     public ResultSet logIn(){
 
-        String sql = "SELECT username, password FROM MyFlixerJr.GeneralUser = ?, ? WHERE role= 'SimpleUser';";
+        String sql = "SELECT username, password FROM MyFlixerJr.GeneralUser WHERE role= 'SimpleUser';";
         PreparedStatement preparedStatement = null;
         try
         {
