@@ -22,13 +22,6 @@ public class Moderator implements User
     this.username = username;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
 
   @Override public ArrayList<SimpleUser> logIn()
   {
@@ -42,12 +35,12 @@ public class Moderator implements User
 
   @Override public String getUserName() throws RemoteException
   {
-    return null;
+    return username;
   }
 
   @Override public String getPassword() throws RemoteException
   {
-    return null;
+    return password;
   }
 
   @Override public String getEmail() throws RemoteException

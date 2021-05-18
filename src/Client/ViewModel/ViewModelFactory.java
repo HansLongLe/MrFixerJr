@@ -14,7 +14,7 @@ public class ViewModelFactory {
         throws RemoteException, NotBoundException, InterruptedException
     {
         createAccountViewModel=new CreateAccountViewModel(modelFactory.getUser());
-        loginViewModel=new LoginViewModel(modelFactory.getDataModel());
+        loginViewModel=new LoginViewModel(modelFactory.getUser());
         movieViewModel = new MovieViewModel(modelFactory.getMovieDataModel());
     }
 

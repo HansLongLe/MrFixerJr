@@ -20,66 +20,51 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class CreateAccountController
-{
-  @FXML private TextField username;
-  @FXML private Label error;
-  @FXML private PasswordField password;
-  @FXML private PasswordField repeatPassword;
-  @FXML private TextField email;
-  @FXML private Button create;
-  @FXML private Button back;
+public class CreateAccountController {
+  @FXML
+  private TextField username;
+  @FXML
+  private Label error;
+  @FXML
+  private PasswordField password;
+  @FXML
+  private PasswordField repeatPassword;
+  @FXML
+  private TextField email;
+  @FXML
+  private Button create;
+  @FXML
+  private Button back;
 
   private CreateAccountViewModel createAccountViewModel;
   private Region region;
   private ViewHandler viewHandler;
 
-  public void init( ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel)
-  {
+  public void init(ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel) {
     this.viewHandler = viewHandler;
     this.createAccountViewModel = createAccountViewModel;
 
   }
-  @FXML
-  public void CreateButton() throws IOException, NotBoundException
-  {
-    if((password.getText().equals(repeatPassword.getText()))){
+
+  public void CreateButton() throws IOException, NotBoundException {
+    if ((password.getText().equals(repeatPassword.getText()))) {
       createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
       error.setVisible(false);
       viewHandler.openView();
-    }
-    else
-    {
+    } else {
       error.setVisible(true);
     }
-  public void CreateButton() throws IOException {
-    Stage stage = new Stage();
-    Scene scene = null;
-    FXMLLoader loader = new FXMLLoader();
-    Parent root = null;
-
-    loader.setLocation(getClass().getResource("Homepage.fxml"));
-    root = loader.load();
-
-    HomepageController controller = loader.getController();
-    controller.init(new ViewModelFactory(new ModelFactory()));
-
-    stage.setTitle("MyFlixerJr");
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
   }
 
-    public void goBack () throws IOException
-    {
+  public void goBack() throws IOException {
     viewHandler.openView();
   }
 
-    public void reset () {
+  public void reset() {
   }
 
-    public Region getRegion () {
+  public Region getRegion() {
     return region;
   }
-  }
+}
 

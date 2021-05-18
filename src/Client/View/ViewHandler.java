@@ -15,8 +15,7 @@ public class ViewHandler
 {
   private Scene currentScene;
   private Stage primaryStage;
-  private ViewModelFactory modelFactory;
-  private LoginViewModel loginViewModel;
+  private ViewModelFactory viewModelFactory;
 
 
   private CreateAccountController createAccountController;
@@ -24,7 +23,7 @@ public class ViewHandler
 
   public ViewHandler(ViewModelFactory ViewModel, Stage primarySTgae)
   {
-    this.modelFactory = ViewModel;
+    viewModelFactory = ViewModel;
     this.primaryStage = primarySTgae;
 
   }
@@ -48,7 +47,7 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("LogIn.fxml"));
     root = loader.load();
     LoginController controller = loader.getController();
-    controller.init(this, loginViewModel);
+    controller.init(viewModelFactory, this);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
@@ -64,7 +63,7 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("CreateAccount.fxml"));
     root = loader.load();
     CreateAccountController controller = loader.getController();
-    controller.init(this, modelFactory.getCreateAccountViewModel());
+    controller.init(this, viewModelFactory.getCreateAccountViewModel());
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);

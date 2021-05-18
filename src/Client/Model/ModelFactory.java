@@ -1,9 +1,6 @@
 package Client.Model;
 
 import Client.Network.ClientFactory;
-import Client.Network.ClientInterface;
-import Client.Network.ClientRMI;
-import Client.ViewModel.ViewModelFactory;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -13,6 +10,7 @@ public class ModelFactory
     private DataModel model;
     private User user;
     private ClientFactory cf;
+    private MovieDataModel movie;
 
     //    private ClientInterface clientInterface;
 //
