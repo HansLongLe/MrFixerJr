@@ -50,7 +50,6 @@ public class UserModelManager implements User{
 
     clientInterface.newUser(user);
 
-
   }
 
 
