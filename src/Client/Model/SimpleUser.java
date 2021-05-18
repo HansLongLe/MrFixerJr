@@ -1,43 +1,55 @@
 package Client.Model;
 
-import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
+import Client.Network.ClientInterface;
 
-public class SimpleUser implements User
+import java.beans.PropertyChangeListener;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+public class SimpleUser implements User, Serializable
 {
-  private String username;
+
+  private String name;
   private String password;
-  public SimpleUser(String userName, String password)
+  private String email;
+  public SimpleUser()
   {
-    this.username=userName;
-    this.password=password;
+
   }
 
-  public String getPassword() {
+  public void set(String username, String password, String email){
+    this.name = username;
+    this.password = password;
+     this.email = email;
+  }
+
+  @Override public ArrayList<SimpleUser> logIn()
+  {
+    return null;
+  }
+
+  @Override public void createAccount(String username, String password, String email)
+      throws RemoteException
+  {
+//    SimpleUser user = new SimpleUser();
+//    user.set(username, password, email);
+//    System.out.println("UMM");
+  }
+
+  @Override public String getUserName() throws RemoteException
+  {
+    return name;
+  }
+
+  @Override public String getPassword() throws RemoteException
+  {
     return password;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-  @Override public void logIn()
+  @Override public String getEmail() throws RemoteException
   {
-
-  }
-
-  @Override public void createAccount()
-  {
-
+    return email;
   }
 
   @Override public void addPropertyChangeListener(String name,
