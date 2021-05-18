@@ -13,13 +13,16 @@ import java.io.IOException;
 
 public class HomepageController {
 
-    @FXML private ScrollPane homeList;
-
     private ViewModelFactory viewModelFactory;
+    private Stage stage;
+    private Scene watchLaterScene;
+    private Scene watchedScene;
+    private Scene favoriteScene;
 
-    public void init (ViewModelFactory viewModelFactory)
-    {
+    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
+        this.stage = stage;
+
     }
 
     public void openManageWindow() throws IOException {
@@ -36,6 +39,50 @@ public class HomepageController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void setSceneToWatchLater() throws IOException {
+        watchLaterScene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(getClass().getResource("WatchLater.fxml"));
+
+        root = loader.load();
+
+        WatchLaterController controller = loader.getController();
+        controller.init(viewModelFactory, stage);
+        watchLaterScene = new Scene(root);
+        stage.setScene(watchLaterScene);
+    }
+    public void setSceneToWatched() throws IOException {
+        watchedScene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(getClass().getResource("Watched.fxml"));
+
+        root = loader.load();
+
+        WatchedController controller = loader.getController();
+        controller.init(viewModelFactory, stage);
+        watchedScene = new Scene(root);
+        stage.setScene(watchedScene);
+    }
+    public void setSceneToFavorite() throws IOException {
+        favoriteScene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(getClass().getResource("Favorite.fxml"));
+
+        root = loader.load();
+
+        FavoriteController controller = loader.getController();
+        controller.init(viewModelFactory, stage);
+        favoriteScene = new Scene(root);
+        stage.setScene(favoriteScene);
     }
 
 }

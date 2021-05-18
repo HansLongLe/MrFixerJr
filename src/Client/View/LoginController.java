@@ -5,9 +5,7 @@ import Client.ViewModel.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,19 +18,16 @@ public class LoginController
   private LoginViewModel loginViewModel;
   private ViewHandler viewHandler;
   private ViewModelFactory viewModelFactory;
-  private Region region;
-  private CreateAccountViewModel cavm;
 
   @FXML private TextField username;
   @FXML private PasswordField password;
-  @FXML private Button logIn;
-  @FXML private Button createAccount;
+
 
 
 
   public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler)
   {
-    this.loginViewModel = loginViewModel;
+    this.loginViewModel = viewModelFactory.getLoginViewModel();
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
     loginViewModel = viewModelFactory.getLoginViewModel();
@@ -54,12 +49,13 @@ public class LoginController
         root = loader.load();
 
         HomepageController controller = loader.getController();
-        controller.init(viewModelFactory);
+        controller.init(viewModelFactory, stage);
 
         stage.setTitle("MyFlixerJr");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        viewHandler.closeLogIn();
         break;
       }
       case "Wrong password":
@@ -79,22 +75,10 @@ public class LoginController
     return username.getText();
   }
 
-  public String getPas(){
-    return username.getText();
-  }
-
   public void CreateAccountButton() throws IOException
   {
   viewHandler.openCreateAccount();
   }
 
-  public void reset()
-  {
 
-  }
-
-  public Region getRegion()
-  {
-    return region;
-  }
 }

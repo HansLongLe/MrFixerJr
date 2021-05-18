@@ -31,18 +31,17 @@ public class CreateAccountController {
   private PasswordField repeatPassword;
   @FXML
   private TextField email;
-  @FXML
-  private Button create;
-  @FXML
-  private Button back;
 
+
+  private ViewModelFactory viewModelFactory;
   private CreateAccountViewModel createAccountViewModel;
-  private Region region;
   private ViewHandler viewHandler;
 
-  public void init(ViewHandler viewHandler, CreateAccountViewModel createAccountViewModel) {
+  public void init( ViewHandler viewHandler, ViewModelFactory viewModelFactory)
+  {
     this.viewHandler = viewHandler;
-    this.createAccountViewModel = createAccountViewModel;
+    this.viewModelFactory = viewModelFactory;
+    createAccountViewModel = viewModelFactory.getCreateAccountViewModel();
 
   }
 
@@ -60,11 +59,5 @@ public class CreateAccountController {
     viewHandler.openView();
   }
 
-  public void reset() {
-  }
-
-  public Region getRegion() {
-    return region;
-  }
 }
 

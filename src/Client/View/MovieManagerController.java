@@ -12,17 +12,6 @@ import java.io.IOException;
 
 public class MovieManagerController {
 
-    @FXML
-    private HBox addMovie;
-
-    @FXML
-    private HBox movies;
-
-    @FXML
-    private HBox users;
-
-    @FXML
-    private HBox genre;
 
     private ViewModelFactory viewModelFactory;
     private Stage stage;
@@ -32,8 +21,6 @@ public class MovieManagerController {
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
-        userScene();
-        genreScene();
     }
 
     public void addMovie() throws IOException {
@@ -45,14 +32,15 @@ public class MovieManagerController {
         loader.setLocation(getClass().getResource("CreateMovie.fxml"));
         root = loader.load();
         CreateMovieController controller = loader.getController();
-
+        controller.init(viewModelFactory);
         stage.setTitle("Create Movie");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    private void userScene() throws IOException {
+
+    public void setSceneToUser() throws IOException {
         userScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -64,9 +52,9 @@ public class MovieManagerController {
         UserManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         userScene = new Scene(root);
+        stage.setScene(userScene);
     }
-
-    private void genreScene() throws IOException {
+    public void setSceneToGenre() throws IOException {
         genreScene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -77,14 +65,6 @@ public class MovieManagerController {
         GenreManagerController controller = loader.getController();
         controller.init(viewModelFactory, stage);
         genreScene = new Scene(root);
-    }
-
-    public void setSceneToUser()
-    {
-        stage.setScene(userScene);
-    }
-    public void setSceneToGenre()
-    {
         stage.setScene(genreScene);
     }
 

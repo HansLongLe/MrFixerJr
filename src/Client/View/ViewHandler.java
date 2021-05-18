@@ -1,9 +1,11 @@
 package Client.View;
 
 import Client.ViewModel.*;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,14 +13,10 @@ import java.io.IOException;
 
 public class ViewHandler
 {
-  private Scene currentScene;
   private Stage primaryStage;
   private ViewModelFactory viewModelFactory;
-  private LoginViewModel loginViewModel;
 
 
-  private CreateAccountController createAccountController;
-  private LoginController loginController;
 
   public ViewHandler(ViewModelFactory ViewModel, Stage primarySTgae)
   {
@@ -57,11 +55,16 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("CreateAccount.fxml"));
     root = loader.load();
     CreateAccountController controller = loader.getController();
-    controller.init(this, viewModelFactory.getCreateAccountViewModel());
+    controller.init(this, viewModelFactory);
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
+  }
+
+  public void closeLogIn()
+  {
+    primaryStage.close();
   }
 
 
