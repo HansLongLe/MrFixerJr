@@ -38,11 +38,10 @@ public class GenreManagerController {
     private Scene userScene;
     private Scene movieScene;
     private ViewHandler viewHandler;
-
-    public void init(ViewModelFactory viewModelFactory,ViewHandler viewHandler) throws IOException {
     private boolean genreExists = false;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    public void init(ViewModelFactory viewModelFactory,ViewHandler viewHandler) throws IOException {
+
         this.viewModelFactory = viewModelFactory;
         genreViewModel = viewModelFactory.getGenreViewModel();
         this.viewHandler = viewHandler;
