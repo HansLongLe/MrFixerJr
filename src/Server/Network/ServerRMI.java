@@ -52,7 +52,6 @@ public class ServerRMI implements ServerInterface{
         throws RemoteException
     {      ResultSet rs = null;
             ArrayList<User> simpleUsers = new ArrayList<>();
-        System.out.println("array");
 
         rs=databaseConnection.logIn() ;
         try{
@@ -93,7 +92,6 @@ public class ServerRMI implements ServerInterface{
         {
             throwables.printStackTrace();
         }
-        System.out.println(role + "!!!!!!!!!!!!!!!!!!!!!!!");
         return role;
 
 
