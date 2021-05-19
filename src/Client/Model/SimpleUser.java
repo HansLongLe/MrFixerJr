@@ -27,7 +27,7 @@ public class SimpleUser implements User, Serializable
   }
 
 
-  @Override public String getRole() throws RemoteException
+  @Override public String getRole(String username) throws RemoteException
   {
     return null;
   }

@@ -17,6 +17,6 @@ public interface User extends PropertyChangeSubject
   String getPassword() throws RemoteException;
   String getEmail() throws RemoteException;
   void set(String username, String password, String email) throws RemoteException;
-  String getRole() throws RemoteException;
+  String getRole(String username) throws RemoteException;
 
 }

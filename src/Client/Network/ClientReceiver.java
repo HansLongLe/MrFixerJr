@@ -38,7 +38,7 @@ public class ClientReceiver implements ClientInterface{
         return null;
     }
 
-    @Override public String getRole(User user) throws RemoteException
+    @Override public String getRole(String username) throws RemoteException
     {
         return null;
     }

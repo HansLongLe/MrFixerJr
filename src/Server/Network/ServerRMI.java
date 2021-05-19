@@ -52,7 +52,6 @@ public class ServerRMI implements ServerInterface{
         throws RemoteException
     {      ResultSet rs = null;
             ArrayList<User> simpleUsers = new ArrayList<>();
-        System.out.println("array");
 
         rs=databaseConnection.logIn() ;
         try{
@@ -73,34 +72,29 @@ public class ServerRMI implements ServerInterface{
         return simpleUsers;
     }
 
-    @Override public String getRole(User user) throws RemoteException
+    @Override public String getRole(String username) throws RemoteException
     {
         ResultSet rs= null;
-        rs = databaseConnection.getRole();
-        ArrayList<String> roles = new ArrayList<>();
+        rs = databaseConnection.getRole(username);
+//        ArrayList<String> roles = new ArrayList<>();
         String role = "";
-        role = user.getRole();
+//        role = user.getRole();
         try
         {
-            while(rs.next()){
-            role = rs.getString("role");
-            roles.add(role);
+            while(rs.next())
+            {
+                role = rs.getString("role");
+                System.out.println(role);
 
             }
-            for (int i=0; i<roles.size(); i++){
-                if(roles.get(i).equals("Admin")){
-                    return "Admin";
-                }
-                else if(roles.get(i).equals("Moderator"))
-                    return "Moderator";
-            }
-
         }
         catch (SQLException throwables)
         {
             throwables.printStackTrace();
         }
-    return "SimpleUser";
+        return role;
+
+
     }
 
     @Override

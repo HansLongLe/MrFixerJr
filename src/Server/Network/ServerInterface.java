@@ -18,4 +18,5 @@ public interface ServerInterface extends Remote {
     String getRole(User user) throws RemoteException;
     void addGenre(String genre, boolean genreExists) throws RemoteException;
     ArrayList<String> getGenresFromDatabase() throws RemoteException;
+    String getRole(String username) throws RemoteException;
 }
