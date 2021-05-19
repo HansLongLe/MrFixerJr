@@ -36,16 +36,16 @@ public class GenreManagerController {
 
     private ViewModelFactory viewModelFactory;
     private GenreViewModel genreViewModel;
-    private Stage stage;
     private Scene userScene;
     private Scene movieScene;
-
+    private ViewHandler viewHandler;
     private boolean genreExists = false;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    public void init(ViewModelFactory viewModelFactory,ViewHandler viewHandler) throws IOException {
+
         this.viewModelFactory = viewModelFactory;
         genreViewModel = viewModelFactory.getGenreViewModel();
-        this.stage = stage;
+        this.viewHandler = viewHandler;
     }
 
     public void addGenre()
@@ -108,31 +108,10 @@ public class GenreManagerController {
     }
 
     public void setSceneToUser() throws IOException {
-        userScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("UserManager.fxml"));
-
-        root = loader.load();
-
-        UserManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        userScene = new Scene(root);
-        stage.setScene(userScene);
+        viewHandler.openUserManager();
     }
     public void setSceneToMovie() throws IOException {
-        movieScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("MovieManager.fxml"));
-
-        root = loader.load();
-        MovieManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        movieScene = new Scene(root);
-        stage.setScene(movieScene);
+        viewHandler.openMovieManager();
     }
 
 

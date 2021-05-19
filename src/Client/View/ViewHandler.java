@@ -30,30 +30,9 @@ public class ViewHandler
     openView();
   }
 
-  public void openHomePage() throws IOException
-  {
-    Stage stage = new Stage();
-    Scene scene = null;
-    FXMLLoader loader = new FXMLLoader();
-    Parent root = null;
 
-    loader.setLocation(getClass().getResource("Homepage.fxml"));
-    root = loader.load();
-
-    HomepageController controller = loader.getController();
-
-    controller.init(viewModelFactory, stage);
-
-
-    stage.setTitle("MyFlixerJr");
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    this.closeLogIn();
-  }
   public void openHomePageForSimpleUser() throws IOException
   {
-    Stage stage = new Stage();
     Scene scene = null;
     FXMLLoader loader = new FXMLLoader();
     Parent root = null;
@@ -63,15 +42,14 @@ public class ViewHandler
 
     HomepageController controller = loader.getController();
 
-    controller.init(viewModelFactory, stage);
+    controller.init(viewModelFactory, this);
     controller.getManageImage().setVisible(false);
 
 
-    stage.setTitle("MyFlixerJr");
+    primaryStage.setTitle("MyFlixerJr");
     scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    this.closeLogIn();
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
   public void openView() throws IOException
@@ -103,6 +81,136 @@ public class ViewHandler
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
+  public void openWatchLater() throws IOException
+  {
+    Scene watchLaterScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("WatchLater.fxml"));
+
+    root = loader.load();
+
+    WatchLaterController controller = loader.getController();
+    controller.init(viewModelFactory,this);
+    watchLaterScene = new Scene(root);
+    primaryStage.setScene(watchLaterScene);
+  }
+
+  public void openWatched() throws IOException
+  {
+    Scene watchedScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("Watched.fxml"));
+
+    root = loader.load();
+
+    WatchedController controller = loader.getController();
+    controller.init(viewModelFactory, this);
+    watchedScene = new Scene(root);
+    primaryStage.setScene(watchedScene);
+  }
+
+  public void openHomePage() throws IOException
+  {
+    Scene homepageScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("Homepage.fxml"));
+
+    root = loader.load();
+
+    HomepageController controller = loader.getController();
+    controller.init(viewModelFactory, this );
+    homepageScene = new Scene(root);
+    primaryStage.setScene(homepageScene);
+    primaryStage.show();
+  }
+
+  public void openMovieManager() throws IOException
+  {
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("MovieManager.fxml"));
+    root = loader.load();
+    MovieManagerController controller = loader.getController();
+    controller.init(viewModelFactory, this);
+    primaryStage.setTitle("Admin window");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
+  public void openUserManager() throws IOException
+  {
+    Scene userScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("UserManager.fxml"));
+
+    root = loader.load();
+
+    UserManagerController controller = loader.getController();
+    controller.init(viewModelFactory, this);
+    userScene = new Scene(root);
+    primaryStage.setScene(userScene);
+    primaryStage.show();
+  }
+
+  public void  openFavorite() throws IOException
+  {
+    Scene favoriteScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("Favorite.fxml"));
+
+    root = loader.load();
+
+    FavoriteController controller = loader.getController();
+    controller.init(viewModelFactory, this);
+    favoriteScene = new Scene(root);
+    primaryStage.setScene(favoriteScene);
+  }
+
+  public void openCreateMovie() throws IOException
+  {
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("CreateMovie.fxml"));
+    root = loader.load();
+    CreateMovieController controller = loader.getController();
+    controller.init(viewModelFactory,this);
+    primaryStage.setTitle("Create Movie");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
+  public void openGenreManager() throws IOException
+  {
+    Scene genreScene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("GenreManager.fxml"));
+
+    root = loader.load();
+    GenreManagerController controller = loader.getController();
+    controller.init(viewModelFactory, this);
+    genreScene = new Scene(root);
+    primaryStage.setScene(genreScene);
     primaryStage.show();
   }
 

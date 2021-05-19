@@ -45,12 +45,16 @@ public class ClientRMI  implements ClientInterface, Serializable
     @Override public ArrayList<User> logIn()
         throws RemoteException, NotBoundException
     {
-
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
         return server.logIn();
     }
 
-    @Override public String getRole(String username) throws RemoteException
+    @Override public String getRole(String username)
+        throws RemoteException, NotBoundException
     {
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
         return server.getRole(username);
     }
 
@@ -58,16 +62,19 @@ public class ClientRMI  implements ClientInterface, Serializable
     public void addGenre(String genre)
         throws RemoteException, NotBoundException
     {
-
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
         server.addGenre(genre);
     }
 
     @Override
     public ArrayList<String> getExistingGenres()
+        throws RemoteException, NotBoundException
 
     {
 
-
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
         try
         {
             return server.getGenresFromDatabase();
