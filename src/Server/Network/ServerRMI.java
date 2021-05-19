@@ -98,13 +98,30 @@ public class ServerRMI implements ServerInterface{
     }
 
     @Override
-    public void addGenre(String genre, boolean genreExists) throws RemoteException {
-        databaseConnection.addGenre(genre, genreExists);
+    public void addGenre(String genre) throws RemoteException {
+        databaseConnection.addGenre(genre);
     }
 
     @Override
     public ArrayList<String> getGenresFromDatabase() throws RemoteException {
-return null;
+        ResultSet rs = null;
+        rs = databaseConnection.getGenresFromDatabase();
+                ArrayList<String> genres = new ArrayList<>();
+        try
+        {
+            while(rs.next())
+            {
+                String genre = rs.getString("genre");
+                genres.add(genre);
+
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return genres;
+
     }
 
 }

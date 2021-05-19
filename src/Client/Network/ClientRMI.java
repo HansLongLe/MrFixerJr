@@ -25,7 +25,7 @@ public class ClientRMI  implements ClientInterface, Serializable
         this.viewModelFactory = viewModelFactory;
     }
     public void startClient() throws RemoteException, NotBoundException {
-        UnicastRemoteObject.exportObject(this, 0);
+//        UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
 //       broadcastClient = (ClientInterface) new ClientReceiver();
@@ -34,8 +34,7 @@ public class ClientRMI  implements ClientInterface, Serializable
 
     @Override public void newUser(User user) throws RemoteException, NotBoundException
     {
-        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
-        server  = (ServerInterface) registry.lookup("Server");
+
         System.out.println(server + "!!!!!!!!");
         server.newUser(user);
 
@@ -45,33 +44,38 @@ public class ClientRMI  implements ClientInterface, Serializable
     @Override public ArrayList<User> logIn()
         throws RemoteException, NotBoundException
     {
-        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
-        server  = (ServerInterface) registry.lookup("Server");
+//
         return server.logIn();
     }
 
     @Override public String getRole(String username) throws RemoteException
     {
-        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
-        try
-        {
-            server  = (ServerInterface) registry.lookup("Server");
-        }
-        catch (NotBoundException e)
-        {
-            e.printStackTrace();
-        }
         return server.getRole(username);
     }
 
     @Override
-    public void addGenre(String genre, boolean genreExists) throws RemoteException {
-        server.addGenre(genre, genreExists);
+    public void addGenre(String genre)
+        throws RemoteException, NotBoundException
+    {
+
+        server.addGenre(genre);
     }
 
     @Override
-    public ArrayList<String> getExistingGenres() throws RemoteException {
-return null;
+    public ArrayList<String> getExistingGenres()
+
+    {
+
+
+        try
+        {
+            return server.getGenresFromDatabase();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

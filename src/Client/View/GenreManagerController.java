@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 
@@ -68,18 +69,36 @@ public class GenreManagerController {
     }
     public void saveGenre()
     {
-
-        try {
-                genreViewModel.createGenre(genreName.getText(), genreExists);
-            } catch (RemoteException e) {
+        if(!(genreViewModel.getGenre().contains(genreName.getText()))){
+            try
+            {
+                genreViewModel.createGenre(genreName.getText());
+                newRow.getChildren().clear();
+                            Label savedGenre = new Label("Genre name: " + genreName.getText());
+                            newRow.getChildren().addAll(savedGenre, delete);
+            }
+            catch (RemoteException e)
+            {
                 e.printStackTrace();
             }
-        if (!genreExists)
-        {
-            newRow.getChildren().clear();
-            Label savedGenre = new Label("Genre name: " + genreName.getText());
-            newRow.getChildren().addAll(savedGenre, delete);
+            catch (NotBoundException e)
+            {
+                e.printStackTrace();
+            }
         }
+
+//        try {
+//
+//                genreViewModel.createGenre(genreName.getText());
+//            } catch (RemoteException | NotBoundException e) {
+//                e.printStackTrace();
+//            }
+//        if (!genreExists)
+//        {
+//            newRow.getChildren().clear();
+//            Label savedGenre = new Label("Genre name: " + genreName.getText());
+//            newRow.getChildren().addAll(savedGenre, delete);
+//        }
 
     }
     public void deleteGenre()
