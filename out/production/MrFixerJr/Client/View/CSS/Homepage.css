@@ -1,0 +1,4 @@
+.topPicture{
+-fx-background-image:url('../Pictures/background.jpg');
+-fx-background-size:cover;
+}
