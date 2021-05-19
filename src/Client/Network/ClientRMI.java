@@ -50,8 +50,17 @@ public class ClientRMI  implements ClientInterface, Serializable
         return server.logIn();
     }
 
-    @Override public String getRole(User user) throws RemoteException
+    @Override public String getRole(String username) throws RemoteException
     {
-        return server.getRole(user);
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        try
+        {
+            server  = (ServerInterface) registry.lookup("Server");
+        }
+        catch (NotBoundException e)
+        {
+            e.printStackTrace();
+        }
+        return server.getRole(username);
     }
 }

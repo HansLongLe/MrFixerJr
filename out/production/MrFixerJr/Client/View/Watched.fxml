@@ -58,7 +58,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" onMouseClicked="#setSceneToWatched" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
+                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
                     <children>
                         <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>

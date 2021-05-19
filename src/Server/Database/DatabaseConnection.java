@@ -75,9 +75,9 @@ public class DatabaseConnection {
         return null;
     }
 
-    public ResultSet getRole() throws RemoteException
+    public ResultSet getRole(String username) throws RemoteException
     {
-        String sql = "SELECT role FROM MyFlixerJr.GeneralUser;";
+        String sql = "SELECT role FROM MyFlixerJr.GeneralUser WHERE username = '"+ username+ "';";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);

@@ -15,5 +15,5 @@ public interface ServerInterface extends Remote {
     void newUser(User user) throws RemoteException;
     void start() throws RemoteException, AlreadyBoundException;
     ArrayList<User> logIn() throws RemoteException;
-    String getRole(User user) throws RemoteException;
+    String getRole(String username) throws RemoteException;
 }

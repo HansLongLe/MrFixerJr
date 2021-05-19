@@ -37,24 +37,17 @@ public class LoginController
   @FXML
   public void LoginButton() throws IOException
   {
+    String role = loginViewModel.getRole(username.getText());
     switch(loginViewModel.logIn()){
       case "true":
         System.out.println("Logged in!");
+        if(role.equals("Admin") || role.equals("Moderator")){
+          viewHandler.openHomePage();
+        }
+        else if(role.equals("SimpleUser")){
+          viewHandler.openHomePageForSimpleUser();
+        }
 
-//          switch(loginViewModel.getRole()){
-//            case "trueAdmin":
-//              System.out.println("Admin in the house");
-//              viewHandler.openHomePage();
-//              break;
-//            case "trueModerator":
-//              System.out.println("Moderator here");
-//              viewHandler.openHomePage();
-//              break;
-//            case "trueSimpleUser":
-//              System.out.println("Smple user coming");
-//              break;
-//          }
-        viewHandler.openHomePage();
 
         break;
       case "Wrong password":
