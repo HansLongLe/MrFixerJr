@@ -17,5 +17,5 @@ public interface ClientInterface extends Remote {
       throws RemoteException, NotBoundException;
   ArrayList<String> getExistingGenres()
       throws RemoteException, NotBoundException;
-  String getRole(String username) throws RemoteException;
+  String getRole(String username) throws RemoteException, NotBoundException;
 }

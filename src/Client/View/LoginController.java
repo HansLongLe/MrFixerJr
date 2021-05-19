@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
 public class LoginController
@@ -35,7 +36,7 @@ public class LoginController
     password.textProperty().bindBidirectional(loginViewModel.getPassword());
   }
   @FXML
-  public void LoginButton() throws IOException
+  public void LoginButton() throws IOException, NotBoundException
   {
     String role = loginViewModel.getRole(username.getText());
     switch(loginViewModel.logIn()){
