@@ -38,15 +38,17 @@ public class ClientReceiver implements ClientInterface{
         return null;
     }
 
+    @Override public void addGenre(String genre)
+        throws RemoteException, NotBoundException
+    {
+
+    }
+
     @Override public String getRole(String username) throws RemoteException
     {
         return null;
     }
 
-    @Override
-    public void addGenre(String genre, boolean genreExists) throws RemoteException {
-
-    }
 
     @Override
     public ArrayList<String> getExistingGenres() throws RemoteException {
