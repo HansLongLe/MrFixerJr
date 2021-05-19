@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class MovieManagerController {
 
-
     private ViewModelFactory viewModelFactory;
     private Scene userScene;
     private Scene genreScene;

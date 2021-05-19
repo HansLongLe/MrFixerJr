@@ -32,7 +32,7 @@ public class ClientRMI  implements ClientInterface, Serializable
         server.addBroadcast(broadcastClient);
     }
 
-    public void newUser(User user) throws RemoteException, NotBoundException
+    @Override public void newUser(User user) throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server  = (ServerInterface) registry.lookup("Server");
@@ -63,4 +63,16 @@ public class ClientRMI  implements ClientInterface, Serializable
         }
         return server.getRole(username);
     }
+
+    @Override
+    public void addGenre(String genre, boolean genreExists) throws RemoteException {
+        server.addGenre(genre, genreExists);
+    }
+
+    @Override
+    public ArrayList<String> getExistingGenres() throws RemoteException {
+return null;
+    }
+
+
 }

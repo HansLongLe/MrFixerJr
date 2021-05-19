@@ -18,8 +18,6 @@ public class DatabaseConnection {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
 
-
-
         connection = null;
 
         try {
@@ -93,6 +91,24 @@ public class DatabaseConnection {
         {
             throwables.printStackTrace();
         }
+        return null;
+    }
+    public void addGenre(String genre, boolean genreExists)
+    {
+        String sql = "INSERT INTO MyFlixerJr.Genre(genre) VALUES(" + "'" + genre +"');";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            genreExists = false;
+        } catch (SQLException throwable) {
+            genreExists = true;
+        }
+    }
+
+    public ArrayList<String> getGenresFromDatabase()
+    {
+        String sql = "";
         return null;
     }
 }

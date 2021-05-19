@@ -2,10 +2,6 @@ package Client.Model;
 
 import Client.Network.ClientInterface;
 import Client.Network.ClientRMI;
-import Client.ViewModel.ViewModelFactory;
-import Server.Network.ServerInterface;
-
-import javax.swing.text.View;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
@@ -15,7 +11,6 @@ import java.util.ArrayList;
 public class UserModelManager implements User, Serializable
 {
   private ClientInterface clientInterface;
-  private ViewModelFactory viewModelFactory;
   private ArrayList<User> simpleUsers;
   public UserModelManager(ClientInterface clientInterface)
       throws RemoteException, NotBoundException, InterruptedException
@@ -109,9 +104,4 @@ public class UserModelManager implements User, Serializable
 
   }
 
-  public void setClientInterface(ClientInterface clientInterface)
-  {
-    this.clientInterface = clientInterface;
-    System.out.println("2 " + clientInterface);
-  }
 }
