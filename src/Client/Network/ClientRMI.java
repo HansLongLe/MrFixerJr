@@ -25,7 +25,7 @@ public class ClientRMI  implements ClientInterface, Serializable
         this.viewModelFactory = viewModelFactory;
     }
     public void startClient() throws RemoteException, NotBoundException {
-//        UnicastRemoteObject.exportObject(this, 0);
+        UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
 //       broadcastClient = (ClientInterface) new ClientReceiver();
@@ -34,7 +34,8 @@ public class ClientRMI  implements ClientInterface, Serializable
 
     @Override public void newUser(User user) throws RemoteException, NotBoundException
     {
-
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
         System.out.println(server + "!!!!!!!!");
         server.newUser(user);
 
@@ -44,7 +45,7 @@ public class ClientRMI  implements ClientInterface, Serializable
     @Override public ArrayList<User> logIn()
         throws RemoteException, NotBoundException
     {
-//
+
         return server.logIn();
     }
 
