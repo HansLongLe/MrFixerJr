@@ -56,8 +56,13 @@ public class ClientRMI  implements ClientInterface, Serializable
     }
 
     @Override
-    public void addGenre(String genre) throws RemoteException {
-        server.addGenre(genre);
+    public void addGenre(String genre, boolean genreExists) throws RemoteException {
+        server.addGenre(genre, genreExists);
+    }
+
+    @Override
+    public ArrayList<String> getExistingGenres() throws RemoteException {
+return null;
     }
 
 

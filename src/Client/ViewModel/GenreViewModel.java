@@ -11,7 +11,7 @@ public class GenreViewModel {
     {
         this.genreDataModel = genreDataModel;
     }
-    public void createGenre(String genreName) throws RemoteException {
-        genreDataModel.addGenre(genreName);
+    public void createGenre(String genreName, boolean genreExists) throws RemoteException {
+        genreDataModel.addGenre(genreName, genreExists);
     }
 }

@@ -3,6 +3,7 @@ package Client.Model;
 import Client.Network.ClientInterface;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class GenreModelManager implements GenreDataModel{
 
@@ -12,8 +13,8 @@ public class GenreModelManager implements GenreDataModel{
         this.clientInterface = clientInterface;
     }
     @Override
-    public void addGenre(String genreName) throws RemoteException {
-        clientInterface.addGenre(genreName);
+    public void addGenre(String genreName, boolean genreExists) throws RemoteException {
+        clientInterface.addGenre(genreName, genreExists);
     }
 
     @Override

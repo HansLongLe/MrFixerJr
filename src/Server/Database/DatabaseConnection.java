@@ -93,14 +93,22 @@ public class DatabaseConnection {
         }
         return null;
     }
-    public void addGenre(String genre)
+    public void addGenre(String genre, boolean genreExists)
     {
         String sql = "INSERT INTO MyFlixerJr.Genre(genre) VALUES(" + "'" + genre +"');";
+
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
+            genreExists = false;
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
+            genreExists = true;
         }
+    }
+
+    public ArrayList<String> getGenresFromDatabase()
+    {
+        String sql = "";
+        return null;
     }
 }

@@ -39,6 +39,8 @@ public class GenreManagerController {
     private Scene userScene;
     private Scene movieScene;
 
+    private boolean genreExists = false;
+
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         genreViewModel = viewModelFactory.getGenreViewModel();
@@ -56,12 +58,9 @@ public class GenreManagerController {
         save = new Button("Save");
         delete = new Button("Delete");
 
-
         save.setOnAction(actionEvent -> saveGenre());
 
-
         delete.setOnAction(actionEvent -> deleteGenre());
-
 
         newRow.getChildren().addAll(introduceName, genreName, save, delete);
         newRow.setSpacing(10);
@@ -69,14 +68,19 @@ public class GenreManagerController {
     }
     public void saveGenre()
     {
+
         try {
-            genreViewModel.createGenre(genreName.getText());
-        } catch (RemoteException e) {
-            e.printStackTrace();
+                genreViewModel.createGenre(genreName.getText(), genreExists);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        if (!genreExists)
+        {
+            newRow.getChildren().clear();
+            Label savedGenre = new Label("Genre name: " + genreName.getText());
+            newRow.getChildren().addAll(savedGenre, delete);
         }
-        newRow.getChildren().clear();
-        Label savedGenre = new Label("Genre name: " + genreName.getText());
-        newRow.getChildren().addAll(savedGenre, delete);
+
     }
     public void deleteGenre()
     {
