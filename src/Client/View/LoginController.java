@@ -42,7 +42,7 @@ public class LoginController
       case "true":
         System.out.println("Logged in!");
         if(role.equals("Admin") || role.equals("Moderator")){
-          viewHandler.openHomepage();
+          viewHandler.openHomePage();
         }
         else if(role.equals("SimpleUser")){
           viewHandler.openHomePageForSimpleUser();

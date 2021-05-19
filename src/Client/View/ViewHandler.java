@@ -116,7 +116,7 @@ public class ViewHandler
     primaryStage.setScene(watchedScene);
   }
 
-  public void openHomepage() throws IOException
+  public void openHomePage() throws IOException
   {
     Scene homepageScene = null;
     FXMLLoader loader = new FXMLLoader();

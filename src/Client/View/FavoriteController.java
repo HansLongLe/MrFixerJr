@@ -31,7 +31,7 @@ public class FavoriteController {
        viewHandler.openWatched();
     }
     public void setSceneToHomepage() throws IOException {
-        viewHandler.openHomepage();
+        viewHandler.openHomePage();
     }
 
 

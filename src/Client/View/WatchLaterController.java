@@ -1,12 +1,7 @@
 package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -30,7 +25,7 @@ public class WatchLaterController {
 
 
     public void setSceneToHomepage() throws IOException {
-        viewHandler.openHomepage();
+        viewHandler.openHomePage();
     }
     public void setSceneToWatched() throws IOException {
         viewHandler.openWatched();

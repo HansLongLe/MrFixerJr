@@ -49,6 +49,6 @@ public class HomepageController {
 
     public void logOut() throws IOException
     {
-      viewHandler.closeLogIn();
+      viewHandler.start();
     }
 }

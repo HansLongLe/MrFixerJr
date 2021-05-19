@@ -15,6 +15,9 @@ CREATE TABLE MyFlixerJr.GeneralUser
 insert into MyFlixerJr.GeneralUser (username, email, password, role)
 VALUES ('Admin','admin@gmail.com','admin123','Admin');
 
+insert into MyFlixerJr.GeneralUser (username, email, password, role)
+VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
+
 drop table MyFlixerJr.GeneralUser cascade ;
 
 
