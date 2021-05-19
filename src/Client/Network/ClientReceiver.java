@@ -33,8 +33,15 @@ public class ClientReceiver implements ClientInterface{
 
     }
 
-    @Override public ArrayList<SimpleUser> logIn() throws RemoteException
+    @Override public ArrayList<User> logIn() throws RemoteException
     {
         return null;
     }
+
+    @Override public String getRole(User user) throws RemoteException
+    {
+        return null;
+    }
+
+
 }

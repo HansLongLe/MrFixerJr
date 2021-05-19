@@ -53,7 +53,7 @@ public class DatabaseConnection {
 
     public ResultSet logIn(){
 
-        String sql = "SELECT username, password FROM MyFlixerJr.GeneralUser WHERE role= 'SimpleUser';";
+        String sql = "SELECT username, password, role FROM MyFlixerJr.GeneralUser";
         PreparedStatement preparedStatement = null;
         try
         {
@@ -67,6 +67,27 @@ public class DatabaseConnection {
         try
         {
             return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getRole() throws RemoteException
+    {
+        String sql = "SELECT role FROM MyFlixerJr.GeneralUser;";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return  preparedStatement.executeQuery();
         }
         catch (SQLException throwables)
         {

@@ -34,9 +34,13 @@ CREATE TABLE MyFlixerJr.Review
     comment text
 );
 
+update MyFlixerJr.generaluser
+    set role = 'Moderator'
+where username = 'chen';
+
 DROP TABLE Review;
 
-CREATE TABLE Movie
+CREATE TABLE MyFlixerJr.Movie
 (
     title         varchar(50),
     movieID       int PRIMARY KEY,
@@ -44,26 +48,34 @@ CREATE TABLE Movie
     description   text
 );
 
-DROP TABLE Movie;
+DROP TABLE MyFlixerJr.Movie;
 
-CREATE TABLE Image
+CREATE TABLE MyFlixerJr.Image
 (
     imageName text,
     img       bytea,
     movieID   int,
-    FOREIGN KEY (movieID) references Movie (movieID)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID)
 );
 
-DROP TABLE Image;
+DROP TABLE MyFlixerJr.Image;
 
-CREATE TABLE Genre
+CREATE TABLE MyFlixerJr.GenreRelationship
 (
     movieID int,
-    genre   varchar(20) PRIMARY KEY,
-    FOREIGN KEY (movieID) references Movie (movieID)
+    genre   varchar(20),
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    foreign key (genre) references MyFlixerJr.Genre(genre)
+
+);
+drop table MyFlixerJr.GenreRelationship;
+
+create table MyFlixerJr.Genre(
+    genre varchar(30) PRIMARY KEY
 );
 
-DROP TABLE Genre;
+
+
 
 CREATE TABLE FavoriteList
 (

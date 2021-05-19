@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -18,11 +20,15 @@ public class HomepageController {
     private Scene watchLaterScene;
     private Scene watchedScene;
     private Scene favoriteScene;
+   @FXML private ImageView manageImage;
 
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
         this.stage = stage;
 
+    }
+    public ImageView getManageImage(){
+        return manageImage;
     }
 
     public void openManageWindow() throws IOException {

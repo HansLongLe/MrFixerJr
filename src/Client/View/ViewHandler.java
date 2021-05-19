@@ -30,6 +30,50 @@ public class ViewHandler
     openView();
   }
 
+  public void openHomePage() throws IOException
+  {
+    Stage stage = new Stage();
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("Homepage.fxml"));
+    root = loader.load();
+
+    HomepageController controller = loader.getController();
+
+    controller.init(viewModelFactory, stage);
+
+
+    stage.setTitle("MyFlixerJr");
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    this.closeLogIn();
+  }
+  public void openHomePageForSimpleUser() throws IOException
+  {
+    Stage stage = new Stage();
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("Homepage.fxml"));
+    root = loader.load();
+
+    HomepageController controller = loader.getController();
+
+    controller.init(viewModelFactory, stage);
+    controller.getManageImage().setVisible(false);
+
+
+    stage.setTitle("MyFlixerJr");
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    this.closeLogIn();
+  }
+
   public void openView() throws IOException
   {
     Scene scene = null;

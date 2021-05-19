@@ -3,17 +3,20 @@ package Client.Model;
 import Client.Network.ClientInterface;
 import Client.Network.ClientRMI;
 import Client.ViewModel.ViewModelFactory;
+import Server.Network.ServerInterface;
 
 import javax.swing.text.View;
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class UserModelManager implements User{
+public class UserModelManager implements User, Serializable
+{
   private ClientInterface clientInterface;
   private ViewModelFactory viewModelFactory;
-  private ArrayList<SimpleUser> simpleUsers;
+  private ArrayList<User> simpleUsers;
   public UserModelManager(ClientInterface clientInterface)
       throws RemoteException, NotBoundException, InterruptedException
   {
@@ -26,7 +29,7 @@ public class UserModelManager implements User{
 
 
 
-  @Override public ArrayList<SimpleUser> logIn()
+  @Override public ArrayList<User> logIn()
   {
     try
     {
@@ -75,6 +78,11 @@ public class UserModelManager implements User{
       throws RemoteException
   {
 
+  }
+
+  @Override public String getRole() throws RemoteException
+  {
+    return clientInterface.getRole(this);
   }
 
   @Override public void addPropertyChangeListener(String name,

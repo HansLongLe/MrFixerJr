@@ -9,13 +9,14 @@ import java.util.ArrayList;
 
 public interface User extends PropertyChangeSubject
 {
-  ArrayList<SimpleUser> logIn();
+  ArrayList<User> logIn();
   void createAccount(String username, String password, String email)
       throws RemoteException, NotBoundException;
 
   String getUserName() throws RemoteException;
   String getPassword() throws RemoteException;
   String getEmail() throws RemoteException;
-  public void set(String username, String password, String email) throws RemoteException;
+  void set(String username, String password, String email) throws RemoteException;
+  String getRole() throws RemoteException;
 
 }

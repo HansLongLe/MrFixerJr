@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 public class LoginController
 {
@@ -38,26 +38,25 @@ public class LoginController
   public void LoginButton() throws IOException
   {
     switch(loginViewModel.logIn()){
-      case "true": {
+      case "true":
         System.out.println("Logged in!");
-        Stage stage = new Stage();
-        Scene scene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
 
-        loader.setLocation(getClass().getResource("Homepage.fxml"));
-        root = loader.load();
+//          switch(loginViewModel.getRole()){
+//            case "trueAdmin":
+//              System.out.println("Admin in the house");
+//              viewHandler.openHomePage();
+//              break;
+//            case "trueModerator":
+//              System.out.println("Moderator here");
+//              viewHandler.openHomePage();
+//              break;
+//            case "trueSimpleUser":
+//              System.out.println("Smple user coming");
+//              break;
+//          }
+        viewHandler.openHomePage();
 
-        HomepageController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-
-        stage.setTitle("MyFlixerJr");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        viewHandler.closeLogIn();
         break;
-      }
       case "Wrong password":
         System.out.println("Wrong password");
         break;
