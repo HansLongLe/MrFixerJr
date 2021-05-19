@@ -14,58 +14,25 @@ public class MovieManagerController {
 
 
     private ViewModelFactory viewModelFactory;
-    private Stage stage;
     private Scene userScene;
     private Scene genreScene;
+    private ViewHandler viewHandler;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
         this.viewModelFactory = viewModelFactory;
-        this.stage = stage;
+        this.viewHandler = viewHandler;
     }
 
     public void addMovie() throws IOException {
-        Stage stage = new Stage();
-        Scene scene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("CreateMovie.fxml"));
-        root = loader.load();
-        CreateMovieController controller = loader.getController();
-        controller.init(viewModelFactory);
-        stage.setTitle("Create Movie");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        viewHandler.openCreateMovie();
     }
 
 
     public void setSceneToUser() throws IOException {
-        userScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("UserManager.fxml"));
-
-        root = loader.load();
-
-        UserManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        userScene = new Scene(root);
-        stage.setScene(userScene);
+        viewHandler.openUserManager();
     }
     public void setSceneToGenre() throws IOException {
-        genreScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("GenreManager.fxml"));
-
-        root = loader.load();
-        GenreManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        genreScene = new Scene(root);
-        stage.setScene(genreScene);
+       viewHandler.openGenreManager();
     }
 
 

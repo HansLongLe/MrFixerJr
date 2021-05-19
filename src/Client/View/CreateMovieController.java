@@ -3,7 +3,7 @@ package Client.View;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,11 +21,12 @@ public class CreateMovieController {
     private TextArea actors;
 
     private ViewModelFactory viewModelFactory;
+    private ViewHandler viewHandler;
 
-    public void init (ViewModelFactory viewModelFactory)
+    public void init (ViewModelFactory viewModelFactory, ViewHandler viewHandler)
     {
         this.viewModelFactory = viewModelFactory;
-
+        this.viewHandler = viewHandler;
     }
 
     public void createMovie(){

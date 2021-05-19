@@ -16,15 +16,16 @@ import java.io.IOException;
 public class HomepageController {
 
     private ViewModelFactory viewModelFactory;
-    private Stage stage;
     private Scene watchLaterScene;
     private Scene watchedScene;
     private Scene favoriteScene;
+    private ViewHandler viewHandler;
+
    @FXML private ImageView manageImage;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
         this.viewModelFactory = viewModelFactory;
-        this.stage = stage;
+        this.viewHandler = viewHandler;
 
     }
     public ImageView getManageImage(){
@@ -32,63 +33,22 @@ public class HomepageController {
     }
 
     public void openManageWindow() throws IOException {
-        Stage stage = new Stage();
-        Scene scene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("MovieManager.fxml"));
-        root = loader.load();
-        MovieManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        stage.setTitle("Admin window");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        viewHandler.openMovieManager();
     }
 
 
     public void setSceneToWatchLater() throws IOException {
-        watchLaterScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("WatchLater.fxml"));
-
-        root = loader.load();
-
-        WatchLaterController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        watchLaterScene = new Scene(root);
-        stage.setScene(watchLaterScene);
+        viewHandler.openWatchLater();
     }
     public void setSceneToWatched() throws IOException {
-        watchedScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("Watched.fxml"));
-
-        root = loader.load();
-
-        WatchedController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        watchedScene = new Scene(root);
-        stage.setScene(watchedScene);
+        viewHandler.openWatched();
     }
     public void setSceneToFavorite() throws IOException {
-        favoriteScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("Favorite.fxml"));
-
-        root = loader.load();
-
-        FavoriteController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        favoriteScene = new Scene(root);
-        stage.setScene(favoriteScene);
+       viewHandler.openFavorite();
     }
 
+    public void logOut() throws IOException
+    {
+      viewHandler.closeLogIn();
+    }
 }

@@ -104,7 +104,7 @@
    <bottom>
       <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="41.0" fitWidth="139.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="5.0">
+            <ImageView fx:id="manageImage" fitHeight="41.0" fitWidth="139.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@Pictures/manage.png" />
                </image>
@@ -139,7 +139,7 @@
                         <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
                      </effect>
                   </ImageView>
-                  <Label text="Log out" textFill="WHITE">
+                  <Label onMouseClicked="#logOut" text="Log out" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
