@@ -103,4 +103,9 @@ public class ServerRMI implements ServerInterface{
     return "SimpleUser";
     }
 
+    @Override
+    public void addGenre(String genre) throws RemoteException {
+        databaseConnection.addGenre(genre);
+    }
+
 }

@@ -43,5 +43,8 @@ public class ClientReceiver implements ClientInterface{
         return null;
     }
 
+    @Override
+    public void addGenre(String genre) throws RemoteException {
 
+    }
 }
