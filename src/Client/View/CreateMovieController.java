@@ -3,9 +3,11 @@ package Client.View;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 
-import java.awt.*;
+
 import java.util.ArrayList;
 
 public class CreateMovieController {

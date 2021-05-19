@@ -12,5 +12,8 @@ import java.util.ArrayList;
 public interface ClientInterface extends Remote {
   void startClient() throws RemoteException, NotBoundException;
   public void newUser(User user) throws RemoteException, NotBoundException;
-  ArrayList<SimpleUser> logIn() throws RemoteException, NotBoundException;
+  ArrayList<User> logIn() throws RemoteException, NotBoundException;
+  String getRole(User user) throws RemoteException;
+  void addGenre(String genre, boolean genreExists) throws RemoteException;
+  ArrayList<String> getExistingGenres() throws RemoteException;
 }

@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 
 public class GenreManagerController {
@@ -25,6 +26,11 @@ public class GenreManagerController {
     @FXML
     private VBox genreList;
 
+    private Button delete;
+    private Button save;
+    private HBox newRow;
+    private Label introduceName;
+    private TextField genreName;
 
 
     private ViewModelFactory viewModelFactory;
@@ -32,6 +38,8 @@ public class GenreManagerController {
     private Stage stage;
     private Scene userScene;
     private Scene movieScene;
+
+    private boolean genreExists = false;
 
     public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
         this.viewModelFactory = viewModelFactory;
@@ -41,38 +49,43 @@ public class GenreManagerController {
 
     public void addGenre()
     {
-        HBox newRow = new HBox();
+        newRow = new HBox();
 
-        Label introduceName = new Label("Genre name: ");
+        introduceName = new Label("Genre name: ");
 
-        TextField genreName = new TextField();
+        genreName = new TextField();
 
-        Button save = new Button("Save");
-        Button delete = new Button("Delete");
-        Button change = new Button("Change");
+        save = new Button("Save");
+        delete = new Button("Delete");
 
+        save.setOnAction(actionEvent -> saveGenre());
 
-        save.setOnAction(actionEvent -> {
-            genreViewModel.createGenre(genreName.getText());
-            newRow.getChildren().clear();
-            Label savedGenre = new Label("Genre name: " + genreName.getText());
-            newRow.getChildren().addAll(savedGenre,change, delete);
-        });
-
-        change.setOnAction(actionEvent -> {
-            newRow.getChildren().clear();
-            newRow.getChildren().addAll(introduceName, genreName, save, delete);
-        });
-
-        delete.setOnAction(actionEvent -> {
-            newRow.getChildren().clear();
-            genreList.getChildren().remove(newRow);
-        });
-
+        delete.setOnAction(actionEvent -> deleteGenre());
 
         newRow.getChildren().addAll(introduceName, genreName, save, delete);
         newRow.setSpacing(10);
         genreList.getChildren().add(newRow);
+    }
+    public void saveGenre()
+    {
+
+        try {
+                genreViewModel.createGenre(genreName.getText(), genreExists);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        if (!genreExists)
+        {
+            newRow.getChildren().clear();
+            Label savedGenre = new Label("Genre name: " + genreName.getText());
+            newRow.getChildren().addAll(savedGenre, delete);
+        }
+
+    }
+    public void deleteGenre()
+    {
+        newRow.getChildren().clear();
+        genreList.getChildren().remove(newRow);
     }
 
     public void setSceneToUser() throws IOException {

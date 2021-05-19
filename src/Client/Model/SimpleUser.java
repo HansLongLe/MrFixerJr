@@ -13,6 +13,7 @@ public class SimpleUser implements User, Serializable
   private String name;
   private String password;
   private String email;
+  private String role;
   public SimpleUser()
   {
 
@@ -22,9 +23,16 @@ public class SimpleUser implements User, Serializable
     this.name = username;
     this.password = password;
      this.email = email;
+     this.role = role;
   }
 
-  @Override public ArrayList<SimpleUser> logIn()
+
+  @Override public String getRole() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public ArrayList<User> logIn()
   {
     return null;
   }

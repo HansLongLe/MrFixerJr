@@ -28,8 +28,8 @@ public class MyApplication extends Application
     ModelFactory modelFactory = new ModelFactory(cf);
     ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
     ViewHandler viewHandler = new ViewHandler(viewModelFactory, primaryStage);
-    ClientInterface clientInterface = new ClientRMI();
-    System.out.println(clientInterface);
+//    ClientInterface clientInterface = new ClientRMI();
+//    System.out.println(clientInterface);
     viewHandler.start();
   }
 }

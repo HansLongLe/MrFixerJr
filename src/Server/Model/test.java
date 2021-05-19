@@ -28,6 +28,7 @@ public class test
     while (rs.next()){
       String username=rs.getString("username");
       String password1=rs.getString("password");
+      String role1 = rs.getString("role");
 
       User user1=new SimpleUser();
       user1.set(username,password1,"");

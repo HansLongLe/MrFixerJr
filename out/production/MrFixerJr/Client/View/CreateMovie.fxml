@@ -19,7 +19,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture1/uploadImage.png" />
+                  <Image url="@Pictures/uploadImage.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="11.0" prefWidth="372.0">

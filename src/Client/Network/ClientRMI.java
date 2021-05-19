@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class ClientRMI  implements ClientInterface
+public class ClientRMI  implements ClientInterface, Serializable
 {
     private ServerInterface server;
     private ClientInterface broadcastClient;
@@ -32,7 +32,7 @@ public class ClientRMI  implements ClientInterface
         server.addBroadcast(broadcastClient);
     }
 
-    public void newUser(User user) throws RemoteException, NotBoundException
+    @Override public void newUser(User user) throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server  = (ServerInterface) registry.lookup("Server");
@@ -42,11 +42,28 @@ public class ClientRMI  implements ClientInterface
 
     }
 
-    @Override public ArrayList<SimpleUser> logIn()
+    @Override public ArrayList<User> logIn()
         throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server  = (ServerInterface) registry.lookup("Server");
         return server.logIn();
     }
+
+    @Override public String getRole(User user) throws RemoteException
+    {
+        return server.getRole(user);
+    }
+
+    @Override
+    public void addGenre(String genre, boolean genreExists) throws RemoteException {
+        server.addGenre(genre, genreExists);
+    }
+
+    @Override
+    public ArrayList<String> getExistingGenres() throws RemoteException {
+return null;
+    }
+
+
 }

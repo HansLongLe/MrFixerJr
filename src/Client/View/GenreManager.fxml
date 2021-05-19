@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
@@ -28,7 +29,7 @@
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label onMouseClicked="#setSceneToWatchLater" prefHeight="0.0" prefWidth="152.0" text="Movies" textFill="WHITE">
+                        <Label prefHeight="0.0" prefWidth="152.0" text="Movies" textFill="WHITE">
                             <font>
                                 <Font name="Arial" size="24.0" />
                             </font>
@@ -177,7 +178,13 @@
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <ScrollPane layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                <ScrollPane layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <content>
+                  <VBox fx:id="genreList" prefHeight="430.0" prefWidth="692.0" spacing="10.0">
+                     <padding>
+                        <Insets bottom="10.0" left="150.0" top="10.0" />
+                     </padding></VBox>
+               </content></ScrollPane>
             </children>
         </AnchorPane>
     </center>

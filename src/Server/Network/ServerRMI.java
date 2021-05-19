@@ -48,10 +48,10 @@ public class ServerRMI implements ServerInterface{
 
     }
 
-    @Override public ArrayList<SimpleUser> logIn()
+    @Override public ArrayList<User> logIn()
         throws RemoteException
     {      ResultSet rs = null;
-            ArrayList<SimpleUser> simpleUsers = new ArrayList<>();
+            ArrayList<User> simpleUsers = new ArrayList<>();
         System.out.println("array");
 
         rs=databaseConnection.logIn() ;
@@ -62,8 +62,7 @@ public class ServerRMI implements ServerInterface{
 
                         User temp = new SimpleUser();
                         temp.set(username1, password1, "");
-                        simpleUsers.add((SimpleUser) temp);
-                        System.out.println(simpleUsers.size());
+                        simpleUsers.add( temp);
                     }
         }
         catch (SQLException throwables)
@@ -72,6 +71,46 @@ public class ServerRMI implements ServerInterface{
         }
 
         return simpleUsers;
+    }
+
+    @Override public String getRole(User user) throws RemoteException
+    {
+        ResultSet rs= null;
+        rs = databaseConnection.getRole();
+        ArrayList<String> roles = new ArrayList<>();
+        String role = "";
+        role = user.getRole();
+        try
+        {
+            while(rs.next()){
+            role = rs.getString("role");
+            roles.add(role);
+
+            }
+            for (int i=0; i<roles.size(); i++){
+                if(roles.get(i).equals("Admin")){
+                    return "Admin";
+                }
+                else if(roles.get(i).equals("Moderator"))
+                    return "Moderator";
+            }
+
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    return "SimpleUser";
+    }
+
+    @Override
+    public void addGenre(String genre, boolean genreExists) throws RemoteException {
+        databaseConnection.addGenre(genre, genreExists);
+    }
+
+    @Override
+    public ArrayList<String> getGenresFromDatabase() throws RemoteException {
+return null;
     }
 
 }
