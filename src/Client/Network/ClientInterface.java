@@ -18,5 +18,6 @@ public interface ClientInterface extends Remote {
   void addGenre(String genre) throws RemoteException, NotBoundException;
   ArrayList<String> getExistingGenres() throws RemoteException, NotBoundException;
   String getRole(String username) throws RemoteException, NotBoundException;
+  void removeGenre(String genreName) throws RemoteException;
   void addMovies(Movie movie) throws RemoteException, NotBoundException;
 }

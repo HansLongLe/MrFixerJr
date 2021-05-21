@@ -22,4 +22,9 @@ public class GenreViewModel {
     public ArrayList<String> getGenre(){
         return genreDataModel.getGenre();
     }
+
+    public void deleteGenreFromDataBase(String genreName) throws RemoteException
+    {
+        genreDataModel.removeGenre(genreName);
+    }
 }

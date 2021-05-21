@@ -21,4 +21,5 @@ public interface ServerInterface extends Remote {
     ArrayList<String> getGenresFromDatabase() throws RemoteException;
     String getRole(String username) throws RemoteException;
     void addMovieToDatabase(Movie movie);
+    void removeGenre(String genreName) throws RemoteException;
 }

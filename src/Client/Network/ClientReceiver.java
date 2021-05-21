@@ -49,6 +49,10 @@ public class ClientReceiver implements ClientInterface{
         return null;
     }
 
+    @Override public void removeGenre(String genreName) throws RemoteException
+    {
+
+    }
 
     @Override
     public ArrayList<String> getExistingGenres() throws RemoteException {

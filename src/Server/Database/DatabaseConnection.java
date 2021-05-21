@@ -131,4 +131,27 @@ public class DatabaseConnection {
     {
         String sql1 = "INSERT INTO MyFlixer.Jr.Movie(title, description, actor) VALUES (" +"'"+movie.getTitle() +"','" + movie.getDescription() + "','" + movie.getActors() +"');";
     }
+
+  public void removeGenre(String genreName)
+  {
+      String sql = "DELETE from MyFlixerJr.Genre where genre = '" + genreName+ "';";
+      Statement statement = null;
+      try
+      {
+          statement = connection.createStatement();
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try
+      {
+          statement.execute(sql);
+          System.out.println("Genre deleted " + genreName);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+  }
 }

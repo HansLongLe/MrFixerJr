@@ -31,7 +31,8 @@ public class MovieManagerController {
     public void setSceneToUser() throws IOException {
         viewHandler.openUserManager();
     }
-    public void setSceneToGenre() throws IOException {
+    public void setSceneToGenre() throws IOException, NotBoundException
+    {
        viewHandler.openGenreManager();
     }
 
