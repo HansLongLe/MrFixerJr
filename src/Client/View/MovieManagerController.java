@@ -23,7 +23,7 @@ public class MovieManagerController {
         this.viewHandler = viewHandler;
     }
 
-    public void addMovie() throws IOException {
+    public void addMovie() throws IOException, NotBoundException {
         viewHandler.openCreateMovie();
     }
 

@@ -1,20 +1,26 @@
 package Client.Model;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 
 public class Movie {
+    private Image image;
     private String title;
     private String year;
-    private ArrayList<String> genres;
+    private ArrayList<Object> genres;
     private String description;
     private String actors;
 
-    public Movie(String title, String year, ArrayList<String> genres){
+    public Movie(Image image, String title, String year, ArrayList<Object> genres, String description, String actors){
+        this.image = image;
         this.title = title;
         this.year = year;
         for (int i = 0; i < genres.size(); i++) {
             this.genres.add(genres.get(i));
         }
+        this.description = description;
+        this.actors = actors;
     }
 
     public String getTitle() {
@@ -33,11 +39,11 @@ public class Movie {
         this.year = year;
     }
 
-    public ArrayList<String> getGenres() {
+    public ArrayList<Object> getGenres() {
         return genres;
     }
 
-    public void setGenres(ArrayList<String> genres) {
+    public void setGenres(ArrayList<Object> genres) {
         this.genres = genres;
     }
 
@@ -55,5 +61,13 @@ public class Movie {
 
     public void setActors(String actors) {
         this.actors = actors;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

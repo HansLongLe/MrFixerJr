@@ -37,8 +37,6 @@ public class GenreManagerController {
 
     private ViewModelFactory viewModelFactory;
     private GenreViewModel genreViewModel;
-    private Scene userScene;
-    private Scene movieScene;
     private ViewHandler viewHandler;
     private boolean genreExists = false;
 

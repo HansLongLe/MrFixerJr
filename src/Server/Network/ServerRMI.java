@@ -1,9 +1,11 @@
 package Server.Network;
 
+import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.Network.ClientInterface;
 import Server.Database.DatabaseConnection;
+import javafx.scene.image.Image;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -44,7 +46,6 @@ public class ServerRMI implements ServerInterface{
         Registry registry = LocateRegistry.createRegistry(1099);
         registry.bind("Server", this);
         System.out.println("Server started!");
-        Scanner scanner = new Scanner(System.in);
 
     }
 
@@ -105,6 +106,11 @@ public class ServerRMI implements ServerInterface{
     @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
     {
         databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+    }
+
+    @Override
+    public void addMovieToDatabase(Movie movie) throws RemoteException {
+        databaseConnection.addMovies(movie);
     }
 
     @Override
