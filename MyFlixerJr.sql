@@ -112,7 +112,9 @@ CREATE TABLE SelectedGenres
 (
     genre varchar(20),
     username varchar(50),
-    FOREIGN KEY (genre) references Genre(genre),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (genre) references MyFlixerJr.Genre(genre),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
+
+
 
