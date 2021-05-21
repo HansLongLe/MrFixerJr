@@ -75,9 +75,16 @@ public class UserModelManager implements User, Serializable
 
   }
 
-  @Override public String getRole() throws RemoteException
+  @Override public String getRole(String username)
+      throws RemoteException, NotBoundException
   {
-    return clientInterface.getRole(this);
+    return clientInterface.getRole(username);
+  }
+
+  @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+      throws RemoteException
+  {
+    clientInterface.chooseThreeGenresForUser(username, firstGnere,secondGnere, thirdGnere);
   }
 
   @Override public void addPropertyChangeListener(String name,

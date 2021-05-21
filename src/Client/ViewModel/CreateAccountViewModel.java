@@ -27,4 +27,10 @@ public class CreateAccountViewModel {
     {
         user.createAccount(username, password, email);
     }
+
+    public void chooseThreeGenresForUser(String username,String firstGnere,String secondGnere,String thirdGnere)
+        throws RemoteException
+    {
+        user.chooseThreeGenresForUser(username,firstGnere,secondGnere,thirdGnere);
+    }
 }

@@ -35,7 +35,7 @@ public class ClientRMI  implements ClientInterface, Serializable
     @Override public void newUser(User user) throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
-        server  = (ServerInterface) registry.lookup("Server");
+        server = (ServerInterface) registry.lookup("Server");
         System.out.println(server + "!!!!!!!!");
         server.newUser(user);
 
@@ -46,23 +46,55 @@ public class ClientRMI  implements ClientInterface, Serializable
         throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
-        server  = (ServerInterface) registry.lookup("Server");
+        server = (ServerInterface) registry.lookup("Server");
         return server.logIn();
     }
 
-    @Override public String getRole(User user) throws RemoteException
+    @Override public String getRole(String username)
+        throws RemoteException, NotBoundException
     {
-        return server.getRole(user);
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
+        return server.getRole(username);
+    }
+
+    @Override public void removeGenre(String genreName) throws RemoteException
+    {
+        server.removeGenre(genreName);
+    }
+
+    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+        throws RemoteException
+    {
+        server.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
     }
 
     @Override
-    public void addGenre(String genre, boolean genreExists) throws RemoteException {
-        server.addGenre(genre, genreExists);
+    public void addGenre(String genre)
+        throws RemoteException, NotBoundException
+    {
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
+        server.addGenre(genre);
     }
 
     @Override
-    public ArrayList<String> getExistingGenres() throws RemoteException {
-return null;
+    public ArrayList<String> getExistingGenres()
+        throws RemoteException, NotBoundException
+
+    {
+
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
+        try
+        {
+            return server.getGenresFromDatabase();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

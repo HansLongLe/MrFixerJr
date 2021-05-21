@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
 public class LoginController
@@ -33,28 +34,23 @@ public class LoginController
     loginViewModel = viewModelFactory.getLoginViewModel();
     username.textProperty().bindBidirectional(loginViewModel.getUsername());
     password.textProperty().bindBidirectional(loginViewModel.getPassword());
+    username.clear();
+    password.clear();
   }
   @FXML
-  public void LoginButton() throws IOException
+  public void LoginButton() throws IOException, NotBoundException
   {
+    String role = loginViewModel.getRole(username.getText());
     switch(loginViewModel.logIn()){
       case "true":
         System.out.println("Logged in!");
+        if(role.equals("Admin") || role.equals("Moderator")){
+          viewHandler.openHomePage();
+        }
+        else if(role.equals("SimpleUser")){
+          viewHandler.openHomePageForSimpleUser();
+        }
 
-//          switch(loginViewModel.getRole()){
-//            case "trueAdmin":
-//              System.out.println("Admin in the house");
-//              viewHandler.openHomePage();
-//              break;
-//            case "trueModerator":
-//              System.out.println("Moderator here");
-//              viewHandler.openHomePage();
-//              break;
-//            case "trueSimpleUser":
-//              System.out.println("Smple user coming");
-//              break;
-//          }
-        viewHandler.openHomePage();
 
         break;
       case "Wrong password":

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,8 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
+import java.util.ArrayList;
 
 public class GenreManagerController {
 
@@ -35,16 +37,21 @@ public class GenreManagerController {
 
     private ViewModelFactory viewModelFactory;
     private GenreViewModel genreViewModel;
-    private Stage stage;
     private Scene userScene;
     private Scene movieScene;
-
+    private ViewHandler viewHandler;
     private boolean genreExists = false;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    private ArrayList<HBox> rows = new ArrayList<>();
+
+    public void init(ViewModelFactory viewModelFactory,ViewHandler viewHandler)
+        throws IOException, NotBoundException
+    {
+
         this.viewModelFactory = viewModelFactory;
         genreViewModel = viewModelFactory.getGenreViewModel();
-        this.stage = stage;
+        this.viewHandler = viewHandler;
+        loadGenres();
     }
 
     public void addGenre()
@@ -60,7 +67,18 @@ public class GenreManagerController {
 
         save.setOnAction(actionEvent -> saveGenre());
 
-        delete.setOnAction(actionEvent -> deleteGenre());
+        delete.setOnAction(actionEvent -> {
+
+            try
+            {
+                deleteGenre(genreName.getText());
+            }
+            catch (RemoteException e)
+            {
+                e.printStackTrace();
+            }
+
+        });
 
         newRow.getChildren().addAll(introduceName, genreName, save, delete);
         newRow.setSpacing(10);
@@ -68,53 +86,84 @@ public class GenreManagerController {
     }
     public void saveGenre()
     {
+        if(!(genreViewModel.getGenre().contains(genreName.getText()))){
+            try
+            {
+                delete = new Button("Delete");
+                genreViewModel.createGenre(genreName.getText());
+                newRow.getChildren().clear();
+                            Label savedGenre = new Label("Genre name: " + genreName.getText());
+                            newRow.getChildren().addAll(savedGenre, delete);
+                            rows.add(newRow);
 
-        try {
-                genreViewModel.createGenre(genreName.getText(), genreExists);
-            } catch (RemoteException e) {
+            }
+            catch (RemoteException e)
+            {
                 e.printStackTrace();
             }
-        if (!genreExists)
+            catch (NotBoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+
+
+    }
+    public void deleteGenre(String genreName) throws RemoteException
+    {
+        for(int i=0; i<genreList.getChildren().size(); i++)
         {
-            newRow.getChildren().clear();
-            Label savedGenre = new Label("Genre name: " + genreName.getText());
-            newRow.getChildren().addAll(savedGenre, delete);
+            if (rows.get(i).getChildren().get(0).equals("Genre name: " + genreName))
+                newRow.getChildren().clear();
+            genreViewModel.deleteGenreFromDataBase(genreName);
+            genreList.getChildren().remove(newRow);
         }
 
     }
-    public void deleteGenre()
-    {
-        newRow.getChildren().clear();
-        genreList.getChildren().remove(newRow);
-    }
 
     public void setSceneToUser() throws IOException {
-        userScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("UserManager.fxml"));
-
-        root = loader.load();
-
-        UserManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        userScene = new Scene(root);
-        stage.setScene(userScene);
+        viewHandler.openUserManager();
     }
     public void setSceneToMovie() throws IOException {
-        movieScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("MovieManager.fxml"));
-
-        root = loader.load();
-        MovieManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        movieScene = new Scene(root);
-        stage.setScene(movieScene);
+        viewHandler.openMovieManager();
     }
 
+    public void loadGenres() throws RemoteException, NotBoundException
+    {
+        ArrayList<String> genres = genreViewModel.getGenre();
+        ArrayList<Button> deletes = new ArrayList<Button>();
+        for(int i=0; i<genres.size(); i++){
+            newRow = new HBox();
+            String genreName = genres.get(i);
+            Button delete;
 
+            Label savedGenre = new Label("Genre name: " + genres.get(i));
+            Button delete1 = new Button("Delete");
+            deletes.add(delete1);
+            deletes.get(i).setOnAction(actionEvent -> {
+                try
+                {
+                    deleteGenre(genreName);
+
+                }
+                catch (RemoteException e)
+                {
+                    e.printStackTrace();
+                }
+            });
+            newRow.getChildren().addAll(savedGenre, delete1);
+            newRow.setSpacing(10);
+            genreList.getChildren().add(newRow);
+            rows.add(newRow);
+
+
+
+        }
+    }
+
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }

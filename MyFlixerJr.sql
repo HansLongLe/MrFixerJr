@@ -15,6 +15,9 @@ CREATE TABLE MyFlixerJr.GeneralUser
 insert into MyFlixerJr.GeneralUser (username, email, password, role)
 VALUES ('Admin','admin@gmail.com','admin123','Admin');
 
+insert into MyFlixerJr.GeneralUser (username, email, password, role)
+VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
+
 drop table MyFlixerJr.GeneralUser cascade ;
 
 
@@ -74,38 +77,42 @@ create table MyFlixerJr.Genre(
     genre varchar(30) PRIMARY KEY
 );
 
+delete
+from MyFlixerJr.Genre
+where Genre.genre = 'comdey';
 
 
 
-CREATE TABLE FavoriteList
+
+CREATE TABLE MyFlixerJr.FavoriteList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE WatchLaterList
+CREATE TABLE MyFlixerJr.WatchLaterList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE AlreadyWatchedList
+CREATE TABLE MyFlixerJr.AlreadyWatchedList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE SelectedGenres
+CREATE TABLE MyFlixerJr.SelectedGenres
 (
     genre varchar(20),
     username varchar(50),
-    FOREIGN KEY (genre) references Genre(genre),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (genre) references MyFlixerJr.Genre(genre),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 

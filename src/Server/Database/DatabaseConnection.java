@@ -73,9 +73,9 @@ public class DatabaseConnection {
         return null;
     }
 
-    public ResultSet getRole() throws RemoteException
+    public ResultSet getRole(String username) throws RemoteException
     {
-        String sql = "SELECT role FROM MyFlixerJr.GeneralUser;";
+        String sql = "SELECT role FROM MyFlixerJr.GeneralUser WHERE username = '"+ username+ "';";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -93,22 +93,89 @@ public class DatabaseConnection {
         }
         return null;
     }
-    public void addGenre(String genre, boolean genreExists)
+    public void addGenre(String genre)
     {
         String sql = "INSERT INTO MyFlixerJr.Genre(genre) VALUES(" + "'" + genre +"');";
 
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
-            genreExists = false;
         } catch (SQLException throwable) {
-            genreExists = true;
+            throwable.printStackTrace();
         }
     }
 
-    public ArrayList<String> getGenresFromDatabase()
+    public ResultSet getGenresFromDatabase()
     {
-        String sql = "";
+        String sql = "SELECT genre from MyFlixerJr.Genre";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
         return null;
     }
+
+  public void removeGenre(String genreName)
+  {
+      String sql = "DELETE from MyFlixerJr.Genre where genre = '" + genreName+ "';";
+      Statement statement = null;
+      try
+      {
+          statement = connection.createStatement();
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try
+      {
+          statement.execute(sql);
+          System.out.println("Genre deleted " + genreName);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+  }
+
+  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  {
+      ArrayList<String> selectedGenres = new ArrayList<>();
+      selectedGenres.add(firstGnere);
+      selectedGenres.add(secondGnere);
+      selectedGenres.add(thirdGnere);
+      for (int i = 0; i < selectedGenres.size(); i++)
+      {
+          String sql = "Insert into MyFlixerJr.SelectedGenres (username, genre) values('" + username + "','" + selectedGenres.get(i) + "');";
+          Statement statement = null;
+          try
+          {
+              statement = connection.createStatement();
+          }
+          catch (SQLException throwables)
+          {
+              throwables.printStackTrace();
+          }
+          try
+          {
+              statement.execute(sql);
+          }
+          catch (SQLException throwables)
+          {
+              throwables.printStackTrace();
+          }
+      }
+  }
 }

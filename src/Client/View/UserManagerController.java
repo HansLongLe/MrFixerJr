@@ -9,46 +9,32 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 public class UserManagerController {
 
     private ViewModelFactory viewModelFactory;
-    private Stage stage;
     private Scene movieScene;
     private Scene genreScene;
+    private ViewHandler viewHandler;
 
-    public void init(ViewModelFactory viewModelFactory, Stage stage) throws IOException {
+    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
         this.viewModelFactory = viewModelFactory;
-        this.stage = stage;
+        this.viewHandler = viewHandler;
 
     }
 
 
     public void setSceneToMovie() throws IOException {
-        movieScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        loader.setLocation(getClass().getResource("MovieManager.fxml"));
-
-        root = loader.load();
-
-        MovieManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        movieScene = new Scene(root);
-        stage.setScene(movieScene);
+        viewHandler.openMovieManager();
     }
-    public void setSceneToGenre() throws IOException {
-        genreScene = null;
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
+    public void setSceneToGenre() throws IOException, NotBoundException
+    {
+        viewHandler.openGenreManager();
+    }
 
-        loader.setLocation(getClass().getResource("GenreManager.fxml"));
-
-        root = loader.load();
-        GenreManagerController controller = loader.getController();
-        controller.init(viewModelFactory, stage);
-        genreScene = new Scene(root);
-        stage.setScene(genreScene);
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
     }
 }

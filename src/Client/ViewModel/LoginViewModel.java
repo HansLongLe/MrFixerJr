@@ -4,6 +4,7 @@ import Client.Model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -19,34 +20,10 @@ public class LoginViewModel {
         password = new SimpleStringProperty();
         this.user=user;
     }
-    public String getRole() throws RemoteException
+    public String getRole(String username)
+        throws RemoteException, NotBoundException
     {
-//        ArrayList<String> roles = new ArrayList<>();
-//        try
-//        {
-//            roles = user.getRole();
-//        }
-//        catch (RemoteException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        return roles;
-
-//        for(int i=0; i<user.getRole().size(); i++){
-//            if(user.logIn().get(i).getRole().get(i).equals("Admin") && user.logIn().get(i).equals(username.getValue())){
-//                return "trueAdmin";
-//            }
-//            if(user.getRole().get(i).equals("Moderator") && user.logIn().get(i).equals(username.getValue())){
-//                return  "trueModerator";
-//            }
-//
-//            if(user.getRole().get(i).equals("SimpleUser") && user.logIn().get(i).equals(username.getValue())){
-//                return  "trueSimpleUser";
-//            }
-//        }
-        return " ";
-
-
+        return user.getRole(username);
     }
 
 
