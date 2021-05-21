@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.rmi.NotBoundException;
 
 public class ViewHandler
 {
@@ -198,7 +198,7 @@ public class ViewHandler
     primaryStage.show();
   }
 
-  public void openGenreManager() throws IOException
+  public void openGenreManager() throws IOException, NotBoundException
   {
     Scene genreScene = null;
     FXMLLoader loader = new FXMLLoader();

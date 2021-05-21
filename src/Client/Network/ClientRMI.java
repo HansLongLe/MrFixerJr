@@ -58,6 +58,11 @@ public class ClientRMI  implements ClientInterface, Serializable
         return server.getRole(username);
     }
 
+    @Override public void removeGenre(String genreName) throws RemoteException
+    {
+        server.removeGenre(genreName);
+    }
+
     @Override
     public void addGenre(String genre)
         throws RemoteException, NotBoundException

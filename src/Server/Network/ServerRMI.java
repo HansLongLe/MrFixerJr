@@ -97,6 +97,11 @@ public class ServerRMI implements ServerInterface{
 
     }
 
+    @Override public void removeGenre(String genreName) throws RemoteException
+    {
+        databaseConnection.removeGenre(genreName);
+    }
+
     @Override
     public void addGenre(String genre) throws RemoteException {
         databaseConnection.addGenre(genre);

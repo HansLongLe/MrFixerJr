@@ -126,4 +126,27 @@ public class DatabaseConnection {
 
         return null;
     }
+
+  public void removeGenre(String genreName)
+  {
+      String sql = "DELETE from MyFlixerJr.Genre where genre = '" + genreName+ "';";
+      Statement statement = null;
+      try
+      {
+          statement = connection.createStatement();
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try
+      {
+          statement.execute(sql);
+          System.out.println("Genre deleted " + genreName);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+  }
 }

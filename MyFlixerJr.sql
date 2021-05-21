@@ -77,6 +77,10 @@ create table MyFlixerJr.Genre(
     genre varchar(30) PRIMARY KEY
 );
 
+delete
+from MyFlixerJr.Genre
+where Genre.genre = 'comdey';
+
 
 
 

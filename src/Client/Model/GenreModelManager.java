@@ -21,8 +21,9 @@ public class GenreModelManager implements GenreDataModel{
     }
 
     @Override
-    public void removeGenre(String genreName) {
-
+    public void removeGenre(String genreName) throws RemoteException
+    {
+        clientInterface.removeGenre(genreName);
     }
 
     @Override

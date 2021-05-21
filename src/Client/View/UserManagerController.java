@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 public class UserManagerController {
 
@@ -27,7 +28,8 @@ public class UserManagerController {
     public void setSceneToMovie() throws IOException {
         viewHandler.openMovieManager();
     }
-    public void setSceneToGenre() throws IOException {
+    public void setSceneToGenre() throws IOException, NotBoundException
+    {
         viewHandler.openGenreManager();
     }
 }
