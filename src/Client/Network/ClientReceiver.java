@@ -1,5 +1,6 @@
 package Client.Network;
 
+import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.ViewModel.ViewModelFactory;
@@ -51,6 +52,11 @@ public class ClientReceiver implements ClientInterface{
 
     @Override public void removeGenre(String genreName) throws RemoteException
     {
+
+    }
+
+    @Override
+    public void addMovies(Movie movie) throws RemoteException, NotBoundException {
 
     }
 

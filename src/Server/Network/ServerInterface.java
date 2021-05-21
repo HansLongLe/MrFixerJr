@@ -20,6 +20,6 @@ public interface ServerInterface extends Remote {
     void addGenre(String genre) throws RemoteException;
     ArrayList<String> getGenresFromDatabase() throws RemoteException;
     String getRole(String username) throws RemoteException;
-    void addMovieToDatabase(Movie movie);
+    void addMovieToDatabase(Movie movie) throws RemoteException;
     void removeGenre(String genreName) throws RemoteException;
 }

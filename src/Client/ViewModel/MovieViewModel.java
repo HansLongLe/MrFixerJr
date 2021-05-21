@@ -13,7 +13,7 @@ public class MovieViewModel {
     public MovieViewModel(MovieDataModel movieDataModel){
         this.movieDataModel = movieDataModel;
     }
-    public void createMovie(Image image, String title, String year, ArrayList<Object> chosenGenres, String description, String actors){
+    public void createMovie(Image image, String title, String year, ArrayList<Object> chosenGenres, String description, String actors) throws NotBoundException, RemoteException {
         movieDataModel.addMovie(image, title, year, chosenGenres, description, actors);
     }
     public ArrayList<String> getGenres() throws NotBoundException, RemoteException {

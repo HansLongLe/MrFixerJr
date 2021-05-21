@@ -2,7 +2,6 @@ package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -13,8 +12,6 @@ import org.controlsfx.control.CheckComboBox;
 
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -53,7 +50,7 @@ public class CreateMovieController {
 
     }
 
-    public void createMovie(){
+    public void createMovie() throws NotBoundException, RemoteException {
         ArrayList<Object> chosenGenres = new ArrayList<>();
         for (int i = 0; i < genre.getItems().size(); i++) {
             if (genre.getCheckModel().isChecked(i))
