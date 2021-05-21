@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 public class MovieManagerController {
 
@@ -22,7 +23,7 @@ public class MovieManagerController {
         this.viewHandler = viewHandler;
     }
 
-    public void addMovie() throws IOException {
+    public void addMovie() throws IOException, NotBoundException {
         viewHandler.openCreateMovie();
     }
 

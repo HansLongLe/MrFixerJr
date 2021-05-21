@@ -1,9 +1,11 @@
 package Client.Network;
 
+import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.ViewModel.ViewModelFactory;
 import Server.Network.ServerInterface;
+import javafx.scene.image.Image;
 
 import java.io.Serializable;
 import java.rmi.NotBoundException;
@@ -55,6 +57,13 @@ public class ClientRMI  implements ClientInterface, Serializable
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
         return server.getRole(username);
+    }
+
+    @Override
+    public void addMovies(Movie movie) throws RemoteException, NotBoundException {
+        Registry registry = LocateRegistry.getRegistry("localHost", 1099);
+        server = (ServerInterface) registry.lookup("Server");
+        server.addMovieToDatabase(movie);
     }
 
     @Override

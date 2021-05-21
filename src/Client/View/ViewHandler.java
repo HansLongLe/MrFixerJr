@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 
 public class ViewHandler
@@ -182,8 +183,7 @@ public class ViewHandler
     primaryStage.setScene(favoriteScene);
   }
 
-  public void openCreateMovie() throws IOException
-  {
+  public void openCreateMovie() throws IOException, NotBoundException {
     Scene scene = null;
     FXMLLoader loader = new FXMLLoader();
     Parent root = null;

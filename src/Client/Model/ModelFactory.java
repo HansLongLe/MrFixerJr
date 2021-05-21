@@ -35,7 +35,7 @@ public class ModelFactory
     }
     public MovieDataModel getMovieDataModel(){
         if (movie==null){
-            movie = new MovieDataModelManager();
+            movie = new MovieDataModelManager(cf.getClientInterface());
         }
         return movie;
     }

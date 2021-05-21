@@ -1,9 +1,11 @@
 package Server.Network;
 
+import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.Network.ClientInterface;
 import Server.Database.DatabaseConnection;
+import javafx.scene.image.Image;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -95,6 +97,11 @@ public class ServerRMI implements ServerInterface{
         return role;
 
 
+    }
+
+    @Override
+    public void addMovieToDatabase(Movie movie) {
+        databaseConnection.addMovies(movie);
     }
 
     @Override

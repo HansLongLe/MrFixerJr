@@ -1,6 +1,7 @@
 
 package Server.Database;
 
+import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 
@@ -125,5 +126,9 @@ public class DatabaseConnection {
         }
 
         return null;
+    }
+    public void addMovies(Movie movie)
+    {
+        String sql1 = "INSERT INTO MyFlixer.Jr.Movie(title, description, actor) VALUES (" +"'"+movie.getTitle() +"','" + movie.getDescription() + "','" + movie.getActors() +"');";
     }
 }

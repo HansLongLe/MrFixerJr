@@ -1,7 +1,10 @@
 package Client.ViewModel;
 
 import Client.Model.MovieDataModel;
+import javafx.scene.image.Image;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class MovieViewModel {
@@ -10,8 +13,11 @@ public class MovieViewModel {
     public MovieViewModel(MovieDataModel movieDataModel){
         this.movieDataModel = movieDataModel;
     }
-    public void createMovie(String title, String year, ArrayList<String> genres, String description, String actors){
-        movieDataModel.addMovie(title, year, genres, description, actors);
+    public void createMovie(Image image, String title, String year, ArrayList<Object> chosenGenres, String description, String actors){
+        movieDataModel.addMovie(image, title, year, chosenGenres, description, actors);
+    }
+    public ArrayList<String> getGenres() throws NotBoundException, RemoteException {
+        return movieDataModel.getGenres();
     }
 
 }
