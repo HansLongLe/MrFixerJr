@@ -20,4 +20,6 @@ public interface ClientInterface extends Remote {
   String getRole(String username) throws RemoteException, NotBoundException;
   void removeGenre(String genreName) throws RemoteException;
   void addMovies(Movie movie) throws RemoteException, NotBoundException;
+  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
 }
+
