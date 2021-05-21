@@ -162,5 +162,8 @@ public class GenreManagerController {
         }
     }
 
-
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }

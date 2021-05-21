@@ -84,31 +84,31 @@ where Genre.genre = 'comdey';
 
 
 
-CREATE TABLE FavoriteList
+CREATE TABLE MyFlixerJr.FavoriteList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE WatchLaterList
+CREATE TABLE MyFlixerJr.WatchLaterList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE AlreadyWatchedList
+CREATE TABLE MyFlixerJr.AlreadyWatchedList
 (
     movieID  int,
     username varchar(50),
-    FOREIGN KEY (movieID) references Movie (movieID),
-    FOREIGN KEY (username) references GeneralUser (username)
+    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
+    FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-CREATE TABLE SelectedGenres
+CREATE TABLE MyFlixerJr.SelectedGenres
 (
     genre varchar(20),
     username varchar(50),

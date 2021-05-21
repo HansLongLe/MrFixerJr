@@ -63,6 +63,12 @@ public class ClientRMI  implements ClientInterface, Serializable
         server.removeGenre(genreName);
     }
 
+    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+        throws RemoteException
+    {
+        server.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+    }
+
     @Override
     public void addGenre(String genre)
         throws RemoteException, NotBoundException

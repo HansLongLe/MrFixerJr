@@ -36,5 +36,8 @@ public class MovieManagerController {
        viewHandler.openGenreManager();
     }
 
-
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }
