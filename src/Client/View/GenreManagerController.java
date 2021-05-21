@@ -36,8 +36,6 @@ public class GenreManagerController {
 
     private ViewModelFactory viewModelFactory;
     private GenreViewModel genreViewModel;
-    private Scene userScene;
-    private Scene movieScene;
     private ViewHandler viewHandler;
     private boolean genreExists = false;
 
@@ -87,18 +85,6 @@ public class GenreManagerController {
             }
         }
 
-//        try {
-//
-//                genreViewModel.createGenre(genreName.getText());
-//            } catch (RemoteException | NotBoundException e) {
-//                e.printStackTrace();
-//            }
-//        if (!genreExists)
-//        {
-//            newRow.getChildren().clear();
-//            Label savedGenre = new Label("Genre name: " + genreName.getText());
-//            newRow.getChildren().addAll(savedGenre, delete);
-//        }
 
     }
     public void deleteGenre()
