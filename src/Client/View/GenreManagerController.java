@@ -71,7 +71,7 @@ public class GenreManagerController {
 
             try
             {
-                deleteGenre(genreName.getText());
+                deleteGenre(genreName.getText(), newRow);
             }
             catch (RemoteException e)
             {
@@ -110,7 +110,7 @@ public class GenreManagerController {
 
 
     }
-    public void deleteGenre(String genreName) throws RemoteException
+    public void deleteGenre(String genreName, HBox row) throws RemoteException
     {
         for(int i=0; i<genreList.getChildren().size(); i++)
         {
@@ -144,7 +144,7 @@ public class GenreManagerController {
             deletes.get(i).setOnAction(actionEvent -> {
                 try
                 {
-                    deleteGenre(genreName);
+                    deleteGenre(genreName, newRow);
 
                 }
                 catch (RemoteException e)

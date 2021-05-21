@@ -33,23 +33,53 @@ CREATE TABLE MyFlixerJr.Follows
 
 CREATE TABLE MyFlixerJr.Review
 (
+    movieID int,
+    username varchar(50),
     score   int check ( score in (1, 2, 3, 4, 5)),
-    comment text
+    comment text,
+    foreign key (movieID) references MyFlixerJr.movie(movieID),
+    foreign key (username) references  MyFlixerJr.generaluser(username)
 );
 
-update MyFlixerJr.generaluser
-    set role = 'Moderator'
-where username = 'chen';
+create function movie_review()
+returns trigger
+    language plpgsql
+as $$
+    begin
+       MyFlixerJr.movie.averageRating = avg(score) from MyFlixerJr.Review where MyFlixerJr.review.movieid in(select movieid from MyFlixerJr.movie);
+return new;
+    end;
+
+    $$
+
+create trigger movie_rating
+    before update
+        on MyFlixerJr.movie
+    for each row
+    execute function movie_review();
+
+update MyFlixerJr.movie
+    set averagerating = 5
+where movieid = 1;
+
 
 DROP TABLE Review;
 
 CREATE TABLE MyFlixerJr.Movie
 (
     title         varchar(50),
-    movieID       int PRIMARY KEY,
+    movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,
+    actor text,
     description   text
 );
+
+insert into MyFlixerJr.movie(title, averagerating, description)
+values ('xxx', 4, 'asdfdgfvscasdfvdgffvdc');
+
+insert into MyFlixerJr.movie(title, averagerating, description)
+values ('xx', 4, 'asdfdgfvscasdfvdgffvdc');
+drop table MyFlixerJr.movie cascade ;
 
 DROP TABLE MyFlixerJr.Movie;
 
