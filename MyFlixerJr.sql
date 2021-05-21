@@ -46,24 +46,27 @@ returns trigger
     language plpgsql
 as $$
     begin
-       MyFlixerJr.movie.averageRating = avg(score) from MyFlixerJr.Review where MyFlixerJr.review.movieid in(select movieid from MyFlixerJr.movie);
-return new;
+--        MyFlixerJr.movie.averageRating = avg(score) from MyFlixerJr.Review where MyFlixerJr.review.movieid in(select movieid from MyFlixerJr.movie);
+    declare
+        avg_rate double precision;
+        begin
+        select avg(score)
+        into avg_rate
+        from MyFlixerJr.review where review.movieid in (select movieid from MyFlixerJr.movie);
+        insert into MyFlixerJr.movie (averageRating) values (avg_rate);
     end;
 
-    $$
+
+return new;
+    end
+
+    $$;
 
 create trigger movie_rating
     before update
         on MyFlixerJr.movie
     for each row
     execute function movie_review();
-
-update MyFlixerJr.movie
-    set averagerating = 5
-where movieid = 1;
-
-
-DROP TABLE Review;
 
 CREATE TABLE MyFlixerJr.Movie
 (
