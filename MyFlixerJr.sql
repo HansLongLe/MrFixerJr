@@ -41,7 +41,7 @@ CREATE TABLE MyFlixerJr.Review
     foreign key (username) references  MyFlixerJr.generaluser(username)
 );
 
-create function movie_review()
+create function MyFlixerJr.movie_review()
 returns trigger
     language plpgsql
 as $$
@@ -66,7 +66,7 @@ create trigger movie_rating
     before update
         on MyFlixerJr.movie
     for each row
-    execute function movie_review();
+    execute function MyFlixerJr.movie_review();
 
 CREATE TABLE MyFlixerJr.Movie
 (
@@ -149,5 +149,5 @@ CREATE TABLE MyFlixerJr.SelectedGenres
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-
+INSERT  INTO MyFlixerJr.Image
 

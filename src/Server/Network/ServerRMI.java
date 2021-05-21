@@ -109,7 +109,7 @@ public class ServerRMI implements ServerInterface{
     }
 
     @Override
-    public void addMovieToDatabase(Movie movie) throws RemoteException {
+    public void addMovieToDatabase(Movie movie) throws RemoteException, SQLException {
         databaseConnection.addMovies(movie);
     }
 

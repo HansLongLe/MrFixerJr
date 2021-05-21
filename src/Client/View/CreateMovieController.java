@@ -14,6 +14,7 @@ import org.controlsfx.control.CheckComboBox;
 import java.io.File;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CreateMovieController {
@@ -50,7 +51,7 @@ public class CreateMovieController {
 
     }
 
-    public void createMovie() throws NotBoundException, RemoteException {
+    public void createMovie() throws NotBoundException, RemoteException, SQLException {
         ArrayList<Object> chosenGenres = new ArrayList<>();
         for (int i = 0; i < genre.getItems().size(); i++) {
             if (genre.getCheckModel().isChecked(i))
@@ -58,6 +59,6 @@ public class CreateMovieController {
                 chosenGenres.add(genre.getItems().get(i));
             }
         }
-        viewModelFactory.getMovieViewModel().createMovie(movieImage.getImage(), title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
+        viewModelFactory.getMovieViewModel().createMovie(title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
     }
 }

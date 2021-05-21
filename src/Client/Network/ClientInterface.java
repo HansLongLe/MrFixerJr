@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ClientInterface extends Remote {
@@ -19,7 +20,7 @@ public interface ClientInterface extends Remote {
   ArrayList<String> getExistingGenres() throws RemoteException, NotBoundException;
   String getRole(String username) throws RemoteException, NotBoundException;
   void removeGenre(String genreName) throws RemoteException;
-  void addMovies(Movie movie) throws RemoteException, NotBoundException;
+  void addMovies(Movie movie) throws RemoteException, NotBoundException, SQLException;
   public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
 }
 

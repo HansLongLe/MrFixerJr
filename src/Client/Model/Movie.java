@@ -2,18 +2,19 @@ package Client.Model;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
-    private Image image;
+public class Movie implements Serializable {
     private String title;
     private String year;
-    private ArrayList<Object> genres;
+    private ArrayList<Object> genres = new ArrayList<>();
     private String description;
     private String actors;
+    private int movieID;
 
-    public Movie(Image image, String title, String year, ArrayList<Object> genres, String description, String actors){
-        this.image = image;
+    public Movie( String title, String year, ArrayList<Object> genres, String description, String actors){
+
         this.title = title;
         this.year = year;
         for (int i = 0; i < genres.size(); i++) {
@@ -21,6 +22,7 @@ public class Movie {
         }
         this.description = description;
         this.actors = actors;
+        movieID = 0;
     }
 
     public String getTitle() {
@@ -63,11 +65,12 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Image getImage() {
-        return image;
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public int getMovieID() {
+        return movieID;
     }
 }

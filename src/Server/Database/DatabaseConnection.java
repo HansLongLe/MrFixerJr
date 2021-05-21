@@ -127,10 +127,54 @@ public class DatabaseConnection {
 
         return null;
     }
-    public void addMovies(Movie movie)
-    {
-        String sql1 = "INSERT INTO MyFlixer.Jr.Movie(title, description, actor) VALUES (" +"'"+movie.getTitle() +"','" + movie.getDescription() + "','" + movie.getActors() +"');";
+    public void addMovies(Movie movie) throws SQLException {
+
+        String sql0 = "INSERT INTO MyFlixerJr.Movie(title, actor, description) VALUES (" +"'"+movie.getTitle() +"','" + movie.getActors() + "','" + movie.getDescription() +"');";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql0);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+        String sql1 = "SELECT movieID from MyFlixerJr.Movie";
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<Integer> movieIDs = new ArrayList<>();
+        try{
+            preparedStatement = connection.prepareStatement(sql1);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            resultSet = preparedStatement.executeQuery();
+
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        while (resultSet.next())
+        {
+            movieIDs.add(resultSet.getInt("movieid"));
+        }
+
+        movie.setMovieID(movieIDs.size());
+        for (int i = 0; i < movie.getGenres().size(); i++) {
+            String sql2 = "INSERT INTO MyFlixerJr.GenreRelationship(movieID, genre) VALUES (" + "'"  + movie.getMovieID() + "','" + movie.getGenres().get(i) + "');";
+            try {
+                Statement statement = connection.createStatement();
+                statement.execute(sql2);
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
+            }
+        }
     }
+
+
 
   public void removeGenre(String genreName)
   {
