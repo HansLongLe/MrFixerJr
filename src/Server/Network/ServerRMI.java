@@ -102,6 +102,11 @@ public class ServerRMI implements ServerInterface{
         databaseConnection.removeGenre(genreName);
     }
 
+    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    {
+        databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+    }
+
     @Override
     public void addGenre(String genre) throws RemoteException {
         databaseConnection.addGenre(genre);

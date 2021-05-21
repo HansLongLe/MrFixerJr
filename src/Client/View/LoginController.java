@@ -34,6 +34,8 @@ public class LoginController
     loginViewModel = viewModelFactory.getLoginViewModel();
     username.textProperty().bindBidirectional(loginViewModel.getUsername());
     password.textProperty().bindBidirectional(loginViewModel.getPassword());
+    username.clear();
+    password.clear();
   }
   @FXML
   public void LoginButton() throws IOException, NotBoundException

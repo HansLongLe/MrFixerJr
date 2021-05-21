@@ -149,4 +149,33 @@ public class DatabaseConnection {
           throwables.printStackTrace();
       }
   }
+
+  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  {
+      ArrayList<String> selectedGenres = new ArrayList<>();
+      selectedGenres.add(firstGnere);
+      selectedGenres.add(secondGnere);
+      selectedGenres.add(thirdGnere);
+      for (int i = 0; i < selectedGenres.size(); i++)
+      {
+          String sql = "Insert into MyFlixerJr.SelectedGenres (username, genre) values('" + username + "','" + selectedGenres.get(i) + "');";
+          Statement statement = null;
+          try
+          {
+              statement = connection.createStatement();
+          }
+          catch (SQLException throwables)
+          {
+              throwables.printStackTrace();
+          }
+          try
+          {
+              statement.execute(sql);
+          }
+          catch (SQLException throwables)
+          {
+              throwables.printStackTrace();
+          }
+      }
+  }
 }

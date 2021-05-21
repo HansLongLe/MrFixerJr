@@ -32,6 +32,12 @@ public class SimpleUser implements User, Serializable
     return null;
   }
 
+  @Override public void chooseThreeGenresForUser(String username,
+      String firstGnere, String secondGnere, String thirdGnere)
+  {
+
+  }
+
   @Override public ArrayList<User> logIn()
   {
     return null;

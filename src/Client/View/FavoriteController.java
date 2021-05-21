@@ -34,5 +34,8 @@ public class FavoriteController {
         viewHandler.openHomePage();
     }
 
-
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }

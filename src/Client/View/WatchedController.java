@@ -33,4 +33,9 @@ public class WatchedController {
     public void setSceneToFavorite() throws IOException {
         viewHandler.openFavorite();
     }
+
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }

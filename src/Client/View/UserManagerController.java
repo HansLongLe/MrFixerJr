@@ -32,4 +32,9 @@ public class UserManagerController {
     {
         viewHandler.openGenreManager();
     }
+
+    public void logOut() throws IOException
+    {
+        viewHandler.start();
+    }
 }
