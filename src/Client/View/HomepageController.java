@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.ViewModel.LoginViewModel;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 public class HomepageController {
 
@@ -23,9 +25,24 @@ public class HomepageController {
 
    @FXML private ImageView manageImage;
 
-    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
+    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler)
+        throws IOException, NotBoundException
+    {
         this.viewModelFactory = viewModelFactory;
         this.viewHandler = viewHandler;
+
+      LoginViewModel loginViewModel = viewModelFactory.getLoginViewModel();
+      String role = loginViewModel.getRole(loginViewModel.getUsername().getValue());
+      switch(loginViewModel.logIn()){
+        case "true":
+          if(role.equals("Admin") || role.equals("Moderator")){
+            manageImage.setVisible(true);
+          }
+          else if(role.equals("SimpleUser")){
+            manageImage.setVisible(false);
+          }
+          break;
+      }
 
     }
     public ImageView getManageImage(){

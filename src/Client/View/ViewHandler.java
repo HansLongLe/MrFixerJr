@@ -34,7 +34,7 @@ public class ViewHandler
   }
 
 
-  public void openHomePageForSimpleUser() throws IOException
+  public void openHomePageForSimpleUser() throws IOException, NotBoundException
   {
     Scene scene = null;
     FXMLLoader loader = new FXMLLoader();
@@ -119,7 +119,7 @@ public class ViewHandler
     primaryStage.setScene(watchedScene);
   }
 
-  public void openHomePage() throws IOException
+  public void openHomePage() throws IOException, NotBoundException
   {
     Scene homepageScene = null;
     FXMLLoader loader = new FXMLLoader();

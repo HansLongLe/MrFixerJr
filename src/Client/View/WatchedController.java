@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 
 public class WatchedController{
 
@@ -31,7 +32,8 @@ public class WatchedController{
     public void setSceneToWatchLater() throws IOException {
         viewHandler.openWatchLater();
     }
-    public void setSceneToHomepage() throws IOException {
+    public void setSceneToHomepage() throws IOException, NotBoundException
+    {
         viewHandler.openHomePage();
     }
     public void setSceneToFavorite() throws IOException {
