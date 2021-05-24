@@ -14,6 +14,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientRMI  implements ClientInterface, Serializable
@@ -72,7 +73,7 @@ public class ClientRMI  implements ClientInterface, Serializable
     }
 
     @Override
-    public void addMovies(Movie movie) throws RemoteException, NotBoundException {
+    public void addMovies(Movie movie) throws RemoteException, NotBoundException, SQLException {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
         server.addMovieToDatabase(movie);
