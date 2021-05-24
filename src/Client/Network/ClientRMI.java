@@ -112,5 +112,17 @@ public class ClientRMI  implements ClientInterface, Serializable
         return null;
     }
 
+    public ArrayList<Movie> getListOfFavouriteMovies(String username){
+        try
+        {
+            return server.loadFavouriteList(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

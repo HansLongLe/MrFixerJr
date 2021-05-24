@@ -221,5 +221,9 @@ public class ViewHandler
     primaryStage.close();
   }
 
+  public String getUserName(){
+    String username = viewModelFactory.getLoginViewModel().getUsername().getValue();
+    return username;
+  }
 
 }

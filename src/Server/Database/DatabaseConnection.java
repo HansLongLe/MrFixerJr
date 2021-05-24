@@ -184,6 +184,73 @@ public class DatabaseConnection {
 
     }
 
+    public ResultSet loadFavouriteMovies(String username){
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.favoritelist\n"
+            + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public ResultSet getGenresForMovie(int id){
+        String sql = "select distinct genre\n"
+            + "from MyFlixerJr.genrerelationship, MyFlixerJr.movie\n"
+            + "    where genrerelationship.movieid in (select movie.movieid  where movie.movieid = "+ id+");";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getAcotrsForMovie(int id){
+        String sql = "select distinct actor\n" + "from MyFlixerJr.actors\n"
+            + "    where actors.movieid = "+ id+ ";";
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 
 
   public void removeGenre(String genreName)

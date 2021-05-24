@@ -25,4 +25,8 @@ public class MovieViewModel {
         return movieDataModel.getMovies();
     }
 
+    public ArrayList<Movie>  getListOfFavouriteMovies(String username){
+        return movieDataModel.getListOfFavouriteMovies(username);
+    }
+
 }

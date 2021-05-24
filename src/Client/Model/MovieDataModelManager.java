@@ -26,6 +26,18 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getExistingGenres();
     }
 
+    public ArrayList<Movie> getListOfFavouriteMovies(String username){
+        try
+        {
+            return clientInterface.getListOfFavouriteMovies(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public ArrayList<Movie> getMovies() throws RemoteException {
         return clientInterface.getMovies();

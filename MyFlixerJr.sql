@@ -71,7 +71,7 @@ create trigger movie_rating
 CREATE TABLE MyFlixerJr.Movie
 (
     imageURL       text,
-    title         varchar(50),
+    title         varchar(50) PRIMARY KEY ,
     year          varchar (10),
     movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,
@@ -115,6 +115,7 @@ where Genre.genre = 'comdey';
 
 
 
+
 CREATE TABLE MyFlixerJr.FavoriteList
 (
     movieID  int,
@@ -122,6 +123,40 @@ CREATE TABLE MyFlixerJr.FavoriteList
     FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID),
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
+
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (1, 'andrei');
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (2, 'andrei');
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (3, 'andrei');
+
+select distinct  title, description, movie.movieid, movie.actor
+from MyFlixerJr.movie, MyFlixerJr.favoritelist
+where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = 'andrei';
+
+select distinct genre
+from MyFlixerJr.genrerelationship, MyFlixerJr.movie
+    where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 1);
+
+select distinct actor
+from MyFlixerJr.actors
+    where actors.movieid = 1;
+
+
+
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'comdey');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'romance');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'horror');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (2, 'comdey');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (3, 'comdey');
+
+
 
 CREATE TABLE MyFlixerJr.WatchLaterList
 (
