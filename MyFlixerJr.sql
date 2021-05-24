@@ -71,7 +71,7 @@ create trigger movie_rating
 CREATE TABLE MyFlixerJr.Movie
 (
     imageURL       text,
-    title         varchar(50),
+    title         varchar(50) PRIMARY KEY ,
     year          varchar (10),
     movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,
@@ -115,6 +115,7 @@ where Genre.genre = 'comdey';
 
 
 
+
 CREATE TABLE MyFlixerJr.FavoriteList
 (
     movieID  int,
@@ -138,7 +139,9 @@ select distinct genre
 from MyFlixerJr.genrerelationship, MyFlixerJr.movie
     where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 1);
 
-
+select distinct actor
+from MyFlixerJr.actors
+    where actors.movieid = 1;
 
 
 

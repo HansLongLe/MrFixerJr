@@ -23,5 +23,6 @@ public interface ClientInterface extends Remote {
   void addMovies(Movie movie) throws RemoteException, NotBoundException, SQLException;
   public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
   ArrayList<Movie> getMovies() throws RemoteException;
+  ArrayList<Movie> getListOfFavouriteMovies(String username) throws RemoteException;
 }
 

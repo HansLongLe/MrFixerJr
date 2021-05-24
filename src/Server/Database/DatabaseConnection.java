@@ -185,7 +185,7 @@ public class DatabaseConnection {
     }
 
     public ResultSet loadFavouriteMovies(String username){
-        String sql = "select distinct title, description, movie.movieid, actor\n"
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
             + "from MyFlixerJr.movie, MyFlixerJr.favoritelist\n"
             + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
         PreparedStatement preparedStatement = null;
@@ -221,6 +221,28 @@ public class DatabaseConnection {
         }
         try{
             return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getAcotrsForMovie(int id){
+        String sql = "select distinct actor\n" + "from MyFlixerJr.actors\n"
+            + "    where actors.movieid = "+ id+ ";";
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            preparedStatement.executeQuery();
         }
         catch (SQLException throwables)
         {
