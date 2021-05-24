@@ -68,7 +68,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label contentDisplay="TOP" prefHeight="20.0" prefWidth="152.0" text="Watched" textFill="WHITE">
+                  <Label contentDisplay="TOP" onMouseClicked="#setSceneToWatched" prefHeight="20.0" prefWidth="152.0" text="Watched" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>

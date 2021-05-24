@@ -71,7 +71,7 @@ create trigger movie_rating
 CREATE TABLE MyFlixerJr.Movie
 (
     imageURL       text,
-    title         varchar(50) PRIMARY KEY ,
+    title         varchar(50) ,
     year          varchar (10),
     movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,

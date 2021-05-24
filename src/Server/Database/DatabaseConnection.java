@@ -306,7 +306,7 @@ public class DatabaseConnection {
   }
   public ResultSet getMoviesFromDatabase()
   {
-      String sql = "SELECT * FROM MyFlixerJr.Movie";
+      String sql = "SELECT * FROM MyFlixerJr.movie;";
       ResultSet resultSet = null;
       PreparedStatement preparedStatement = null;
       try{
