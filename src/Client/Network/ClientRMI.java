@@ -73,6 +73,11 @@ public class ClientRMI  implements ClientInterface, Serializable
     }
 
     @Override
+    public ArrayList<Movie> getMovies() throws RemoteException {
+        return server.getMovies();
+    }
+
+    @Override
     public void addMovies(Movie movie) throws RemoteException, NotBoundException, SQLException {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
