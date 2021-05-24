@@ -78,6 +78,18 @@ CREATE TABLE MyFlixerJr.Movie
     description   text
 );
 
+
+delete
+from MyFlixerJr.genre cascade
+where genre = 'romance';
+
+
+delete
+from MyFlixerJr.genrerelationship cascade
+where genre = 'romance';
+
+
+
 insert into MyFlixerJr.movie(title, averagerating, description)
 values ('xxx', 4, 'asdfdgfvscasdfvdgffvdc');
 
