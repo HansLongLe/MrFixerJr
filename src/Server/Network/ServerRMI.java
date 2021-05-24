@@ -77,9 +77,7 @@ public class ServerRMI implements ServerInterface{
     {
         ResultSet rs= null;
         rs = databaseConnection.getRole(username);
-//        ArrayList<String> roles = new ArrayList<>();
         String role = "";
-//        role = user.getRole();
         try
         {
             while(rs.next())
@@ -106,6 +104,46 @@ public class ServerRMI implements ServerInterface{
     @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
     {
         databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+    }
+
+    @Override
+    public ArrayList<Movie> getMovies() throws RemoteException {
+        ResultSet movieTable = databaseConnection.getMoviesFromDatabase();
+        ResultSet actorTable = databaseConnection.getActorsFromDatabase();
+        ResultSet genreRelationshipTable = databaseConnection.getGenresFromGenresRelationship();
+        ArrayList<String> actorsTemp = new ArrayList<>();
+        ArrayList<Object> genres = new ArrayList<>();
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        try {
+            while (movieTable.next())
+            {
+                while (actorTable.next())
+                {
+                    if (movieTable.getString("movieID").equals(actorTable.getString("movieID")))
+                    actorsTemp.add(actorTable.getString("actor"));
+                }
+                while (genreRelationshipTable.next())
+                {
+                    if (movieTable.getString("movieID").equals(genreRelationshipTable.getString("movieID")))
+                    {
+                        genres.add(genreRelationshipTable.getString("genre"));
+                    }
+                }
+                String[] actors = actorsTemp.toArray(new String[0]);
+                Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
+                      genres,movieTable.getString("description"), actors);
+                movies.add(movie);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e)
+        {
+            e.printStackTrace();
+        }
+return movies;
     }
 
     @Override

@@ -70,10 +70,11 @@ create trigger movie_rating
 
 CREATE TABLE MyFlixerJr.Movie
 (
+    imageURL       text,
     title         varchar(50),
+    year          varchar (10),
     movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,
-    actor text,
     description   text
 );
 
@@ -86,15 +87,12 @@ drop table MyFlixerJr.movie cascade ;
 
 DROP TABLE MyFlixerJr.Movie;
 
-CREATE TABLE MyFlixerJr.Image
-(
-    imageName text,
-    img       bytea,
-    movieID   int,
-    FOREIGN KEY (movieID) references MyFlixerJr.Movie (movieID)
+CREATE TABLE MyFlixerJr.Actors(
+  movieID int,
+  actor varchar(50),
+  FOREIGN KEY (movieID) references MyFlixerJr.movie(movieID)
 );
 
-DROP TABLE MyFlixerJr.Image;
 
 CREATE TABLE MyFlixerJr.GenreRelationship
 (
@@ -149,5 +147,5 @@ CREATE TABLE MyFlixerJr.SelectedGenres
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-INSERT  INTO MyFlixerJr.Image
+
 
