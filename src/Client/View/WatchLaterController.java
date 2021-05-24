@@ -1,17 +1,21 @@
 package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
-public class WatchLaterController {
+public class WatchLaterController{
 
     private ViewModelFactory viewModelFactory;
     private Scene homepageScene;
     private Scene watchedScene;
     private Scene favoriteScene;
     private ViewHandler viewHandler;
+    @FXML private ImageView manageImage;
+
 
     public void init(ViewModelFactory viewModelFactory,ViewHandler viewHandler) throws IOException {
         this.viewModelFactory = viewModelFactory;
@@ -38,4 +42,5 @@ public class WatchLaterController {
     {
         viewHandler.start();
     }
+
 }

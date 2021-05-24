@@ -155,5 +155,5 @@ CREATE TABLE MyFlixerJr.SelectedGenres
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-INSERT  INTO MyFlixerJr.Image
+INSERT  INTO MyFlixerJr.I
 

@@ -1,7 +1,9 @@
 package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
@@ -12,6 +14,8 @@ public class FavoriteController {
     private Scene watchedScene;
     private Scene homepageScene;
     private ViewHandler viewHandler;
+    @FXML private ImageView manageImage;
+
 
     public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
         this.viewModelFactory = viewModelFactory;
@@ -38,4 +42,6 @@ public class FavoriteController {
     {
         viewHandler.start();
     }
+
+
 }

@@ -102,15 +102,7 @@
         </AnchorPane>
     </left>
     <bottom>
-        <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="41.0" fitWidth="139.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="5.0">
-                    <image>
-                        <Image url="@Pictures/manage.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
+        <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER" />
     </bottom>
     <top>
         <BorderPane prefHeight="69.0" prefWidth="900.0" style="-fx-background-color: #545454;" BorderPane.alignment="CENTER">

@@ -18,6 +18,9 @@ public class ViewHandler
 
 
 
+
+
+
   public ViewHandler(ViewModelFactory ViewModel, Stage primarySTgae)
   {
     this.viewModelFactory = ViewModel;

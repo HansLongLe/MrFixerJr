@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class LoginController
@@ -37,6 +38,23 @@ public class LoginController
     username.clear();
     password.clear();
   }
+
+  public String getCurrentRole(){
+    try
+    {
+      return loginViewModel.getRole(username.getText());
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    catch (NotBoundException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   @FXML
   public void LoginButton() throws IOException, NotBoundException
   {
