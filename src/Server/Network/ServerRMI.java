@@ -102,9 +102,9 @@ public class ServerRMI implements ServerInterface{
         databaseConnection.removeGenre(genreName);
     }
 
-    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
     {
-        databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+        databaseConnection.chooseThreeGenresForUser(username, firstGenre, secondGenre, thirdGenre);
     }
 
     @Override

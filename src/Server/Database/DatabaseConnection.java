@@ -150,12 +150,12 @@ public class DatabaseConnection {
       }
   }
 
-  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
   {
       ArrayList<String> selectedGenres = new ArrayList<>();
-      selectedGenres.add(firstGnere);
-      selectedGenres.add(secondGnere);
-      selectedGenres.add(thirdGnere);
+      selectedGenres.add(firstGenre);
+      selectedGenres.add(secondGenre);
+      selectedGenres.add(thirdGenre);
       for (int i = 0; i < selectedGenres.size(); i++)
       {
           String sql = "Insert into MyFlixerJr.SelectedGenres (username, genre) values('" + username + "','" + selectedGenres.get(i) + "');";

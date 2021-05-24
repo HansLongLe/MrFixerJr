@@ -81,10 +81,10 @@ public class UserModelManager implements User, Serializable
     return clientInterface.getRole(username);
   }
 
-  @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
       throws RemoteException
   {
-    clientInterface.chooseThreeGenresForUser(username, firstGnere,secondGnere, thirdGnere);
+    clientInterface.chooseThreeGenresForUser(username, firstGenre,secondGenre, thirdGenre);
   }
 
   @Override public void addPropertyChangeListener(String name,
