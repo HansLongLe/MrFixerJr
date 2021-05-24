@@ -79,10 +79,16 @@ CREATE TABLE MyFlixerJr.Movie
 
 insert into MyFlixerJr.movie(title, averagerating, description)
 values ('xxx', 4, 'asdfdgfvscasdfvdgffvdc');
+insert into MyFlixerJr.movie(title, movieid, averagerating, actor, description)
+values('aaa',1, 4, 'asdfd', 'asdfg');
 
 insert into MyFlixerJr.movie(title, averagerating, description)
 values ('xx', 4, 'asdfdgfvscasdfvdgffvdc');
-drop table MyFlixerJr.movie cascade ;
+
+delete
+from MyFlixerJr.movie
+    where movieid=1;
+-- drop table MyFlixerJr.movie cascade ;
 
 DROP TABLE MyFlixerJr.Movie;
 
