@@ -10,10 +10,11 @@ public class Movie implements Serializable {
     private String year;
     private ArrayList<Object> genres = new ArrayList<>();
     private String description;
-    private String actors;
+    private String[] actors;
     private int movieID;
+    private String imageURL;
 
-    public Movie( String title, String year, ArrayList<Object> genres, String description, String actors){
+    public Movie(String imageURL, String title, String year, ArrayList<Object> genres, String description, String[] actors){
 
         this.title = title;
         this.year = year;
@@ -23,6 +24,7 @@ public class Movie implements Serializable {
         this.description = description;
         this.actors = actors;
         movieID = 0;
+        this.imageURL = imageURL;
     }
 
     public String getTitle() {
@@ -57,11 +59,11 @@ public class Movie implements Serializable {
         this.description = description;
     }
 
-    public String getActors() {
+    public String[] getActors() {
         return actors;
     }
 
-    public void setActors(String actors) {
+    public void setActors(String[] actors) {
         this.actors = actors;
     }
 
@@ -72,5 +74,13 @@ public class Movie implements Serializable {
 
     public int getMovieID() {
         return movieID;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

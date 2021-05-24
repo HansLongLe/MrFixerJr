@@ -129,7 +129,7 @@ public class DatabaseConnection {
     }
     public void addMovies(Movie movie) throws SQLException {
 
-        String sql0 = "INSERT INTO MyFlixerJr.Movie(title, actor, description) VALUES (" +"'"+movie.getTitle() +"','" + movie.getActors() + "','" + movie.getDescription() +"');";
+        String sql0 = "INSERT INTO MyFlixerJr.Movie(imageURL, title, year, description) VALUES (" +"'" + movie.getImageURL() +"','"+movie.getTitle() + "','" + movie.getYear() + "','" + movie.getDescription() +"');";
 
         try {
             Statement statement = connection.createStatement();
@@ -172,6 +172,16 @@ public class DatabaseConnection {
                 throwable.printStackTrace();
             }
         }
+        for (int i = 0; i < movie.getActors().length; i++) {
+            String sql3 = "INSERT INTO MyFlixerJr.Actors(movieID, actor) VALUES (" + "'" + movie.getMovieID() + "','" + movie.getActors()[i] + "');";
+            try {
+                Statement statement = connection.createStatement();
+                statement.execute(sql3);
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
+            }
+        }
+
     }
 
 
@@ -226,5 +236,74 @@ public class DatabaseConnection {
               throwables.printStackTrace();
           }
       }
+  }
+  public ResultSet getMoviesFromDatabase()
+  {
+      String sql = "SELECT * FROM MyFlixerJr.Movie";
+      ResultSet resultSet = null;
+      PreparedStatement preparedStatement = null;
+      try{
+          preparedStatement = connection.prepareStatement(sql);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try{
+          resultSet = preparedStatement.executeQuery();
+          return resultSet;
+
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      return null;
+  }
+  public ResultSet getActorsFromDatabase()
+  {
+      String sql = "SELECT * FROM MyFlixerJr.Actors";
+      ResultSet resultSet = null;
+      PreparedStatement preparedStatement = null;
+      try{
+          preparedStatement = connection.prepareStatement(sql);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try{
+          resultSet = preparedStatement.executeQuery();
+          return resultSet;
+
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      return null;
+  }
+  public ResultSet getGenresFromGenresRelationship()
+  {
+      String sql = "SELECT * FROM MyFlixerJr.GenreRelationship";
+      ResultSet resultSet = null;
+      PreparedStatement preparedStatement = null;
+      try{
+          preparedStatement = connection.prepareStatement(sql);
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      try{
+          resultSet = preparedStatement.executeQuery();
+          return resultSet;
+
+      }
+      catch (SQLException throwables)
+      {
+          throwables.printStackTrace();
+      }
+      return null;
   }
 }

@@ -34,6 +34,7 @@ public class CreateMovieController {
 
     private ViewModelFactory viewModelFactory;
     private ViewHandler viewHandler;
+    private String url = null;
 
     public void init (ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws NotBoundException, RemoteException {
         this.viewModelFactory = viewModelFactory;
@@ -47,6 +48,7 @@ public class CreateMovieController {
         FileChooser fileChooser = new FileChooser();
         File tmp = fileChooser.showOpenDialog(new Stage());
         Image image =  new Image("file:\\" + tmp.getAbsolutePath());
+        url = "file:\\" + tmp.getAbsolutePath();
         movieImage.setImage(image);
 
     }
@@ -59,6 +61,6 @@ public class CreateMovieController {
                 chosenGenres.add(genre.getItems().get(i));
             }
         }
-        viewModelFactory.getMovieViewModel().createMovie(title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
+        viewModelFactory.getMovieViewModel().createMovie(url, title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
     }
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public interface MovieDataModel {
 
-    void addMovie( String title, String year, ArrayList<Object> chosenGenres, String description, String actors) throws RemoteException, NotBoundException, SQLException;
+    void addMovie(String imageURL, String title, String year, ArrayList<Object> chosenGenres, String description, String actors) throws RemoteException, NotBoundException, SQLException;
     ArrayList<String> getGenres() throws NotBoundException, RemoteException;
+    ArrayList<Movie> getMovies() throws RemoteException;
 }
