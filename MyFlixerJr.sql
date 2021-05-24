@@ -71,12 +71,24 @@ create trigger movie_rating
 CREATE TABLE MyFlixerJr.Movie
 (
     imageURL       text,
-    title         varchar(50) PRIMARY KEY ,
+    title         varchar(50) ,
     year          varchar (10),
     movieID serial PRIMARY KEY,
     averageRating DOUBLE PRECISION,
     description   text
 );
+
+
+delete
+from MyFlixerJr.genre cascade
+where genre = 'romance';
+
+
+delete
+from MyFlixerJr.genrerelationship cascade
+where genre = 'romance';
+
+
 
 insert into MyFlixerJr.movie(title, averagerating, description)
 values ('xxx', 4, 'asdfdgfvscasdfvdgffvdc');

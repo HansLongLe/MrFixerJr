@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -34,7 +35,7 @@ public class CreateMovieController {
 
     private ViewModelFactory viewModelFactory;
     private ViewHandler viewHandler;
-    private String url = null;
+    private String url = "";
 
     public void init (ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws NotBoundException, RemoteException {
         this.viewModelFactory = viewModelFactory;
@@ -61,6 +62,20 @@ public class CreateMovieController {
                 chosenGenres.add(genre.getItems().get(i));
             }
         }
-        viewModelFactory.getMovieViewModel().createMovie(url, title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
+
+        ArrayList<String> urls = new ArrayList<String>();
+        ArrayList<String> titles = new ArrayList<String>();
+
+        for(int i=0; i<viewModelFactory.getMovieViewModel().getMovies().size(); i++){
+            Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(i);
+            urls.add(movie.getImageURL());
+            titles.add(movie.getTitle());
+    }
+        if(!(url.equals(""))){
+        if(!(urls.contains(url) && titles.contains(title.getText()))){
+            viewModelFactory.getMovieViewModel().createMovie(url, title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
+            System.out.println(url );
+        }
+        }
     }
 }

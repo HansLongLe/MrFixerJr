@@ -255,10 +255,14 @@ public class DatabaseConnection {
 
   public void removeGenre(String genreName)
   {
+      String sql0 = "delete\n" + "from MyFlixerJr.genrerelationship cascade\n"
+          + "where genre = '"+ genreName + "';";
       String sql = "DELETE from MyFlixerJr.Genre where genre = '" + genreName+ "';";
       Statement statement = null;
+      Statement statement0 = null;
       try
       {
+          statement0 = connection.createStatement();
           statement = connection.createStatement();
       }
       catch (SQLException throwables)
@@ -267,6 +271,7 @@ public class DatabaseConnection {
       }
       try
       {
+          statement0.execute(sql0);
           statement.execute(sql);
           System.out.println("Genre deleted " + genreName);
       }
@@ -306,7 +311,7 @@ public class DatabaseConnection {
   }
   public ResultSet getMoviesFromDatabase()
   {
-      String sql = "SELECT * FROM MyFlixerJr.Movie";
+      String sql = "SELECT * FROM MyFlixerJr.movie;";
       ResultSet resultSet = null;
       PreparedStatement preparedStatement = null;
       try{
