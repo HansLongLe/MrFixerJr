@@ -1,16 +1,13 @@
 package Server.Network;
 
-import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 import Client.Network.ClientInterface;
-import javafx.scene.image.Image;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ServerInterface extends Remote {
@@ -21,8 +18,6 @@ public interface ServerInterface extends Remote {
     void addGenre(String genre) throws RemoteException;
     ArrayList<String> getGenresFromDatabase() throws RemoteException;
     String getRole(String username) throws RemoteException;
-    void addMovieToDatabase(Movie movie) throws RemoteException, SQLException;
     void removeGenre(String genreName) throws RemoteException;
-  void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
-  ArrayList<Movie> getMovies() throws RemoteException;
+  void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre) throws RemoteException;
 }
