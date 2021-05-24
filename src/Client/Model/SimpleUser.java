@@ -38,6 +38,8 @@ public class SimpleUser implements User, Serializable
 
   }
 
+
+
   @Override public ArrayList<User> logIn()
   {
     return null;

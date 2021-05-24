@@ -131,6 +131,38 @@ CREATE TABLE MyFlixerJr.FavoriteList
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (1, 'andrei');
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (2, 'andrei');
+INSERT  into MyFlixerJr.FavoriteList (movieID, username)
+values (3, 'andrei');
+
+select distinct  title, description, movie.movieid, movie.actor
+from MyFlixerJr.movie, MyFlixerJr.favoritelist
+where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = 'andrei';
+
+select distinct genre
+from MyFlixerJr.genrerelationship, MyFlixerJr.movie
+    where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 1);
+
+
+
+
+
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'comdey');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'romance');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (1, 'horror');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (2, 'comdey');
+insert into MyFlixerJr.genrerelationship (movieid, genre)
+values (3, 'comdey');
+
+
+
 CREATE TABLE MyFlixerJr.WatchLaterList
 (
     movieID  int,
@@ -155,5 +187,5 @@ CREATE TABLE MyFlixerJr.SelectedGenres
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
 
-INSERT  INTO MyFlixerJr.I
+
 

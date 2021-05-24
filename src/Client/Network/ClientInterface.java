@@ -22,5 +22,6 @@ public interface ClientInterface extends Remote {
   void removeGenre(String genreName) throws RemoteException;
   void addMovies(Movie movie) throws RemoteException, NotBoundException, SQLException;
   public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
+  ArrayList<Movie> getListOfFavouriteMovies(String username) throws RemoteException;
 }
 

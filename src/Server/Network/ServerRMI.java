@@ -73,6 +73,39 @@ public class ServerRMI implements ServerInterface{
         return simpleUsers;
     }
 
+    public ArrayList<Movie> loadFavouriteList(String username){
+        ResultSet rs = null;
+        ResultSet rsGenres = null;
+        ArrayList<Object> genres = new ArrayList<Object>();
+        ArrayList<Movie> favouriteListOfMovies = new ArrayList<Movie>();
+        rs = databaseConnection.loadFavouriteMovies(username);
+        try{
+            while(rs.next()){
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                int id = rs.getInt("movieid");
+                String actors = rs.getString("actor");
+                rsGenres = databaseConnection.getGenresForMovie(id);
+                    while(rsGenres.next()){
+                        String genre = rsGenres.getString("genre");
+                        genres.add(genre);
+                    }
+
+                Movie movie = new Movie(title, "1999 ", genres, description, actors);
+                    favouriteListOfMovies.add(movie);
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return favouriteListOfMovies;
+
+    }
+
     @Override public String getRole(String username) throws RemoteException
     {
         ResultSet rs= null;

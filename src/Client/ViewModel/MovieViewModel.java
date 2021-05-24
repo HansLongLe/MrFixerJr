@@ -1,5 +1,6 @@
 package Client.ViewModel;
 
+import Client.Model.Movie;
 import Client.Model.MovieDataModel;
 import javafx.scene.image.Image;
 
@@ -19,6 +20,10 @@ public class MovieViewModel {
     }
     public ArrayList<String> getGenres() throws NotBoundException, RemoteException {
         return movieDataModel.getGenres();
+    }
+
+    public ArrayList<Movie>  getListOfFavouriteMovies(String username){
+        return movieDataModel.getListOfFavouriteMovies(username);
     }
 
 }
