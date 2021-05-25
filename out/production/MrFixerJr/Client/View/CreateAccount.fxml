@@ -35,7 +35,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="error" layoutX="193.0" layoutY="282.0" text="Password doesn't match!" textFill="RED" visible="false">
+      <Label fx:id="error" layoutX="210.0" layoutY="405.0" text="Password doesn't match!" textFill="RED" visible="false">
          <font>
             <Font size="15.0" />
          </font>

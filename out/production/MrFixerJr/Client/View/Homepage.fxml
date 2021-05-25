@@ -197,7 +197,7 @@
             <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <content>
-                  <VBox fx:id="movies" prefHeight="429.0" prefWidth="694.0" style="-fx-background-color: #b4b9be;" />
+                  <VBox fx:id="movies" prefHeight="429.0" prefWidth="694.0" />
                </content></ScrollPane>
          </children>
       </AnchorPane>
