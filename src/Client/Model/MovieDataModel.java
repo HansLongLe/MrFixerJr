@@ -14,4 +14,6 @@ public interface MovieDataModel {
     ArrayList<Movie> getListOfFavouriteMovies(String username);
     ArrayList<Movie> getMovies() throws RemoteException;
   ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
+  ArrayList<String> getGenresForMovie(int id) throws RemoteException;
+
 }

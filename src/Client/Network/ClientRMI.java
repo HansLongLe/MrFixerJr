@@ -137,4 +137,10 @@ public class ClientRMI  implements ClientInterface, Serializable
         return null;
     }
 
+    @Override public ArrayList<String> getGenresForMovie(int id)
+        throws RemoteException
+    {
+        return server.getGenresForMovie(id);
+    }
+
 }

@@ -208,9 +208,8 @@ public class DatabaseConnection {
     }
 
     public ResultSet getGenresForMovie(int id){
-        String sql = "select distinct genre\n"
-            + "from MyFlixerJr.genrerelationship, MyFlixerJr.movie\n"
-            + "    where genrerelationship.movieid in (select movie.movieid  where movie.movieid = "+ id+");";
+        String sql = "select genre\n"
+            + "from MyFlixerJr.genrerelationship\n" + "where movieid = "+ id +";";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -402,4 +401,6 @@ public class DatabaseConnection {
         }
         return null;
     }
+
+
 }

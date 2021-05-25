@@ -219,7 +219,9 @@ return movies;
                 String[] actors = actorsTemp.toArray(new String[0]);
                 Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
                     genres,movieTable.getString("description"), actors);
+                movie.setMovieID(Integer.parseInt(movieTable.getString("movieID")));
                 movies.add(movie);
+//                genres.clear();
             }
         }catch (SQLException e)
         {
@@ -230,6 +232,28 @@ return movies;
             e.printStackTrace();
         }
         return movies;
+    }
+
+    @Override public ArrayList<String> getGenresForMovie(int id)
+        throws RemoteException
+    {
+        String gerne0 = "";
+        ResultSet rs = null;
+        ArrayList<String > genres = new ArrayList<String>();
+        rs = databaseConnection.getGenresForMovie(id);
+
+        try{
+        while (rs.next()){
+            gerne0 = rs.getString("genre");
+            genres.add(gerne0);
+        }
+    }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        System.out.println(genres.size() + "!!!!!");
+        return genres;
     }
 
     @Override
