@@ -114,7 +114,7 @@
    <bottom>
       <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="manageImage" fitHeight="35.0" fitWidth="122.0" layoutY="10.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="5.0">
+            <ImageView fx:id="manageImage" fitHeight="41.0" fitWidth="139.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@Pictures/manage.png" />
                </image>

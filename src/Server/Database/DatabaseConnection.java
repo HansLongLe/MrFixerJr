@@ -378,4 +378,28 @@ public class DatabaseConnection {
       }
       return null;
   }
+
+    public ResultSet loadMoviesByChosenGenre(String username)
+    {
+        String sql = "select distinct *\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship\n"
+            + "where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = '"+ username +"');";
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

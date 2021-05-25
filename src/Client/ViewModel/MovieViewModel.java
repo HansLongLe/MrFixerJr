@@ -29,4 +29,16 @@ public class MovieViewModel {
         return movieDataModel.getListOfFavouriteMovies(username);
     }
 
+    public ArrayList<Movie> loadMoviesByChosenGenre(String username)
+    {
+        try
+        {
+           return movieDataModel.loadMoviesByChosenGenre(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

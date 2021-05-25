@@ -24,5 +24,6 @@ public interface ClientInterface extends Remote {
   public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
   ArrayList<Movie> getMovies() throws RemoteException;
   ArrayList<Movie> getListOfFavouriteMovies(String username) throws RemoteException;
+  ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
 }
 
