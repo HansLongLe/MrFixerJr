@@ -5,6 +5,7 @@ import Client.Model.Movie;
 import Client.Model.SimpleUser;
 import Client.Model.User;
 
+import javax.swing.plaf.nimbus.State;
 import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -209,8 +210,7 @@ public class DatabaseConnection {
 
     public ResultSet getGenresForMovie(int id){
         String sql = "select distinct genre\n"
-            + "from MyFlixerJr.genrerelationship, MyFlixerJr.movie\n"
-            + "    where genrerelationship.movieid in (select movie.movieid  where movie.movieid = "+ id+");";
+            + "from MyFlixerJr.genrerelationship\n" + "where movieid = "+ id +";";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -229,9 +229,9 @@ public class DatabaseConnection {
         return null;
     }
 
-    public ResultSet getAcotrsForMovie(int id){
-        String sql = "select distinct actor\n" + "from MyFlixerJr.actors\n"
-            + "    where actors.movieid = "+ id+ ";";
+    public ResultSet getActorsForMovie(int id){
+        String sql = "select actor\n" + "from MyFlixerJr.actors\n"
+            + "    where movieid = "+ id+ ";";
         PreparedStatement preparedStatement = null;
 
         try{
@@ -242,7 +242,7 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
         try{
-            preparedStatement.executeQuery();
+           return preparedStatement.executeQuery();
         }
         catch (SQLException throwables)
         {
@@ -257,11 +257,14 @@ public class DatabaseConnection {
   {
       String sql0 = "delete\n" + "from MyFlixerJr.genrerelationship cascade\n"
           + "where genre = '"+ genreName + "';";
-      String sql = "DELETE from MyFlixerJr.Genre where genre = '" + genreName+ "';";
+      String sql = "DELETE from MyFlixerJr.Genre cascade where genre = '" + genreName+ "';";
+      String sql2 = "DELETE from MyFlixerJr.SelectedGenres cascade where genre =  '" + genreName+ "';";
       Statement statement = null;
       Statement statement0 = null;
+      Statement statement2 = null;
       try
       {
+          statement2 = connection.createStatement();
           statement0 = connection.createStatement();
           statement = connection.createStatement();
       }
@@ -271,6 +274,7 @@ public class DatabaseConnection {
       }
       try
       {
+          statement2.execute(sql2);
           statement0.execute(sql0);
           statement.execute(sql);
           System.out.println("Genre deleted " + genreName);
@@ -402,4 +406,6 @@ public class DatabaseConnection {
         }
         return null;
     }
+
+
 }

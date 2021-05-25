@@ -41,4 +41,24 @@ public class MovieViewModel {
         }
         return null;
     }
+
+    public ArrayList<String> getGenresForMovie(int id){
+        try
+        {
+            return movieDataModel.getGenresForMovie(id);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<String> getActorsForMovie(int id){
+        try {
+            return movieDataModel.getActorsForMovie(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

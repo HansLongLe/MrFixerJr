@@ -91,7 +91,7 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
-                rsActors = databaseConnection.getAcotrsForMovie(id);
+                rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
                     int i=0;
                     String actor = rs.getString("actor");
@@ -219,7 +219,9 @@ return movies;
                 String[] actors = actorsTemp.toArray(new String[0]);
                 Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
                     genres,movieTable.getString("description"), actors);
+                movie.setMovieID(Integer.parseInt(movieTable.getString("movieID")));
                 movies.add(movie);
+//                genres.clear();
             }
         }catch (SQLException e)
         {
@@ -230,6 +232,28 @@ return movies;
             e.printStackTrace();
         }
         return movies;
+    }
+
+    @Override public ArrayList<String> getGenresForMovie(int id)
+        throws RemoteException
+    {
+        String genre0 = "";
+        ResultSet rs = null;
+        ArrayList<String > genres = new ArrayList<String>();
+        rs = databaseConnection.getGenresForMovie(id);
+
+        try{
+        while (rs.next()){
+            genre0 = rs.getString("genre");
+            genres.add(genre0);
+        }
+    }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        System.out.println(genres.size() + "!!!!!");
+        return genres;
     }
 
     @Override
@@ -262,6 +286,26 @@ return movies;
         }
         return genres;
 
+    }
+    @Override public ArrayList<String> getActorsForMovie(int id)
+            throws RemoteException
+    {
+        String actor0 = "";
+        ArrayList<String> actors = new ArrayList<String>();
+        ResultSet rs = databaseConnection.getActorsForMovie(id);
+
+        try{
+            while (rs.next())
+            {
+                actor0 = rs.getString("actor");
+                actors.add(actor0);
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return actors;
     }
 
 }

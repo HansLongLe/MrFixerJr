@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Model.Movie;
 import Client.ViewModel.LoginViewModel;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
@@ -83,18 +84,36 @@ public class HomepageController {
   {
     int count = 0;
     HBox newRow = new HBox();
-    String username0 = viewModelFactory.getLoginViewModel().getUsername().getValue();
-    for (int i = 0; i <viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).size() ; i++) {
+
+
+    String username = viewHandler.getUserName();
+
+    for (int i = 0; i <viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username).size() ; i++) {
+      Movie movie0 = viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username).get(i);
+      System.out.println(viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()));
       VBox movie = new VBox();
-      ImageView image = new ImageView(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getImageURL());
+
+      int currentMovie = i+1;
+        movie.setOnMouseClicked(mouseEvent -> {
+            try {
+                openMovie(currentMovie);
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ImageView image = new ImageView(movie0.getImageURL());
       image.setFitWidth(150);
       image.setFitHeight(150);
-      Label title = new javafx.scene.control.Label(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getTitle());
-      Label year = new javafx.scene.control.Label(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getYear());
+      Label title = new Label(movie0.getTitle());
+      Label year = new Label(movie0.getYear());
       String genres = "";
-      for (int j = 0; j < viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().size(); j++) {
-        genres += viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().get(j);
-        if (!(j == viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().size()-1))
+      for (int j = 0; j < viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size(); j++) {
+        genres += viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).get(j);
+
+        if (!(j == viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size()-1))
         {
           genres += ",";
         }
@@ -116,9 +135,8 @@ public class HomepageController {
 
   }
 
-  public void loadMoviesByChosenGenre(String username){
-      viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username);
+  public void openMovie(int currentMovie) throws NotBoundException, IOException {
+      viewHandler.openViewMovieDescription(currentMovie);
   }
-
 
 }
