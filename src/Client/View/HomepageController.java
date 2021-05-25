@@ -6,14 +6,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import org.controlsfx.control.CheckComboBox;
 
 import java.awt.*;
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class HomepageController {
 
@@ -22,6 +26,8 @@ public class HomepageController {
     private Scene watchedScene;
     private Scene favoriteScene;
     private ViewHandler viewHandler;
+    @FXML private CheckComboBox genresToChose;
+    @FXML private VBox movies;
 
    @FXML private ImageView manageImage;
 
@@ -30,7 +36,7 @@ public class HomepageController {
     {
         this.viewModelFactory = viewModelFactory;
         this.viewHandler = viewHandler;
-
+        loadMovies();
       LoginViewModel loginViewModel = viewModelFactory.getLoginViewModel();
       String role = loginViewModel.getRole(loginViewModel.getUsername().getValue());
       switch(loginViewModel.logIn()){
@@ -43,6 +49,10 @@ public class HomepageController {
           }
           break;
       }
+      for(int i=0; i<viewModelFactory.getGenreViewModel().getGenre().size(); i++){
+        genresToChose.getItems().add(viewModelFactory.getGenreViewModel().getGenre().get(i));
+      }
+
 
     }
     public ImageView getManageImage(){
@@ -68,4 +78,47 @@ public class HomepageController {
     {
       viewHandler.start();
     }
+
+  public void loadMovies() throws RemoteException
+  {
+    int count = 0;
+    HBox newRow = new HBox();
+    String username0 = viewModelFactory.getLoginViewModel().getUsername().getValue();
+    for (int i = 0; i <viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).size() ; i++) {
+      VBox movie = new VBox();
+      ImageView image = new ImageView(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getImageURL());
+      image.setFitWidth(150);
+      image.setFitHeight(150);
+      Label title = new javafx.scene.control.Label(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getTitle());
+      Label year = new javafx.scene.control.Label(viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getYear());
+      String genres = "";
+      for (int j = 0; j < viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().size(); j++) {
+        genres += viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().get(j);
+        if (!(j == viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username0).get(i).getGenres().size()-1))
+        {
+          genres += ",";
+        }
+      }
+      Label genreLabel = new Label(genres);
+      movie.getChildren().addAll(image, title, year, genreLabel);
+
+
+      newRow.getChildren().add(movie);
+
+      count++;
+      if (count % 3 == 0)
+      {
+        movies.getChildren().add(newRow);
+        newRow = new HBox();
+      }
+    }
+    movies.getChildren().add(newRow);
+
+  }
+
+  public void loadMoviesByChosenGenre(String username){
+      viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username);
+  }
+
+
 }

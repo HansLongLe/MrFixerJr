@@ -124,5 +124,17 @@ public class ClientRMI  implements ClientInterface, Serializable
         return null;
     }
 
+    @Override public ArrayList<Movie> loadMoviesByChosenGenre(String username)
+    {
+        try
+        {
+            return server.loadMoviesByChosenGenre(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
