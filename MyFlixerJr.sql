@@ -90,11 +90,7 @@ where genre = 'romance';
 
 
 
-insert into MyFlixerJr.movie(title, averagerating, description)
-values ('xxx', 4, 'asdfdgfvscasdfvdgffvdc');
 
-insert into MyFlixerJr.movie(title, averagerating, description)
-values ('xx', 4, 'asdfdgfvscasdfvdgffvdc');
 drop table MyFlixerJr.movie cascade ;
 
 DROP TABLE MyFlixerJr.Movie;
@@ -114,7 +110,7 @@ CREATE TABLE MyFlixerJr.GenreRelationship
     foreign key (genre) references MyFlixerJr.Genre(genre)
 
 );
-drop table MyFlixerJr.GenreRelationship;
+drop table MyFlixerJr.GenreRelationship cascade;
 
 create table MyFlixerJr.Genre(
     genre varchar(30) PRIMARY KEY
@@ -143,9 +139,7 @@ values (2, 'andrei');
 INSERT  into MyFlixerJr.FavoriteList (movieID, username)
 values (3, 'andrei');
 
-select distinct  title, description, movie.movieid, movie.actor
-from MyFlixerJr.movie, MyFlixerJr.favoritelist
-where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = 'andrei';
+
 
 select distinct genre
 from MyFlixerJr.genrerelationship, MyFlixerJr.movie
@@ -157,16 +151,7 @@ from MyFlixerJr.actors
 
 
 
-insert into MyFlixerJr.genrerelationship (movieid, genre)
-values (1, 'comdey');
-insert into MyFlixerJr.genrerelationship (movieid, genre)
-values (1, 'romance');
-insert into MyFlixerJr.genrerelationship (movieid, genre)
-values (1, 'horror');
-insert into MyFlixerJr.genrerelationship (movieid, genre)
-values (2, 'comdey');
-insert into MyFlixerJr.genrerelationship (movieid, genre)
-values (3, 'comdey');
+
 
 
 
@@ -193,6 +178,14 @@ CREATE TABLE MyFlixerJr.SelectedGenres
     FOREIGN KEY (genre) references MyFlixerJr.Genre(genre),
     FOREIGN KEY (username) references MyFlixerJr.GeneralUser (username)
 );
+
+select distinct title
+from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship
+where (MyFlixerJr.SelectedGenres.genre in(select MyFlixerJr.GenreRelationship.genre from MyFlixerJr.GenreRelationship)) and (MyFlixerJr.GenreRelationship.movieid in (select MyFlixerJr.movie.movieid from MyFlixerJr.movie)) and (MyFlixerJr.SelectedGenres.username = 'dum');
+
+select distinct *
+from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship
+where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = 'jul');
 
 
 
