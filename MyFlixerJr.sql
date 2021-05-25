@@ -187,5 +187,12 @@ select distinct *
 from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship
 where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = 'jul');
 
+select genre
+from MyFlixerJr.genrerelationship
+where movieid = 1;
+
+select distinct genre
+             from MyFlixerJr.genrerelationship, MyFlixerJr.movie
+            where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 3);
 
 
