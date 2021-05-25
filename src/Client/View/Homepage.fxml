@@ -114,7 +114,7 @@
    <bottom>
       <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="manageImage" fitHeight="41.0" fitWidth="139.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="5.0">
+            <ImageView fx:id="manageImage" fitHeight="35.0" fitWidth="122.0" layoutY="10.0" onMouseClicked="#openManageWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@Pictures/manage.png" />
                </image>
@@ -195,9 +195,9 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <ScrollPane layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <content>
-                  <VBox prefHeight="431.0" prefWidth="694.0" style="-fx-background-color: #b4b9be;" />
+                  <VBox prefHeight="429.0" prefWidth="694.0" />
                </content></ScrollPane>
          </children>
       </AnchorPane>
