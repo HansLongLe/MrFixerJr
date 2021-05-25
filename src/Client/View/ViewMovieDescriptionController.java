@@ -65,7 +65,7 @@ public class ViewMovieDescriptionController {
 
     }
     public void loadInformation(int currentMovie) throws RemoteException {
-        Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie);
+        Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie-1);
         name.setText(movie.getTitle());
         year.setText(movie.getYear());
         description.setText(movie.getDescription());
