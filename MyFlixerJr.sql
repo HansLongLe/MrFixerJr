@@ -195,4 +195,5 @@ select distinct genre
              from MyFlixerJr.genrerelationship, MyFlixerJr.movie
             where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 3);
 
+SELECT actor from MyFlixerJr.Actors where movieid = 3;
 

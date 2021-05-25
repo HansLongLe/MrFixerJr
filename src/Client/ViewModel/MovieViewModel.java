@@ -53,4 +53,12 @@ public class MovieViewModel {
         }
         return null;
     }
+    public ArrayList<String> getActorsForMovie(int id){
+        try {
+            return movieDataModel.getActorsForMovie(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

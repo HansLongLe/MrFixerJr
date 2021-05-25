@@ -243,7 +243,7 @@ public class ViewHandler
     primaryStage.show();
   }
 
-  public void openViewMovieDescription() throws IOException, NotBoundException {
+  public void openViewMovieDescription(int currentMovie) throws IOException, NotBoundException {
     Scene scene = null;
     FXMLLoader loader = new FXMLLoader();
     Parent root = null;
@@ -251,7 +251,9 @@ public class ViewHandler
     loader.setLocation(getClass().getResource("ViewMovieDescription.fxml"));
     root = loader.load();
     ViewMovieDescriptionController controller = loader.getController();
-    controller.init(viewModelFactory,this);
+
+    controller.init(viewModelFactory,this, currentMovie);
+
     primaryStage.setTitle("View Movie");
     scene = new Scene(root);
     primaryStage.setScene(scene);

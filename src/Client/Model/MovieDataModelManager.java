@@ -55,4 +55,10 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getGenresForMovie(id);
     }
 
+    @Override
+    public ArrayList<String> getActorsForMovie(int id) throws RemoteException {
+        return clientInterface.getActorsForMovie(id);
+    }
+
+
 }
