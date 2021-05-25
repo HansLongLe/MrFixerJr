@@ -91,7 +91,7 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
-                rsActors = databaseConnection.getAcotrsForMovie(id);
+                rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
                     int i=0;
                     String actor = rs.getString("actor");
@@ -237,15 +237,15 @@ return movies;
     @Override public ArrayList<String> getGenresForMovie(int id)
         throws RemoteException
     {
-        String gerne0 = "";
+        String genre0 = "";
         ResultSet rs = null;
         ArrayList<String > genres = new ArrayList<String>();
         rs = databaseConnection.getGenresForMovie(id);
 
         try{
         while (rs.next()){
-            gerne0 = rs.getString("genre");
-            genres.add(gerne0);
+            genre0 = rs.getString("genre");
+            genres.add(genre0);
         }
     }
         catch (SQLException throwables)
@@ -286,6 +286,26 @@ return movies;
         }
         return genres;
 
+    }
+    @Override public ArrayList<String> getActorsForMovie(int id)
+            throws RemoteException
+    {
+        String actor0 = "";
+        ArrayList<String> actors = new ArrayList<String>();
+        ResultSet rs = databaseConnection.getActorsForMovie(id);
+
+        try{
+            while (rs.next())
+            {
+                actor0 = rs.getString("actor");
+                actors.add(actor0);
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return actors;
     }
 
 }

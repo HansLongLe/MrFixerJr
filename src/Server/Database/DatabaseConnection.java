@@ -228,9 +228,9 @@ public class DatabaseConnection {
         return null;
     }
 
-    public ResultSet getAcotrsForMovie(int id){
-        String sql = "select distinct actor\n" + "from MyFlixerJr.actors\n"
-            + "    where actors.movieid = "+ id+ ";";
+    public ResultSet getActorsForMovie(int id){
+        String sql = "select actor\n" + "from MyFlixerJr.actors\n"
+            + "    where movieid = "+ id+ ";";
         PreparedStatement preparedStatement = null;
 
         try{
@@ -241,7 +241,7 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
         try{
-            preparedStatement.executeQuery();
+           return preparedStatement.executeQuery();
         }
         catch (SQLException throwables)
         {
