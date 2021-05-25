@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -11,16 +12,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.UserManagerController">
+<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.EditMovieDescriptionController">
     <left>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER" onMouseClicked="#setSceneToMovie" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="150.0">
                     <children>
-                        <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@Pictures/watchLater.png" />
                             </image>
@@ -38,7 +40,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
+                <HBox alignment="CENTER" onMouseClicked="#setSceneToUser" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
                     <children>
                         <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -83,25 +85,17 @@
     </left>
     <bottom>
         <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <HBox alignment="CENTER_LEFT" onMouseClicked="#back" prefHeight="43.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_RIGHT" layoutX="723.0" layoutY="2.0" onMouseClicked="#addMovie" prefHeight="42.0" prefWidth="72.0" style="-fx-border-color: white; -fx-border-radius: 5; -fx-border-width: 3;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <ImageView fitHeight="45.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Pictures/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label prefHeight="43.0" prefWidth="161.0" text="Back" textFill="#2db9d5">
+                  <Label alignment="CENTER" onMouseClicked="#saveButton" prefHeight="33.0" prefWidth="100.0" text="Save" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-               </children>
-            </HBox>
-         </children></AnchorPane>
+               </children></HBox>
+            </children>
+        </AnchorPane>
     </bottom>
     <top>
         <BorderPane prefHeight="69.0" prefWidth="900.0" style="-fx-background-color: #7f96ff;" BorderPane.alignment="CENTER">
@@ -176,7 +170,49 @@
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <ScrollPane layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                    <content>
+                        <VBox fx:id="movies" prefHeight="432.0" prefWidth="694.0">
+                     <children>
+                        <HBox prefHeight="200.0" prefWidth="694.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                              <VBox prefHeight="201.0" prefWidth="373.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="389.0" text="Name" />
+                                    <TextField />
+                                    <Label prefHeight="17.0" prefWidth="459.0" text="Year" />
+                                    <TextField />
+                                    <Label prefHeight="17.0" prefWidth="378.0" text="Genre" />
+                                    <TextField />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label prefHeight="17.0" prefWidth="790.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin></Label>
+                        <TextArea prefHeight="107.0" prefWidth="694.0">
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin></TextArea>
+                        <Label prefHeight="17.0" prefWidth="724.0" text="Actors">
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin></Label>
+                        <TextArea prefHeight="107.0" prefWidth="694.0">
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="15.0" right="30.0" />
+                           </VBox.margin></TextArea>
+                     </children></VBox>
+                    </content></ScrollPane>
             </children>
         </AnchorPane>
     </center>
