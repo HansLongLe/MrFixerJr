@@ -52,6 +52,7 @@ public class ViewHandler
     primaryStage.setTitle("MyFlixerJr");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -68,6 +69,7 @@ public class ViewHandler
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -84,6 +86,7 @@ public class ViewHandler
     primaryStage.setTitle("LogIn");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -101,6 +104,7 @@ public class ViewHandler
     controller.init(viewModelFactory,this);
     watchLaterScene = new Scene(root);
     primaryStage.setScene(watchLaterScene);
+    primaryStage.setResizable(false);
   }
 
   public void openWatched() throws IOException
@@ -117,6 +121,7 @@ public class ViewHandler
     controller.init(viewModelFactory, this);
     watchedScene = new Scene(root);
     primaryStage.setScene(watchedScene);
+    primaryStage.setResizable(false);
   }
 
   public void openHomePage() throws IOException, NotBoundException
@@ -133,6 +138,7 @@ public class ViewHandler
     controller.init(viewModelFactory, this );
     homepageScene = new Scene(root);
     primaryStage.setScene(homepageScene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -149,6 +155,7 @@ public class ViewHandler
     primaryStage.setTitle("Admin window");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -166,6 +173,7 @@ public class ViewHandler
     controller.init(viewModelFactory, this);
     userScene = new Scene(root);
     primaryStage.setScene(userScene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -183,6 +191,7 @@ public class ViewHandler
     controller.init(viewModelFactory, this);
     favoriteScene = new Scene(root);
     primaryStage.setScene(favoriteScene);
+    primaryStage.setResizable(false);
   }
 
   public void openCreateMovie() throws IOException, NotBoundException {
@@ -197,6 +206,7 @@ public class ViewHandler
     primaryStage.setTitle("Create Movie");
     scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -213,6 +223,7 @@ public class ViewHandler
     controller.init(viewModelFactory, this);
     genreScene = new Scene(root);
     primaryStage.setScene(genreScene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
