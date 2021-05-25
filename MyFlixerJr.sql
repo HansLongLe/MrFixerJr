@@ -197,3 +197,6 @@ select distinct genre
 
 SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
+
+
+
