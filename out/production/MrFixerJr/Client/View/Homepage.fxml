@@ -107,7 +107,7 @@
                   <Font name="Arial" size="18.0" />
                </font>
             </Label>
-            <CheckComboBox layoutX="28.0" layoutY="319.0" prefWidth="150.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="320.0" />
+            <CheckComboBox fx:id="genresToChose" layoutX="28.0" layoutY="319.0" prefWidth="150.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="320.0" />
          </children>
       </AnchorPane>
    </left>
@@ -197,7 +197,7 @@
             <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <content>
-                  <VBox prefHeight="429.0" prefWidth="694.0" />
+                  <VBox fx:id="movies" prefHeight="429.0" prefWidth="694.0" style="-fx-background-color: #b4b9be;" />
                </content></ScrollPane>
          </children>
       </AnchorPane>
