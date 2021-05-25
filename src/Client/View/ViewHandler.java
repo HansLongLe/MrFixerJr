@@ -227,6 +227,38 @@ public class ViewHandler
     primaryStage.show();
   }
 
+  public void openEditMovieDescription() throws IOException, NotBoundException {
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("EditMovieDescription.fxml"));
+    root = loader.load();
+    EditMovieDescriptionController controller = loader.getController();
+    controller.init(viewModelFactory,this);
+    primaryStage.setTitle("Edit Movie");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
+    primaryStage.show();
+  }
+
+  public void openViewMovieDescription() throws IOException, NotBoundException {
+    Scene scene = null;
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = null;
+
+    loader.setLocation(getClass().getResource("ViewMovieDescription.fxml"));
+    root = loader.load();
+    ViewMovieDescriptionController controller = loader.getController();
+    controller.init(viewModelFactory,this);
+    primaryStage.setTitle("View Movie");
+    scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
+    primaryStage.show();
+  }
+
   public void closeLogIn()
   {
     primaryStage.close();

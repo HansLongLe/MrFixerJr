@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckComboBox?>
 
-<AnchorPane prefHeight="418.0" prefWidth="372.0" style="-fx-background-color: #545454;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.CreateMovieController">
+<AnchorPane prefHeight="590.0" prefWidth="496.0" style="-fx-background-color: #545454;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.CreateMovieController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="613.0" prefWidth="496.0">
+      <VBox alignment="TOP_CENTER" layoutY="14.0" prefHeight="575.0" prefWidth="496.0">
          <children>
             <ImageView fx:id="movieImage" fitHeight="150.0" fitWidth="113.0" onMouseClicked="#uploadImage" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -69,21 +69,31 @@
                   <Font name="Arial" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets left="20.0" right="20.0" />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="description" prefHeight="136.0" prefWidth="372.0" />
+            <TextArea fx:id="description" prefHeight="136.0" prefWidth="372.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></TextArea>
             <Label prefHeight="51.0" prefWidth="539.0" text="Actors" textFill="WHITE">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
-            </Label>
-            <TextArea fx:id="actors" prefHeight="85.0" prefWidth="496.0" />
-            <Button mnemonicParsing="false" onAction="#createMovie" prefHeight="26.0" prefWidth="51.0" text="save">
                <VBox.margin>
-                  <Insets left="400.0" top="5.0" />
+                  <Insets left="20.0" right="20.0" />
                </VBox.margin>
-            </Button>
+            </Label>
+            <TextArea fx:id="actors" prefHeight="85.0" prefWidth="496.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></TextArea>
+            <AnchorPane prefHeight="18.0" prefWidth="496.0">
+               <children>
+                  <Button layoutX="412.0" layoutY="8.0" mnemonicParsing="false" onAction="#createMovie" prefHeight="26.0" prefWidth="51.0" text="save" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
+                  <Button mnemonicParsing="false" onAction="#setToMovieManager" prefHeight="26.0" prefWidth="51.0" text="back" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </children>

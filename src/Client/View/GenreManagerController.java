@@ -205,4 +205,8 @@ public class GenreManagerController {
     {
         viewHandler.start();
     }
+
+    public void back() throws IOException, NotBoundException {
+        viewHandler.openHomePage();
+    }
 }

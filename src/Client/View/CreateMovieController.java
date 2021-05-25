@@ -13,6 +13,7 @@ import org.controlsfx.control.CheckComboBox;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ public class CreateMovieController {
     private ViewHandler viewHandler;
     private String url = "";
 
-    public void init (ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws NotBoundException, RemoteException {
+    public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws NotBoundException, RemoteException {
         this.viewModelFactory = viewModelFactory;
         this.viewHandler = viewHandler;
         for (int i = 0; i < viewModelFactory.getMovieViewModel().getGenres().size(); i++) {
@@ -48,7 +49,7 @@ public class CreateMovieController {
     public void uploadImage() {
         FileChooser fileChooser = new FileChooser();
         File tmp = fileChooser.showOpenDialog(new Stage());
-        Image image =  new Image("file:\\" + tmp.getAbsolutePath());
+        Image image = new Image("file:\\" + tmp.getAbsolutePath());
         url = "file:\\" + tmp.getAbsolutePath();
         movieImage.setImage(image);
 
@@ -57,8 +58,7 @@ public class CreateMovieController {
     public void createMovie() throws NotBoundException, RemoteException, SQLException {
         ArrayList<Object> chosenGenres = new ArrayList<>();
         for (int i = 0; i < genre.getItems().size(); i++) {
-            if (genre.getCheckModel().isChecked(i))
-            {
+            if (genre.getCheckModel().isChecked(i)) {
                 chosenGenres.add(genre.getItems().get(i));
             }
         }
@@ -66,16 +66,21 @@ public class CreateMovieController {
         ArrayList<String> urls = new ArrayList<String>();
         ArrayList<String> titles = new ArrayList<String>();
 
-        for(int i=0; i<viewModelFactory.getMovieViewModel().getMovies().size(); i++){
+        for (int i = 0; i < viewModelFactory.getMovieViewModel().getMovies().size(); i++) {
             Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(i);
             urls.add(movie.getImageURL());
             titles.add(movie.getTitle());
-    }
-        if(!(url.equals(""))){
-        if(!(urls.contains(url) && titles.contains(title.getText()))){
-            viewModelFactory.getMovieViewModel().createMovie(url, title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
-            System.out.println(url );
         }
+        if (!(url.equals(""))) {
+            if (!(urls.contains(url) && titles.contains(title.getText()))) {
+                viewModelFactory.getMovieViewModel().createMovie(url, title.getText(), year.getText(), chosenGenres, description.getText(), actors.getText());
+                System.out.println(url);
+            }
         }
     }
+
+    public void setToMovieManager() throws IOException {
+        viewHandler.openMovieManager();
+    }
+
 }

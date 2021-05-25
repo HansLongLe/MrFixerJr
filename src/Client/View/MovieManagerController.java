@@ -88,4 +88,8 @@ public class MovieManagerController {
         movies.getChildren().add(newRow);
 
     }
+
+    public void back() throws IOException, NotBoundException {
+        viewHandler.openHomePage();
+    }
 }
