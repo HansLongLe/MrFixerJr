@@ -84,13 +84,27 @@ public class HomepageController {
   {
     int count = 0;
     HBox newRow = new HBox();
+
+
     String username = viewHandler.getUserName();
 
     for (int i = 0; i <viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username).size() ; i++) {
       Movie movie0 = viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username).get(i);
       System.out.println(viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()));
       VBox movie = new VBox();
-      ImageView image = new ImageView(movie0.getImageURL());
+
+      int currentMovie = i;
+        movie.setOnMouseClicked(mouseEvent -> {
+            try {
+                openMovie(currentMovie);
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ImageView image = new ImageView(movie0.getImageURL());
       image.setFitWidth(150);
       image.setFitHeight(150);
       Label title = new Label(movie0.getTitle());
@@ -121,9 +135,8 @@ public class HomepageController {
 
   }
 
-  public void loadMoviesByChosenGenre(String username){
-      viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username);
+  public void openMovie(int currentMovie) throws NotBoundException, IOException {
+      viewHandler.openViewMovieDescription(currentMovie);
   }
-
 
 }

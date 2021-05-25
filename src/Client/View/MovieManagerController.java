@@ -64,7 +64,7 @@ public class MovieManagerController {
                 Label title = new Label(movie0.getTitle());
                 Label year = new Label(movie0.getYear());
                 String genres = "";
-          System.out.println(viewModelFactory.getMovieViewModel().getMovies().get(i).getGenres().get(i));
+//          System.out.println(viewModelFactory.getMovieViewModel().getMovies().get(i).getGenres().get(i));
                 for (int j = 0; j < movie0.getGenres().size(); j++) {
                    genres += movie0.getGenres().get(j);
                    if (!(j == movie0.getGenres().size()-1))
