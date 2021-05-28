@@ -50,19 +50,28 @@ public class ViewMovieDescriptionController {
         viewHandler.start();
     }
 
-    public void addToWatchLater()
+    @FXML void addToWatchLater()
     {
+        viewModelFactory.getMovieViewModel().addToWatchLater(getMovieId(name.getText(), description.getText()), viewModelFactory.getLoginViewModel().getUsername().getValue());
 
     }
 
-    public void addToWatched()
+    @FXML public void addToWatched()
+        throws RemoteException
     {
-
+        String title;
+        String description;
+        String username;
+        title = name.getText();
+        description = this.description.getText();
+        username = viewModelFactory.getLoginViewModel().getUsername().getValue();
+        viewModelFactory.getMovieViewModel().addToWatched(title,description,username);
     }
 
-    public void addToFavorite()
+    @FXML public void addToFavorite()
+        throws RemoteException
     {
-
+        viewModelFactory.getMovieViewModel().addToFavorite(getMovieId(name.getText(), description.getText()), viewModelFactory.getLoginViewModel().getUsername().getValue());
     }
     public void loadInformation(int currentMovie) throws RemoteException {
         Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie-1);
@@ -90,5 +99,9 @@ public class ViewMovieDescriptionController {
             }
         }
         this.actors.setText(actors);
+    }
+
+    public int getMovieId(String title, String description){
+       return viewModelFactory.getMovieViewModel().getMovieId(title, description);
     }
 }
