@@ -385,9 +385,9 @@ public class DatabaseConnection {
 
     public ResultSet loadMoviesByChosenGenre(String username)
     {
-        String sql = "select distinct *\n"
+        String sql = "select distinct movie.movieid, movie.imageurl, movie.title, movie.year, movie.description\n"
             + "from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship\n"
-            + "where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = '"+ username +"');";
+            + "where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = '" +username+ "')";
         PreparedStatement preparedStatement = null;
 
         try{
