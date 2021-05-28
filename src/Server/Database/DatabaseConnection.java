@@ -286,12 +286,12 @@ public class DatabaseConnection {
       }
   }
 
-  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
   {
       ArrayList<String> selectedGenres = new ArrayList<>();
-      selectedGenres.add(firstGnere);
-      selectedGenres.add(secondGnere);
-      selectedGenres.add(thirdGnere);
+      selectedGenres.add(firstGenre);
+      selectedGenres.add(secondGenre);
+      selectedGenres.add(thirdGenre);
       for (int i = 0; i < selectedGenres.size(); i++)
       {
           String sql = "Insert into MyFlixerJr.SelectedGenres (username, genre) values('" + username + "','" + selectedGenres.get(i) + "');";
@@ -406,6 +406,53 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public ResultSet getSortedMoviesByGenres(ArrayList<String> chosenGenres)
+    {
+        String temp = "";
+        for (int i = 0; i < chosenGenres.size(); i++) {
+            temp += "MyFlixerJr.GenreRelationship.genre = '" + chosenGenres.get(i) + "'";
+            if (!(i == chosenGenres.size()-1))
+            {
+                temp += " OR ";
+            }
+        }
+
+        String sql = "SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description\n" +
+                "from MyFlixerJr.movie, MyFlixerJr.genrerelationship where ("+ temp +") and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);\n";
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public void addToWatched(String title, String description, String username)
+    {
+        String sql =
+            "INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)\n" + "VALUES ((select movieId from MyFlixerJr.movie where description = '"
+                + description + "' and title = '" + title + "'),'" + username + "' );";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            System.out.println("Added to Watched list))))))))");
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     public void addToFavorite(int id, String username)

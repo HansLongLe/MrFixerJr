@@ -16,7 +16,7 @@ insert into MyFlixerJr.GeneralUser (username, email, password, role)
 VALUES ('Admin','admin@gmail.com','admin123','Admin');
 
 insert into MyFlixerJr.GeneralUser (username, email, password, role)
-VALUES ('chen','admin@gmail.com','chen','Moderator');
+VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
 
 drop table MyFlixerJr.GeneralUser cascade ;
 

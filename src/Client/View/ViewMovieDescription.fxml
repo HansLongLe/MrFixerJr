@@ -117,7 +117,7 @@
             </HBox>
             <HBox alignment="CENTER" onMouseClicked="#addToWatched" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="345.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" onMouseClicked="#setSceneToWatched" prefHeight="22.0" prefWidth="212.0" text="Add to watched" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="TOP" onMouseClicked="#addToWatched" prefHeight="22.0" prefWidth="212.0" text="Add to watched" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>

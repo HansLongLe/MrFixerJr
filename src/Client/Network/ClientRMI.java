@@ -66,10 +66,10 @@ public class ClientRMI  implements ClientInterface, Serializable
         server.removeGenre(genreName);
     }
 
-    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
         throws RemoteException
     {
-        server.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+        server.chooseThreeGenresForUser(username, firstGenre, secondGenre, thirdGenre);
     }
 
     @Override
@@ -148,6 +148,12 @@ public class ClientRMI  implements ClientInterface, Serializable
         return server.getActorsForMovie(id);
     }
 
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        server.addToWathced(title,description,username);
+    }
+
     @Override public void addToFavorite(int id, String username)
         throws RemoteException
     {
@@ -170,6 +176,11 @@ public class ClientRMI  implements ClientInterface, Serializable
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return server.sortMoviesByGenres(chosenGenres);
     }
 
 }

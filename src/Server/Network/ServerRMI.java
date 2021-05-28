@@ -147,9 +147,9 @@ public class ServerRMI implements ServerInterface{
         databaseConnection.removeGenre(genreName);
     }
 
-    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
     {
-        databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+        databaseConnection.chooseThreeGenresForUser(username, firstGenre, secondGenre, thirdGenre);
     }
 
     @Override
@@ -306,6 +306,37 @@ return movies;
             throwables.printStackTrace();
         }
         return actors;
+    }
+
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        ResultSet moviesTable = databaseConnection.getSortedMoviesByGenres(chosenGenres);
+
+        ArrayList<Movie> sortedMovies = new ArrayList<>();
+        ArrayList<Object> movieGenres = new ArrayList<>();
+
+        while (moviesTable.next())
+        {
+            ResultSet genres = databaseConnection.getGenresForMovie(moviesTable.getInt("movieID"));
+            while (genres.next())
+            {
+                movieGenres.add(genres.getString("genre"));
+            }
+            ArrayList<String> movieActorsTemp = getActorsForMovie(moviesTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            sortedMovies.add(new Movie(moviesTable.getString("imageURL"), moviesTable.getString("title"), moviesTable.getString("year"),
+                     movieGenres, moviesTable.getString("description"), movieActors));
+            movieGenres.clear();
+        }
+
+        return sortedMovies;
+    }
+
+
+        @Override public void addToWathced(String title, String description,
+        String username)
+    {
+        databaseConnection.addToWatched(title, description, username);
     }
 
     @Override public void addTofavorite(int id, String username)

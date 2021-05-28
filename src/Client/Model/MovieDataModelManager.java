@@ -60,6 +60,11 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getActorsForMovie(id);
     }
 
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        clientInterface.addToWatched(title,description,username);
+    }
     @Override public void addToFavorite(int id,  String username)
         throws RemoteException
     {
@@ -83,5 +88,10 @@ public class MovieDataModelManager implements MovieDataModel {
             e.printStackTrace();
         }
     }
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return clientInterface.sortMoviesByGenres(chosenGenres);
+    }
+
 
 }

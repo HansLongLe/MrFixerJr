@@ -108,6 +108,11 @@
                </font>
             </Label>
             <CheckComboBox fx:id="genresToChose" layoutX="28.0" layoutY="319.0" prefWidth="150.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="320.0" />
+            <Label alignment="CENTER" layoutX="76.0" layoutY="362.0" onMouseClicked="#sortByGenre" prefHeight="22.0" prefWidth="53.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 2;" text="Sort" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="355.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>
