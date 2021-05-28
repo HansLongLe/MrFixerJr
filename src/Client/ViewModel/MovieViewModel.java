@@ -61,4 +61,26 @@ public class MovieViewModel {
         }
         return null;
     }
+
+    public void addToFavorite(int id, String username) throws RemoteException
+    {
+        movieDataModel.addToFavorite(id, username);
+    }
+
+    public int getMovieId(String title, String description){
+        try
+        {
+            return movieDataModel.getMovieId(title, description);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public void addToWatchLater(int id, String username)
+    {
+        movieDataModel.addToWatchLater(id, username);
+    }
 }

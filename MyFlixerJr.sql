@@ -16,7 +16,7 @@ insert into MyFlixerJr.GeneralUser (username, email, password, role)
 VALUES ('Admin','admin@gmail.com','admin123','Admin');
 
 insert into MyFlixerJr.GeneralUser (username, email, password, role)
-VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
+VALUES ('chen','admin@gmail.com','chen','Moderator');
 
 drop table MyFlixerJr.GeneralUser cascade ;
 
@@ -79,14 +79,7 @@ CREATE TABLE MyFlixerJr.Movie
 );
 
 
-delete
-from MyFlixerJr.genre cascade
-where genre = 'romance';
 
-
-delete
-from MyFlixerJr.genrerelationship cascade
-where genre = 'romance';
 
 
 
@@ -116,9 +109,6 @@ create table MyFlixerJr.Genre(
     genre varchar(30) PRIMARY KEY
 );
 
-delete
-from MyFlixerJr.Genre
-where Genre.genre = 'comdey';
 
 
 
@@ -199,4 +189,13 @@ SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
 
 
+-- insert into MyFlixerJr.favoritelist(movieid, username)
+-- values(movieid, username)
+-- where username = 'bog' and movieid in (select movie.movieid from MyFlixerJr.movie where title='King Kong' and description = 'About a big monkey');
 
+select movieid
+from MyFlixerJr.movie
+where title='King Kong' and description='About a big monkey';
+
+insert into MyFlixerJr.WatchLaterList(movieid, username)
+values(1, 'bog');

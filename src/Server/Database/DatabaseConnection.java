@@ -407,5 +407,69 @@ public class DatabaseConnection {
         return null;
     }
 
+    public void addToFavorite(int id, String username)
+    {
+        String sql = "insert into MyFlixerJr.FavoriteList(movieid, username)\n"
+            + "values("+id+", '"+username+"');";
 
+        Statement statement = null;
+        try{
+            statement = connection.createStatement();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            System.out.println("added to the fav list in database");
+
+            statement.execute(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
+
+    public ResultSet getMovieId(String title, String description)
+        throws SQLException
+    {
+        String sql = "select movieid\n" + "from MyFlixerJr.movie\n"
+            + "where title='"+title+"' and description='"+description+"';";
+
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return preparedStatement.executeQuery();
+    }
+
+    public void addToWatchLater(int id, String username)
+    {
+        String sql = "insert into MyFlixerJr.WatchLaterList(movieid, username)\n"
+            + "values("+id+", '"+username+"');";
+
+        Statement statement = null;
+        try{
+            statement = connection.createStatement();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            System.out.println("added to the watch later list in database");
+
+            statement.execute(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
 }
