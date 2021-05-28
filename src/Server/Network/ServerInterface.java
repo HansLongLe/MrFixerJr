@@ -30,5 +30,8 @@ public interface ServerInterface extends Remote {
   ArrayList<String> getGenresForMovie(int id) throws RemoteException;
     ArrayList<String> getActorsForMovie(int id) throws RemoteException;
     void addToWathced(String title, String description,String username) throws RemoteException;
+  void addTofavorite(int id, String username) throws RemoteException;
+  int getMovieid(String title, String description) throws RemoteException;
+  void addToWatchlater(int id, String username) throws RemoteException;
 }
 

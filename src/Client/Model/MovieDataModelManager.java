@@ -65,5 +65,28 @@ public class MovieDataModelManager implements MovieDataModel {
     {
         clientInterface.addToWatched(title,description,username);
     }
+    @Override public void addToFavorite(int id,  String username)
+        throws RemoteException
+    {
+        clientInterface.addToFavorite(id, username);
+    }
+
+    @Override public int getMovieId(String title, String description)
+        throws RemoteException
+    {
+        return clientInterface.getMovieId(title, description);
+    }
+
+    @Override public void addToWatchLater(int id, String username)
+    {
+        try
+        {
+            clientInterface.addToWatchLater(id, username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }

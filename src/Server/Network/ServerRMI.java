@@ -315,4 +315,42 @@ return movies;
         databaseConnection.addToWatched(title, description, username);
     }
 
+    @Override public void addTofavorite(int id, String username)
+        throws RemoteException
+    {
+        databaseConnection.addToFavorite(id, username);
+        System.out.println("added to the fav list");
+    }
+
+    @Override public int getMovieid(String title, String description)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        try
+        {
+            rs = databaseConnection.getMovieId(title, description);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        int id = 0;
+        try
+        {
+            while (rs.next())
+            {
+                id = rs.getInt("movieid");
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return id;
+    }
+
+    @Override public void addToWatchlater(int id, String username)
+    {
+        databaseConnection.addToWatchLater(id, username);
+    }
 }
