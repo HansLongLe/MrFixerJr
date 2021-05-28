@@ -5,13 +5,14 @@ import Client.ViewModel.LoginViewModel;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 
@@ -95,6 +96,8 @@ public class HomepageController {
       Movie movie0 = viewModelFactory.getMovieViewModel().loadMoviesByChosenGenre(username).get(i);
       System.out.println(viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()));
       VBox movie = new VBox();
+      movie.setPrefWidth(216);
+      movie.setPrefHeight(143);
 
       int currentMovie = i;
       System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
