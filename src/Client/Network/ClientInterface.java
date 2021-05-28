@@ -36,5 +36,6 @@ public interface ClientInterface extends Remote {
   void addToWatchLater(int id, String username) throws RemoteException;
   ArrayList<Movie> loadWatchLater(String username) throws RemoteException;
   ArrayList<Movie> loadAlreadyWatched(String username) throws RemoteException;
+  ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException;
 }
 

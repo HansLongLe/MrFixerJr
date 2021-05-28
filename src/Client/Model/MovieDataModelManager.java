@@ -106,5 +106,10 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.sortMoviesByGenres(chosenGenres);
     }
 
+    @Override
+    public ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException {
+        return clientInterface.searchByTitle(searchText);
+    }
+
 
 }

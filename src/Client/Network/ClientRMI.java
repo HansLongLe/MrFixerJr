@@ -192,6 +192,11 @@ public class ClientRMI  implements ClientInterface, Serializable
     }
 
     @Override
+    public ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException {
+        return server.searchByTitle(searchText);
+    }
+
+    @Override
     public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
         return server.sortMoviesByGenres(chosenGenres);
     }

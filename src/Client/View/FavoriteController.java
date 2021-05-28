@@ -56,8 +56,7 @@ public class FavoriteController {
     public void getfavouriteMovies(){
         String username = viewHandler.getUserName();
 
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        movies = viewModelFactory.getMovieViewModel().getListOfFavouriteMovies(username);
+        ArrayList<Movie> movies = viewModelFactory.getMovieViewModel().getListOfFavouriteMovies(username);
         int count = 0;
         HBox newRow = new HBox();
 
@@ -71,7 +70,7 @@ public class FavoriteController {
             System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
             movie.setOnMouseClicked(mouseEvent -> {
                 try {
-                    openMovie(currentMovie-1);
+                    openMovie(currentMovie-1, movies);
                 } catch (NotBoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -113,8 +112,8 @@ public class FavoriteController {
         movies0.getChildren().add(newRow);
     }
 
-    public void openMovie(int currentMovie) throws NotBoundException, IOException {
-        viewHandler.openViewMovieDescription(currentMovie);
+    public void openMovie(int currentMovie, ArrayList<Movie> movies) throws NotBoundException, IOException {
+        viewHandler.openViewMovieDescription(currentMovie, movies);
     }
 
 

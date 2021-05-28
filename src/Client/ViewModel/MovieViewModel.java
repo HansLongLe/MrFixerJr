@@ -117,4 +117,7 @@ public class MovieViewModel {
     public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws SQLException, RemoteException {
         return movieDataModel.sortMoviesByGenres(chosenGenres);
     }
+    public ArrayList<Movie> searchByTitle(String searchText) throws SQLException, RemoteException {
+        return movieDataModel.searchByTitle(searchText);
+    }
 }
