@@ -17,6 +17,7 @@ public interface MovieDataModel {
     ArrayList<String> getGenresForMovie(int id) throws RemoteException;
     ArrayList<String> getActorsForMovie(int id) throws RemoteException;
     ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException;
+    ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException;
 
     void addToWatched(String title, String description, String username)
         throws RemoteException;

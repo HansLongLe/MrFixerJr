@@ -171,7 +171,7 @@
          <center>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="63.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: white;">
+                  <TextField fx:id="searchBar" prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: white;">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -183,7 +183,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <Label text="Search" textFill="#ffffff">
+                  <Label onMouseClicked="#searchByTitle" text="Search" textFill="#ffffff">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

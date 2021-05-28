@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Model.Movie;
 import Client.ViewModel.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.util.ArrayList;
 
 public class ViewHandler
 {
@@ -243,7 +245,7 @@ public class ViewHandler
     primaryStage.show();
   }
 
-  public void openViewMovieDescription(int currentMovie) throws IOException, NotBoundException {
+  public void openViewMovieDescription(int currentMovie, ArrayList<Movie> movies) throws IOException, NotBoundException {
     Scene scene = null;
     FXMLLoader loader = new FXMLLoader();
     Parent root = null;
@@ -252,7 +254,7 @@ public class ViewHandler
     root = loader.load();
     ViewMovieDescriptionController controller = loader.getController();
 
-    controller.init(viewModelFactory,this, currentMovie);
+    controller.init(viewModelFactory,this, currentMovie, movies);
 
     primaryStage.setTitle("View Movie");
     scene = new Scene(root);
