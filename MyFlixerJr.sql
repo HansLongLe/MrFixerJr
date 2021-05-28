@@ -199,3 +199,5 @@ where title='King Kong' and description='About a big monkey';
 
 insert into MyFlixerJr.WatchLaterList(movieid, username)
 values(1, 'bog');
+
+SELECT * FROM MyFlixerJr.Movie where (title like '%l%' or title like '%la%')

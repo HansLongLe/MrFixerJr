@@ -568,7 +568,22 @@ public class DatabaseConnection {
 
     }
     public ResultSet SearchMovieByName(String searchText){
-        String sql = "SELECT * from MyFlixerJr.Movie WHERE (title = '"+ searchText +"');";
+        String temp = "";
+        char[] textLenght = searchText.toCharArray();
+        System.out.println(textLenght.length);
+        String temp2 = "";
+        for (int i = 0; i < textLenght.length; i++) {
+            temp2+= textLenght[i];
+            temp += "title like '%" + temp2 + "%'";
+            if (i != textLenght.length-1)
+            {
+                temp += " OR ";
+            }
+        }
+
+        System.out.println(temp);
+        String sql = "SELECT * from MyFlixerJr.Movie WHERE ("+ temp +");";
+        System.out.println(sql);
         PreparedStatement preparedStatement = null;
 
         try {
