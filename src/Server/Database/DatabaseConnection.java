@@ -409,8 +409,19 @@ public class DatabaseConnection {
 
     public void addToWatched(String title, String description, String username)
     {
-        String sql = "INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)\n"
-            + "VALUES ((select movieId from MyFlixerJr.movie where description = '" + description + "' and title = '" + title+"'),'" + username + "' );";
+        String sql =
+            "INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)\n" + "VALUES ((select movieId from MyFlixerJr.movie where description = '"
+                + description + "' and title = '" + title + "'),'" + username + "' );";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            System.out.println("Added to Watched list))))))))");
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
     public void addToFavorite(int id, String username)
     {
         String sql = "insert into MyFlixerJr.FavoriteList(movieid, username)\n"
@@ -441,14 +452,6 @@ public class DatabaseConnection {
         String sql = "select movieid\n" + "from MyFlixerJr.movie\n"
             + "where title='"+title+"' and description='"+description+"';";
 
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
-
-    }
         PreparedStatement preparedStatement = null;
 
         try{
