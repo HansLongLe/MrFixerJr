@@ -219,7 +219,9 @@ return movies;
                 String[] actors = actorsTemp.toArray(new String[0]);
                 Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
                     genres,movieTable.getString("description"), actors);
+                movie.setMovieID(Integer.parseInt(movieTable.getString("movieID")));
                 movies.add(movie);
+//                genres.clear();
             }
         }catch (SQLException e)
         {
@@ -230,6 +232,50 @@ return movies;
             e.printStackTrace();
         }
         return movies;
+    }
+
+    @Override public ArrayList<String> getGenresForMovie(int id)
+        throws RemoteException
+    {
+        String genre0 = "";
+        ResultSet rs = null;
+        ArrayList<String > genres = new ArrayList<String>();
+        rs = databaseConnection.getGenresForMovie(id);
+
+        try{
+        while (rs.next()){
+            genre0 = rs.getString("genre");
+            genres.add(genre0);
+        }
+    }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        System.out.println(genres.size() + "!!!!!");
+        return genres;
+    }
+
+    @Override public ArrayList<String> getGenresForMovie(int id)
+        throws RemoteException
+    {
+        String gerne0 = "";
+        ResultSet rs = null;
+        ArrayList<String > genres = new ArrayList<String>();
+        rs = databaseConnection.getGenresForMovie(id);
+
+        try{
+        while (rs.next()){
+            gerne0 = rs.getString("genre");
+            genres.add(gerne0);
+        }
+    }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        System.out.println(genres.size() + "!!!!!");
+        return genres;
     }
 
     @Override
@@ -263,5 +309,68 @@ return movies;
         return genres;
 
     }
+    @Override public ArrayList<String> getActorsForMovie(int id)
+            throws RemoteException
+    {
+        String actor0 = "";
+        ArrayList<String> actors = new ArrayList<String>();
+        ResultSet rs = databaseConnection.getActorsForMovie(id);
+
+        try{
+            while (rs.next())
+            {
+                actor0 = rs.getString("actor");
+                actors.add(actor0);
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return actors;
+    }
+
+    public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
+        ResultSet movieTable = databaseConnection.SearchMovieByName(searchText);
+        ResultSet actorTable = databaseConnection.getActorsFromDatabase();
+        ResultSet genreRelationshipTable = databaseConnection.getGenresFromGenresRelationship();
+        ArrayList<String> actorsTemp = new ArrayList<>();
+        ArrayList<Object> genres = new ArrayList<>();
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        try {
+            while (movieTable.next())
+            {
+                while (actorTable.next())
+                {
+                    if (movieTable.getString("movieID").equals(actorTable.getString("movieID")))
+                        actorsTemp.add(actorTable.getString("actor"));
+                }
+                while (genreRelationshipTable.next())
+                {
+                    if (movieTable.getString("movieID").equals(genreRelationshipTable.getString("movieID")))
+                    {
+                        genres.add(genreRelationshipTable.getString("genre"));
+                    }
+                }
+                String[] actors = actorsTemp.toArray(new String[0]);
+                Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
+                        genres,movieTable.getString("description"), actors);
+                movies.add(movie);
+//                genres.clear();
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e)
+        {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+
+
 
 }
