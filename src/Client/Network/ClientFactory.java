@@ -2,10 +2,11 @@ package Client.Network;
 
 public class ClientFactory
 {
-  private Client client;
-
-  public Client getClient()
-  {
-    return client;
+  private ClientInterface clientInterface;
+  public ClientInterface getClientInterface(){
+    if(clientInterface==null){
+      clientInterface = new ClientRMI();
+    }
+    return clientInterface;
   }
 }

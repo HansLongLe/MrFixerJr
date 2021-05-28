@@ -1,13 +1,23 @@
 package Client.ViewModel;
 
 import Client.Model.*;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;
+    private MovieViewModel movieViewModel;
+    private GenreViewModel genreViewModel;
 
-    public ViewModelFactory(ModelFactory modelFactory){
-        createAccountViewModel=new CreateAccountViewModel((DataModel) modelFactory);
-        loginViewModel=new LoginViewModel((DataModel) modelFactory);
+    public ViewModelFactory(ModelFactory modelFactory)
+        throws RemoteException, NotBoundException, InterruptedException
+    {
+        createAccountViewModel=new CreateAccountViewModel(modelFactory.getUser());
+        loginViewModel=new LoginViewModel(modelFactory.getUser());
+        movieViewModel = new MovieViewModel(modelFactory.getMovieDataModel());
+        genreViewModel = new GenreViewModel(modelFactory.getGenreDataModel());
     }
 
     public CreateAccountViewModel getCreateAccountViewModel() {
@@ -16,5 +26,13 @@ public class ViewModelFactory {
 
     public LoginViewModel getLoginViewModel() {
         return loginViewModel;
+    }
+
+    public MovieViewModel getMovieViewModel() {
+        return movieViewModel;
+    }
+
+    public GenreViewModel getGenreViewModel() {
+        return genreViewModel;
     }
 }

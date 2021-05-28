@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.ViewMovieDescriptionController">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" onMouseClicked="#setSceneToHomepage" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
+                    <children>
+                        <ImageView fitHeight="147.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/home.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="14.0" prefWidth="153.0" text="Home" textFill="WHITE">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#setSceneToWatchLater" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="150.0">
+                    <children>
+                        <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/watchLater.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label onMouseClicked="#setSceneToWatchLater" prefHeight="0.0" prefWidth="152.0" text="Watch later" textFill="WHITE">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#setSceneToWatched" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
+                    <children>
+                        <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/watched.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label contentDisplay="TOP" onMouseClicked="#setSceneToWatched" prefHeight="20.0" prefWidth="152.0" text="Watched" textFill="WHITE">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox onMouseClicked="#setSceneToFavorite" prefHeight="35.0" prefWidth="206.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="230.0">
+                    <children>
+                        <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/favorite.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="14.0" prefWidth="152.0" text="Favorite" textFill="WHITE">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <Line endX="100.0" layoutX="103.0" layoutY="276.0" startX="-100.0" stroke="#7f96ff" strokeWidth="2.0" AnchorPane.leftAnchor="2.5" AnchorPane.rightAnchor="2.5" AnchorPane.topAnchor="276.0" />
+            <HBox alignment="CENTER" onMouseClicked="#addToWatchLater" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="300.0">
+               <children>
+                  <Label alignment="CENTER" onMouseClicked="#addToWatchLater" prefHeight="22.0" prefWidth="210.0" text="Add to watch later" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#addToWatched" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="345.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" onMouseClicked="#addToWatched" prefHeight="22.0" prefWidth="212.0" text="Add to watched" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#addToFavorite" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="390.0">
+               <children>
+                  <Label alignment="CENTER" onMouseClicked="#addToFavorite" prefHeight="22.0" prefWidth="214.0" text="Add to favorite" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            </children>
+        </AnchorPane>
+    </left>
+    <bottom>
+        <AnchorPane prefHeight="47.0" prefWidth="900.0" style="-fx-background-color: #3C3C3C;" BorderPane.alignment="CENTER" />
+    </bottom>
+    <top>
+        <BorderPane prefHeight="69.0" prefWidth="900.0" style="-fx-background-color: #7f96ff;" BorderPane.alignment="CENTER">
+            <left>
+                <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="54.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+            </left>
+            <right>
+                <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="127.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Pictures/avatar.jpg" />
+                            </image>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                            <effect>
+                                <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
+                            </effect>
+                        </ImageView>
+                        <Label onMouseClicked="#logOut" text="Log out" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <padding>
+                                <Insets right="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </HBox>
+            </right>
+            <center>
+                <HBox alignment="CENTER" prefHeight="44.0" prefWidth="63.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TextField prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: white;">
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                            <effect>
+                                <InnerShadow>
+                                    <color>
+                                        <Color blue="0.6052631735801697" green="0.6052631735801697" red="0.6052631735801697" />
+                                    </color>
+                                </InnerShadow>
+                            </effect>
+                        </TextField>
+                        <Label text="Search" textFill="#ffffff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </center>
+        </BorderPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="430.0" prefWidth="694.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="694.0">
+                           <children>
+                              <ImageView fx:id="image" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin></ImageView>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="376.0">
+                                 <children>
+                                    <Label fx:id="name" prefHeight="70.0" prefWidth="362.0" text="Name">
+                                       <font>
+                                          <Font name="Arial Bold" size="36.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="30.0" right="30.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="year" prefHeight="66.0" prefWidth="415.0" text="Year">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="30.0" right="30.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="genres" prefHeight="66.0" prefWidth="415.0" text="Genres">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="30.0" right="30.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label prefHeight="45.0" prefWidth="679.0" text="Description">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextFlow prefHeight="100.0" prefWidth="694.0">
+                           <children>
+                              <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="41.336669921875" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin>
+                        </TextFlow>
+                        <Label prefHeight="70.0" prefWidth="692.0" text="Actors">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextFlow prefHeight="100.0" prefWidth="694.0">
+                           <children>
+                              <Text fx:id="actors" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin>
+                        </TextFlow>
+                     </children></VBox>
+               </content></ScrollPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

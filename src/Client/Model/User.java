@@ -1,31 +1,24 @@
 package Client.Model;
 
-public class User
+import Client.Network.ClientInterface;
+
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+public interface User extends PropertyChangeSubject
 {
-  private String userName;
-  private String password;
+  ArrayList<User> logIn();
+  void createAccount(String username, String password, String email)
+      throws RemoteException, NotBoundException;
 
+  String getUserName() throws RemoteException;
+  String getPassword() throws RemoteException;
+  String getEmail() throws RemoteException;
+  void set(String username, String password, String email) throws RemoteException;
+  String getRole(String username) throws RemoteException, NotBoundException;
 
-  public User(String userName, String password){
-    this.userName = userName;
-    this.password = password;
-  }
-
-  public String getUserName(){
-    return userName;
-  }
-  public String getPassword(){
-    return password;
-  }
-  public void setPassword(String password){
-    this.password = password;
-  }
-  public boolean equals(Object obj){
-    if(!(obj instanceof User)){
-      return false;
-    }
-    User temp = (User)obj;
-    return temp.getUserName().equals(userName) &&
-        temp.getPassword().equals(password);
-  }
+  void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
+      throws RemoteException;
 }
