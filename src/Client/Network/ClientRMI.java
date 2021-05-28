@@ -112,17 +112,7 @@ public class ClientRMI  implements ClientInterface, Serializable
         return null;
     }
 
-    public ArrayList<Movie> getListOfFavouriteMovies(String username){
-        try
-        {
-            return server.loadFavouriteList(username);
-        }
-        catch (RemoteException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     @Override public ArrayList<Movie> loadMoviesByChosenGenre(String username)
     {
@@ -176,6 +166,29 @@ public class ClientRMI  implements ClientInterface, Serializable
         {
             e.printStackTrace();
         }
+    }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        return server.loadWatchLater(username);
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        return server.loadAlreadyWatched(username);
+    }
+    public ArrayList<Movie> getListOfFavouriteMovies(String username){
+        try
+        {
+            return server.loadFavouriteList(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

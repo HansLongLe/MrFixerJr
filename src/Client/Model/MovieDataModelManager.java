@@ -88,6 +88,19 @@ public class MovieDataModelManager implements MovieDataModel {
             e.printStackTrace();
         }
     }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        return clientInterface.loadWatchLater(username);
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        return clientInterface.loadAlreadyWatched(username);
+    }
+
     @Override
     public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
         return clientInterface.sortMoviesByGenres(chosenGenres);

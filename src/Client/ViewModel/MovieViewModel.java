@@ -30,6 +30,30 @@ public class MovieViewModel {
         return movieDataModel.getListOfFavouriteMovies(username);
     }
 
+    public ArrayList<Movie> getListOfWatchLaterMovies(String username){
+        try
+        {
+            return movieDataModel.loadWatchLater(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Movie> getListOfAlreadyWatchedMovies(String username){
+        try
+        {
+            return movieDataModel.loadAlreadyWatched(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Movie> loadMoviesByChosenGenre(String username)
     {
         try

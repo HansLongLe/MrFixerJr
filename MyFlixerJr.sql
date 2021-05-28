@@ -203,3 +203,8 @@ values(1, 'bog');
 select actor
 from MyFlixerJr.actors
 where movieid = 1;
+
+
+select distinct title
+from MyFlixerJr.movie, MyFlixerJr.watchlaterlist
+where movie.movieid in (select watchlaterlist.movieid from MyFlixerJr.watchlaterlist) and watchlaterlist.username = 'bog';

@@ -34,5 +34,7 @@ public interface ClientInterface extends Remote {
   void addToFavorite(int id, String username) throws RemoteException;
   int getMovieId(String title, String description) throws RemoteException;
   void addToWatchLater(int id, String username) throws RemoteException;
+  ArrayList<Movie> loadWatchLater(String username) throws RemoteException;
+  ArrayList<Movie> loadAlreadyWatched(String username) throws RemoteException;
 }
 
