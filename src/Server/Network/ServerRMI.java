@@ -77,7 +77,7 @@ public class ServerRMI implements ServerInterface{
         ResultSet rs = null;
         ResultSet rsGenres = null;
         ResultSet rsActors = null;
-        String[] actors = null;
+        ArrayList<String> actorsList = new ArrayList<>();
         ArrayList<Object> genres = new ArrayList<Object>();
         ArrayList<Movie> favouriteListOfMovies = new ArrayList<Movie>();
         rs = databaseConnection.loadFavouriteMovies(username);
@@ -93,9 +93,8 @@ public class ServerRMI implements ServerInterface{
 
                 rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
-                    int i=0;
-                    String actor = rs.getString("actor");
-                    actors[i] = actor;
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
                 }
                 rsGenres = databaseConnection.getGenresForMovie(id);
                     while(rsGenres.next()){
@@ -103,6 +102,7 @@ public class ServerRMI implements ServerInterface{
                         genres.add(genre);
                     }
 
+                String[] actors = actorsList.toArray(new String[0]);
 
                 Movie movie = new Movie(imageurl, title, year, genres, description, actors);
                     favouriteListOfMovies.add(movie);

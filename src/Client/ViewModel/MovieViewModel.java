@@ -26,6 +26,7 @@ public class MovieViewModel {
     }
 
     public ArrayList<Movie>  getListOfFavouriteMovies(String username){
+        System.out.println(movieDataModel.getListOfFavouriteMovies(username));
         return movieDataModel.getListOfFavouriteMovies(username);
     }
 

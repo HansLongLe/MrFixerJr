@@ -231,7 +231,7 @@ public class DatabaseConnection {
 
     public ResultSet getActorsForMovie(int id){
         String sql = "select actor\n" + "from MyFlixerJr.actors\n"
-            + "    where movieid = "+ id+ ";";
+            + "where movieid = "+id+";";
         PreparedStatement preparedStatement = null;
 
         try{
@@ -242,6 +242,7 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
         try{
+            System.out.println("Got actors from database!!!!!!!");
            return preparedStatement.executeQuery();
         }
         catch (SQLException throwables)

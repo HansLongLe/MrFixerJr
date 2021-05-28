@@ -4,7 +4,10 @@ import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -18,6 +21,8 @@ public class FavoriteController {
     private Scene homepageScene;
     private ViewHandler viewHandler;
     @FXML private ImageView manageImage;
+    @FXML private VBox movies0;
+
 
 
     public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) throws IOException {
@@ -49,9 +54,63 @@ public class FavoriteController {
     }
 
     public void getfavouriteMovies(){
+        String username = viewHandler.getUserName();
+
         ArrayList<Movie> movies = new ArrayList<Movie>();
-        movies = viewModelFactory.getMovieViewModel().getListOfFavouriteMovies(viewHandler.getUserName());
-        System.out.println(movies);
+        movies = viewModelFactory.getMovieViewModel().getListOfFavouriteMovies(username);
+        int count = 0;
+        HBox newRow = new HBox();
+
+
+
+        for (int i = 0; i <movies.size() ; i++) {
+            Movie movie0 = movies.get(i);
+            System.out.println(movie0.getMovieID());
+            VBox movie = new VBox();
+            int currentMovie = movie0.getMovieID();
+            System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
+            movie.setOnMouseClicked(mouseEvent -> {
+                try {
+                    openMovie(currentMovie);
+                } catch (NotBoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            ImageView image = new ImageView(movie0.getImageURL());
+            image.setFitWidth(150);
+            image.setFitHeight(150);
+            Label title = new Label(movie0.getTitle());
+            Label year = new Label(movie0.getYear());
+            String genres = "";
+            for (int j = 0; j < viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size(); j++) {
+                genres += viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).get(j);
+
+                if (!(j == viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size()-1))
+                {
+                    genres += ",";
+                }
+            }
+            Label genreLabel = new Label(genres);
+            movie.getChildren().addAll(image, title, year, genreLabel);
+
+
+            newRow.getChildren().add(movie);
+
+            count++;
+            if (count % 3 == 0)
+            {
+                movies0.getChildren().add(newRow);
+                newRow = new HBox();
+            }
+        }
+        movies0.getChildren().add(newRow);
+    }
+
+    public void openMovie(int currentMovie) throws NotBoundException, IOException {
+        viewHandler.openViewMovieDescription(currentMovie);
     }
 
 
