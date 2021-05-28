@@ -21,6 +21,16 @@ VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
 drop table MyFlixerJr.GeneralUser cascade ;
 
 
+
+CREATE TABLE MyFlixerJr.Follows
+(
+    usernameFollower varchar(50),
+    follower         varchar(50),
+    FOREIGN KEY (usernameFollower) references MyFlixerJr.GeneralUser (username),
+    FOREIGN KEY (follower) references MyFlixerJr.GeneralUser (username)
+);
+
+
 CREATE TABLE MyFlixerJr.Review
 (
     movieID int,
@@ -179,4 +189,17 @@ SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
 
 
+-- insert into MyFlixerJr.favoritelist(movieid, username)
+-- values(movieid, username)
+-- where username = 'bog' and movieid in (select movie.movieid from MyFlixerJr.movie where title='King Kong' and description = 'About a big monkey');
 
+select movieid
+from MyFlixerJr.movie
+where title='King Kong' and description='About a big monkey';
+
+insert into MyFlixerJr.WatchLaterList(movieid, username)
+values(1, 'bog');
+
+select actor
+from MyFlixerJr.actors
+where movieid = 1;

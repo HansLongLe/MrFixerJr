@@ -77,8 +77,8 @@ public class ServerRMI implements ServerInterface{
         ResultSet rs = null;
         ResultSet rsGenres = null;
         ResultSet rsActors = null;
-        String[] actors = null;
-        ArrayList<Object> genres = new ArrayList<Object>();
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
         ArrayList<Movie> favouriteListOfMovies = new ArrayList<Movie>();
         rs = databaseConnection.loadFavouriteMovies(username);
         try{
@@ -91,21 +91,29 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
+
                 rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
-                    int i=0;
-                    String actor = rs.getString("actor");
-                    actors[i] = actor;
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                  System.out.println(actorsList);
                 }
                 rsGenres = databaseConnection.getGenresForMovie(id);
                     while(rsGenres.next()){
                         String genre = rsGenres.getString("genre");
-                        genres.add(genre);
+                        genresO.add(genre);
                     }
 
 
-                Movie movie = new Movie(imageurl, title, year, genres, description, actors);
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
                     favouriteListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                    genresO.clear();
+                    actorsList.clear();
             }
         }
         catch (SQLException throwables)
@@ -376,5 +384,117 @@ return movies;
     @Override public void addToWatchlater(int id, String username)
     {
         databaseConnection.addToWatchLater(id, username);
+    }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        ResultSet rsGenres = null;
+        ResultSet rsActors = null;
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
+        ArrayList<Movie> WatchLaterListOfMovies = new ArrayList<Movie>();
+        rs = databaseConnection.loadWatchLater(username);
+        try{
+            while(rs.next()){
+                String imageurl = rs.getString("imageurl");
+                String title = rs.getString("title");
+                String year = rs.getString("year");
+                double averagerating = rs.getDouble("averagerating");
+                String description = rs.getString("description");
+
+                int id = rs.getInt("movieid");
+
+
+                rsActors = databaseConnection.getActorsForMovie(id);
+                while(rsActors.next()){
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                    System.out.println(actorsList);
+                }
+                rsGenres = databaseConnection.getGenresForMovie(id);
+                while(rsGenres.next()){
+                    String genre = rsGenres.getString("genre");
+                    genresO.add(genre);
+                }
+
+
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
+                WatchLaterListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                genresO.clear();
+                actorsList.clear();
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return WatchLaterListOfMovies;
+
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        ResultSet rsGenres = null;
+        ResultSet rsActors = null;
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
+        ArrayList<Movie> alreadyWatchedListOfMovies = new ArrayList<Movie>();
+        rs = databaseConnection.loadAlreadyWatchedMovies(username);
+        try{
+            while(rs.next()){
+                String imageurl = rs.getString("imageurl");
+                String title = rs.getString("title");
+                String year = rs.getString("year");
+                double averagerating = rs.getDouble("averagerating");
+                String description = rs.getString("description");
+
+                int id = rs.getInt("movieid");
+
+
+                rsActors = databaseConnection.getActorsForMovie(id);
+                while(rsActors.next()){
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                    System.out.println(actorsList);
+                }
+                rsGenres = databaseConnection.getGenresForMovie(id);
+                while(rsGenres.next()){
+                    String genre = rsGenres.getString("genre");
+                    genresO.add(genre);
+                }
+
+
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
+                alreadyWatchedListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                genresO.clear();
+                actorsList.clear();
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return alreadyWatchedListOfMovies;
+
     }
 }
