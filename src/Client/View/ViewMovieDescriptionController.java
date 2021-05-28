@@ -73,6 +73,8 @@ public class ViewMovieDescriptionController {
     {
         viewModelFactory.getMovieViewModel().addToFavorite(getMovieId(name.getText(), description.getText()), viewModelFactory.getLoginViewModel().getUsername().getValue());
     }
+
+
     public void loadInformation(int currentMovie) throws RemoteException {
         Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie);
         name.setText(movie.getTitle());
@@ -81,9 +83,9 @@ public class ViewMovieDescriptionController {
         image.setImage(new Image(movie.getImageURL()));
 
         String genres = "";
-        for (int i = 0; i < viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie).size(); i++) {
-            genres += viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie).get(i);
-            if (!(i == viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie).size()-1))
+        for (int i = 0; i < viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie+1).size(); i++) {
+            genres += viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie+1).get(i);
+            if (!(i == viewModelFactory.getMovieViewModel().getGenresForMovie(currentMovie+1).size()-1))
             {
                 genres += ", ";
             }
@@ -91,9 +93,9 @@ public class ViewMovieDescriptionController {
         this.genres.setText(genres);
 
         String actors = "";
-        for (int i = 0; i < viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie).size(); i++) {
-            actors += viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie).get(i);
-            if (!(i == viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie).size()-1))
+        for (int i = 0; i < viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie+1).size(); i++) {
+            actors += viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie+1).get(i);
+            if (!(i == viewModelFactory.getMovieViewModel().getActorsForMovie(currentMovie+1).size()-1))
             {
                 actors += ", ";
             }

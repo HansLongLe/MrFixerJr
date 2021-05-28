@@ -207,6 +207,28 @@ public class DatabaseConnection {
 
         return null;
     }
+    public ResultSet loadWatchLater(String username){
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.WatchLaterList\n"
+            + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
 
     public ResultSet getGenresForMovie(int id){
         String sql = "select distinct genre\n"
@@ -519,5 +541,30 @@ public class DatabaseConnection {
         {
             throwables.printStackTrace();
         }
+    }
+
+    public ResultSet loadAlreadyWatchedMovies(String username)
+    {
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.AlreadyWatchedList\n"
+            + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        return null;
+
     }
 }

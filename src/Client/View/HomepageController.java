@@ -96,7 +96,7 @@ public class HomepageController {
       System.out.println(viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()));
       VBox movie = new VBox();
 
-      int currentMovie = i;
+      int currentMovie = i+1;
       System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
         movie.setOnMouseClicked(mouseEvent -> {
             try {

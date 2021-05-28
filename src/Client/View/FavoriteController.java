@@ -65,13 +65,13 @@ public class FavoriteController {
 
         for (int i = 0; i <movies.size() ; i++) {
             Movie movie0 = movies.get(i);
-            System.out.println(movie0.getMovieID());
             VBox movie = new VBox();
-            int currentMovie = movie0.getMovieID();
+            int currentMovie = viewModelFactory.getMovieViewModel().getMovieId(movie0.getTitle(), movie0.getDescription());
+            System.out.println(currentMovie + " Current movie ID");
             System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
             movie.setOnMouseClicked(mouseEvent -> {
                 try {
-                    openMovie(currentMovie);
+                    openMovie(currentMovie-1);
                 } catch (NotBoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
