@@ -85,16 +85,20 @@ public class FavoriteController {
             Label title = new Label(movie0.getTitle());
             Label year = new Label(movie0.getYear());
             String genres = "";
-            for (int j = 0; j < viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size(); j++) {
-                genres += viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).get(j);
+            for (int j = 0; j < movie0.getGenres().size(); j++) {
+                genres += movie0.getGenres().get(j);
 
-                if (!(j == viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size()-1))
+                if (!(j == movie0.getGenres().size()-1))
                 {
+                    System.out.println(movie0.getGenres().size());
                     genres += ",";
                 }
+
             }
+
             Label genreLabel = new Label(genres);
             movie.getChildren().addAll(image, title, year, genreLabel);
+
 
 
             newRow.getChildren().add(movie);

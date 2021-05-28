@@ -77,8 +77,8 @@ public class ServerRMI implements ServerInterface{
         ResultSet rs = null;
         ResultSet rsGenres = null;
         ResultSet rsActors = null;
+        ArrayList<Object> genresO = new ArrayList<>();
         ArrayList<String> actorsList = new ArrayList<>();
-        ArrayList<Object> genres = new ArrayList<Object>();
         ArrayList<Movie> favouriteListOfMovies = new ArrayList<Movie>();
         rs = databaseConnection.loadFavouriteMovies(username);
         try{
@@ -91,6 +91,7 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
+
                 rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
                     String actor = rsActors.getString("actor");
@@ -99,13 +100,18 @@ public class ServerRMI implements ServerInterface{
                 rsGenres = databaseConnection.getGenresForMovie(id);
                     while(rsGenres.next()){
                         String genre = rsGenres.getString("genre");
-                        genres.add(genre);
+                        genresO.add(genre);
                     }
+
 
                 String[] actors = actorsList.toArray(new String[0]);
 
-                Movie movie = new Movie(imageurl, title, year, genres, description, actors);
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
                     favouriteListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                    genresO.clear();
             }
         }
         catch (SQLException throwables)
