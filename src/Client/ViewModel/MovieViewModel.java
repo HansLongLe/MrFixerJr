@@ -2,7 +2,6 @@ package Client.ViewModel;
 
 import Client.Model.Movie;
 import Client.Model.MovieDataModel;
-import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
 import java.rmi.NotBoundException;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 
 public class MovieViewModel {
     private MovieDataModel movieDataModel;
-    private StringProperty searchText;
 
     public MovieViewModel(MovieDataModel movieDataModel){
         this.movieDataModel = movieDataModel;
@@ -26,12 +24,6 @@ public class MovieViewModel {
     public ArrayList<Movie> getMovies() throws RemoteException {
         return movieDataModel.getMovies();
     }
-
-    public ArrayList<Movie> getSearchMovies() throws SQLException, RemoteException {
-        return movieDataModel.getSearchMovies(searchText.getValue());
-    }
-
-
 
     public ArrayList<Movie>  getListOfFavouriteMovies(String username){
         return movieDataModel.getListOfFavouriteMovies(username);
@@ -69,9 +61,7 @@ public class MovieViewModel {
         }
         return null;
     }
-
-    public StringProperty getSearchText(){
-        return searchText;
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws SQLException, RemoteException {
+        return movieDataModel.sortMoviesByGenres(chosenGenres);
     }
-
 }

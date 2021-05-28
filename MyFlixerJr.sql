@@ -183,9 +183,9 @@ select distinct title
 from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship
 where (MyFlixerJr.SelectedGenres.genre in(select MyFlixerJr.GenreRelationship.genre from MyFlixerJr.GenreRelationship)) and (MyFlixerJr.GenreRelationship.movieid in (select MyFlixerJr.movie.movieid from MyFlixerJr.movie)) and (MyFlixerJr.SelectedGenres.username = 'dum');
 
-select distinct *
+select distinct movie.movieid, movie.imageurl, movie.title, movie.year, movie.description
 from MyFlixerJr.movie, MyFlixerJr.selectedgenres, MyFlixerJr.genrerelationship
-where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = 'jul');
+where (MyFlixerJr.SelectedGenres.genre = MyFlixerJr.GenreRelationship.genre ) and (MyFlixerJr.GenreRelationship.movieid = MyFlixerJr.movie.movieid) and (MyFlixerJr.SelectedGenres.username = 'qwe');
 
 select genre
 from MyFlixerJr.genrerelationship
@@ -194,5 +194,10 @@ where movieid = 1;
 select distinct genre
              from MyFlixerJr.genrerelationship, MyFlixerJr.movie
             where genrerelationship.movieid in (select movie.movieid  where movie.movieid = 3);
+
+SELECT actor from MyFlixerJr.Actors where movieid = 3;
+
+SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description
+from MyFlixerJr.movie, MyFlixerJr.genrerelationship where (MyFlixerJr.GenreRelationship.genre = 'Thriller' or MyFlixerJr.GenreRelationship.genre = 'Romance' or MyFlixerJr.GenreRelationship.genre = 'Comedy') and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);
 
 

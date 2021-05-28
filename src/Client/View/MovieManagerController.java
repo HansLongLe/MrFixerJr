@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,36 +54,39 @@ public class MovieManagerController {
     public void loadMovies() throws RemoteException {
         int count = 0;
         HBox newRow = new HBox();
+
         for (int i = 0; i <viewModelFactory.getMovieViewModel().getMovies().size() ; i++) {
-
+          Movie movie0 = viewModelFactory.getMovieViewModel().getMovies().get(i);
                 VBox movie = new VBox();
-                ImageView image = new ImageView(viewModelFactory.getMovieViewModel().getMovies().get(i).getImageURL());
-                image.setFitWidth(150);
-                image.setFitHeight(150);
-                Label title = new Label(viewModelFactory.getMovieViewModel().getMovies().get(i).getTitle());
-                Label year = new Label(viewModelFactory.getMovieViewModel().getMovies().get(i).getYear());
-                String genres = "";
-                for (int j = 0; j < viewModelFactory.getMovieViewModel().getMovies().get(i).getGenres().size(); j++) {
-                   genres += viewModelFactory.getMovieViewModel().getMovies().get(i).getGenres().get(j);
-                   if (!(j == viewModelFactory.getMovieViewModel().getMovies().get(i).getGenres().size()-1))
-                   {
-                       genres += ",";
-                   }
-                }
-                Label genreLabel = new Label(genres);
-                movie.getChildren().addAll(image, title, year, genreLabel);
+          ImageView image = new ImageView(movie0.getImageURL());
+          image.setFitWidth(150);
+          image.setFitHeight(150);
+          Label title = new Label(movie0.getTitle());
+          Label year = new Label(movie0.getYear());
+          String genres = "";
+          for (int j = 0; j < viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size(); j++) {
+            genres += viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).get(j);
+
+            if (!(j == viewModelFactory.getMovieViewModel().getGenresForMovie(movie0.getMovieID()).size()-1))
+            {
+              genres += ",";
+            }
+          }
+          Label genreLabel = new Label(genres);
+          movie.getChildren().addAll(image, title, year, genreLabel);
 
 
-                newRow.getChildren().add(movie);
+          newRow.getChildren().add(movie);
 
-                count++;
-                if (count % 3 == 0)
-                {
-                    movies.getChildren().add(newRow);
-                    newRow = new HBox();
-                }
+          count++;
+          if (count % 3 == 0)
+          {
+            movies.getChildren().add(newRow);
+            newRow = new HBox();
+          }
         }
-        movies.getChildren().add(newRow);
+      movies.getChildren().add(newRow);
+
 
     }
 

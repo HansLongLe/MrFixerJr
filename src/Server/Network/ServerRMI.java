@@ -91,7 +91,7 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
-                rsActors = databaseConnection.getAcotrsForMovie(id);
+                rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
                     int i=0;
                     String actor = rs.getString("actor");
@@ -256,28 +256,6 @@ return movies;
         return genres;
     }
 
-    @Override public ArrayList<String> getGenresForMovie(int id)
-        throws RemoteException
-    {
-        String gerne0 = "";
-        ResultSet rs = null;
-        ArrayList<String > genres = new ArrayList<String>();
-        rs = databaseConnection.getGenresForMovie(id);
-
-        try{
-        while (rs.next()){
-            gerne0 = rs.getString("genre");
-            genres.add(gerne0);
-        }
-    }
-        catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
-        }
-        System.out.println(genres.size() + "!!!!!");
-        return genres;
-    }
-
     @Override
     public void addMovieToDatabase(Movie movie) throws RemoteException, SQLException {
         databaseConnection.addMovies(movie);
@@ -330,47 +308,28 @@ return movies;
         return actors;
     }
 
-    public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
-        ResultSet movieTable = databaseConnection.SearchMovieByName(searchText);
-        ResultSet actorTable = databaseConnection.getActorsFromDatabase();
-        ResultSet genreRelationshipTable = databaseConnection.getGenresFromGenresRelationship();
-        ArrayList<String> actorsTemp = new ArrayList<>();
-        ArrayList<Object> genres = new ArrayList<>();
-        ArrayList<Movie> movies = new ArrayList<>();
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        ResultSet moviesTable = databaseConnection.getSortedMoviesByGenres(chosenGenres);
 
-        try {
-            while (movieTable.next())
+        ArrayList<Movie> sortedMovies = new ArrayList<>();
+        ArrayList<Object> movieGenres = new ArrayList<>();
+
+        while (moviesTable.next())
+        {
+            ResultSet genres = databaseConnection.getGenresForMovie(moviesTable.getInt("movieID"));
+            while (genres.next())
             {
-                while (actorTable.next())
-                {
-                    if (movieTable.getString("movieID").equals(actorTable.getString("movieID")))
-                        actorsTemp.add(actorTable.getString("actor"));
-                }
-                while (genreRelationshipTable.next())
-                {
-                    if (movieTable.getString("movieID").equals(genreRelationshipTable.getString("movieID")))
-                    {
-                        genres.add(genreRelationshipTable.getString("genre"));
-                    }
-                }
-                String[] actors = actorsTemp.toArray(new String[0]);
-                Movie movie = new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
-                        genres,movieTable.getString("description"), actors);
-                movies.add(movie);
-//                genres.clear();
+                movieGenres.add(genres.getString("genre"));
             }
-        }catch (SQLException e)
-        {
-            e.printStackTrace();
+            ArrayList<String> movieActorsTemp = getActorsForMovie(moviesTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            sortedMovies.add(new Movie(moviesTable.getString("imageURL"), moviesTable.getString("title"), moviesTable.getString("year"),
+                     movieGenres, moviesTable.getString("description"), movieActors));
+            movieGenres.clear();
         }
-        catch (NullPointerException e)
-        {
-            e.printStackTrace();
-        }
-        return movies;
+
+        return sortedMovies;
     }
-
-
-
 
 }
