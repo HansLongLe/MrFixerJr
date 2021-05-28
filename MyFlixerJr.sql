@@ -21,16 +21,6 @@ VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
 drop table MyFlixerJr.GeneralUser cascade ;
 
 
-
-CREATE TABLE MyFlixerJr.Follows
-(
-    usernameFollower varchar(50),
-    follower         varchar(50),
-    FOREIGN KEY (usernameFollower) references MyFlixerJr.GeneralUser (username),
-    FOREIGN KEY (follower) references MyFlixerJr.GeneralUser (username)
-);
-
-
 CREATE TABLE MyFlixerJr.Review
 (
     movieID int,
@@ -197,6 +187,11 @@ select distinct genre
 
 SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
+--select movieid
+--from MyFlixerJr.Movie
+--where
 
+INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)
+VALUES ((select movieId from MyFlixerJr.movie where description = 'adsfdgchvjbknl;,;kjhg' and title = 'Movie1'),'Iana' );
 
 

@@ -308,4 +308,11 @@ return movies;
         return actors;
     }
 
+
+        @Override public void addToWathced(String title, String description,
+        String username)
+    {
+        databaseConnection.addToWatched(title, description, username);
+    }
+
 }

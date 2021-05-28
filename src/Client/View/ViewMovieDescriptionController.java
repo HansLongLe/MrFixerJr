@@ -55,9 +55,16 @@ public class ViewMovieDescriptionController {
 
     }
 
-    public void addToWatched()
+    @FXML public void addToWatched()
+        throws RemoteException
     {
-
+        String title;
+        String description;
+        String username;
+        title = name.getText();
+        description = this.description.getText();
+        username = viewModelFactory.getLoginViewModel().getUsername().getValue();
+        viewModelFactory.getMovieViewModel().addToWatched(title,description,username);
     }
 
     public void addToFavorite()

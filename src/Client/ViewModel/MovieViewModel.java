@@ -61,4 +61,10 @@ public class MovieViewModel {
         }
         return null;
     }
+
+    public void addToWatched(String title, String description, String username)
+        throws RemoteException
+    {
+        movieDataModel.addToWatched(title,description,username);
+    }
 }

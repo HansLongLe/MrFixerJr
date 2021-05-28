@@ -60,5 +60,10 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getActorsForMovie(id);
     }
 
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        clientInterface.addToWatched(title,description,username);
+    }
 
 }

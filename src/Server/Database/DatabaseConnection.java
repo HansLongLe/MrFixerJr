@@ -407,5 +407,17 @@ public class DatabaseConnection {
         return null;
     }
 
+    public void addToWatched(String title, String description, String username)
+    {
+        String sql = "INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)\n"
+            + "VALUES ((select movieId from MyFlixerJr.movie where description = '" + description + "' and title = '" + title+"'),'" + username + "' );";
 
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
 }
