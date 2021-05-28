@@ -567,4 +567,22 @@ public class DatabaseConnection {
         return null;
 
     }
+    public ResultSet SearchMovieByName(String searchText){
+        String sql = "SELECT * from MyFlixerJr.Movie WHERE (title = '"+ searchText +"');";
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        try {
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

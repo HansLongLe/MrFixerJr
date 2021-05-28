@@ -497,4 +497,26 @@ return movies;
         return alreadyWatchedListOfMovies;
 
     }
+
+    @Override
+    public ArrayList<Movie> searchByTitle(String titleText) throws SQLException, RemoteException {
+        ResultSet movieTable = databaseConnection.SearchMovieByName(titleText);
+        ArrayList<Movie> movies  = new ArrayList<>();
+        ArrayList<Object> genres = new ArrayList<>();
+
+        while (movieTable.next())
+        {
+            ResultSet genreTemp = databaseConnection.getGenresForMovie(movieTable.getInt("movieID"));
+             while (genreTemp.next())
+             {
+                 genres.add(genreTemp.getString("genre"));
+             }
+            ArrayList<String> movieActorsTemp = getActorsForMovie(movieTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            movies.add(new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
+                    genres, movieTable.getString("description"), movieActors));
+            genres.clear();
+        }
+        return movies;
+    }
 }

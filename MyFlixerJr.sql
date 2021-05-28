@@ -199,7 +199,3 @@ where title='King Kong' and description='About a big monkey';
 
 insert into MyFlixerJr.WatchLaterList(movieid, username)
 values(1, 'bog');
-
-select actor
-from MyFlixerJr.actors
-where movieid = 1;
