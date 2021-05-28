@@ -105,7 +105,7 @@
                 <Line endX="100.0" layoutX="103.0" layoutY="276.0" startX="-100.0" stroke="#7f96ff" strokeWidth="2.0" AnchorPane.leftAnchor="2.5" AnchorPane.rightAnchor="2.5" AnchorPane.topAnchor="276.0" />
             <HBox alignment="CENTER" onMouseClicked="#addToWatchLater" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="300.0">
                <children>
-                  <Label alignment="CENTER" onMouseClicked="#setSceneToWatchLater" prefHeight="22.0" prefWidth="210.0" text="Add to watch later" textFill="WHITE">
+                  <Label alignment="CENTER" onMouseClicked="#addToWatchLater" prefHeight="22.0" prefWidth="210.0" text="Add to watch later" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -117,7 +117,7 @@
             </HBox>
             <HBox alignment="CENTER" onMouseClicked="#addToWatched" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="345.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" onMouseClicked="#setSceneToWatched" prefHeight="22.0" prefWidth="212.0" text="Add to watched" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="TOP" onMouseClicked="#addToWatched" prefHeight="22.0" prefWidth="212.0" text="Add to watched" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -129,7 +129,7 @@
             </HBox>
             <HBox onMouseClicked="#addToFavorite" prefHeight="35.0" prefWidth="206.0" style="-fx-border-color: white; -fx-border-radius: 7; -fx-border-width: 3;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="390.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="214.0" text="Add to favorite" textFill="WHITE">
+                  <Label alignment="CENTER" onMouseClicked="#addToFavorite" prefHeight="22.0" prefWidth="214.0" text="Add to favorite" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
