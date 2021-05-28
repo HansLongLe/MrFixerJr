@@ -148,6 +148,36 @@ public class ClientRMI  implements ClientInterface, Serializable
         return server.getActorsForMovie(id);
     }
 
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        server.addToWathced(title,description,username);
+    }
+
+    @Override public void addToFavorite(int id, String username)
+        throws RemoteException
+    {
+        server.addTofavorite(id, username);
+    }
+
+    @Override public int getMovieId(String title, String description)
+        throws RemoteException
+    {
+        return server.getMovieid(title, description);
+    }
+
+    @Override public void addToWatchLater(int id, String username)
+    {
+        try
+        {
+            server.addToWatchlater(id, username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
         return server.sortMoviesByGenres(chosenGenres);

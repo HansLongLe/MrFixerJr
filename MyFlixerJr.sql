@@ -21,16 +21,6 @@ VALUES ('Moderator','admin@gmail.com','Moderator','Moderator');
 drop table MyFlixerJr.GeneralUser cascade ;
 
 
-
-CREATE TABLE MyFlixerJr.Follows
-(
-    usernameFollower varchar(50),
-    follower         varchar(50),
-    FOREIGN KEY (usernameFollower) references MyFlixerJr.GeneralUser (username),
-    FOREIGN KEY (follower) references MyFlixerJr.GeneralUser (username)
-);
-
-
 CREATE TABLE MyFlixerJr.Review
 (
     movieID int,
@@ -79,14 +69,7 @@ CREATE TABLE MyFlixerJr.Movie
 );
 
 
-delete
-from MyFlixerJr.genre cascade
-where genre = 'romance';
 
-
-delete
-from MyFlixerJr.genrerelationship cascade
-where genre = 'romance';
 
 
 
@@ -116,9 +99,6 @@ create table MyFlixerJr.Genre(
     genre varchar(30) PRIMARY KEY
 );
 
-delete
-from MyFlixerJr.Genre
-where Genre.genre = 'comdey';
 
 
 
@@ -197,7 +177,6 @@ select distinct genre
 
 SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
-SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description
-from MyFlixerJr.movie, MyFlixerJr.genrerelationship where (MyFlixerJr.GenreRelationship.genre = 'Thriller' or MyFlixerJr.GenreRelationship.genre = 'Romance' or MyFlixerJr.GenreRelationship.genre = 'Comedy') and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);
+
 
 
