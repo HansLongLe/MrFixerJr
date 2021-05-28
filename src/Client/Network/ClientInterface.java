@@ -27,6 +27,7 @@ public interface ClientInterface extends Remote {
   ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
   ArrayList<String> getGenresForMovie(int id) throws RemoteException;
   ArrayList<String> getActorsForMovie(int id) throws RemoteException;
+  ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException;
 
 }
 

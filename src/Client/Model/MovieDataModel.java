@@ -13,8 +13,9 @@ public interface MovieDataModel {
     ArrayList<String> getGenres() throws NotBoundException, RemoteException;
     ArrayList<Movie> getListOfFavouriteMovies(String username);
     ArrayList<Movie> getMovies() throws RemoteException;
-  ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
-  ArrayList<String> getGenresForMovie(int id) throws RemoteException;
+    ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
+    ArrayList<String> getGenresForMovie(int id) throws RemoteException;
     ArrayList<String> getActorsForMovie(int id) throws RemoteException;
+    ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException;
 
 }

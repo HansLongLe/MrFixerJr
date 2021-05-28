@@ -148,4 +148,9 @@ public class ClientRMI  implements ClientInterface, Serializable
         return server.getActorsForMovie(id);
     }
 
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return server.sortMoviesByGenres(chosenGenres);
+    }
+
 }

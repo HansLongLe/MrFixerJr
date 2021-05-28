@@ -60,5 +60,10 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getActorsForMovie(id);
     }
 
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return clientInterface.sortMoviesByGenres(chosenGenres);
+    }
+
 
 }

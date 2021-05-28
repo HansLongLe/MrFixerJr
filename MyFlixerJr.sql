@@ -197,6 +197,7 @@ select distinct genre
 
 SELECT actor from MyFlixerJr.Actors where movieid = 3;
 
-
+SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description
+from MyFlixerJr.movie, MyFlixerJr.genrerelationship where (MyFlixerJr.GenreRelationship.genre = 'Thriller' or MyFlixerJr.GenreRelationship.genre = 'Romance' or MyFlixerJr.GenreRelationship.genre = 'Comedy') and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);
 
 

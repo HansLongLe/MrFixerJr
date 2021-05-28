@@ -61,4 +61,7 @@ public class MovieViewModel {
         }
         return null;
     }
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws SQLException, RemoteException {
+        return movieDataModel.sortMoviesByGenres(chosenGenres);
+    }
 }

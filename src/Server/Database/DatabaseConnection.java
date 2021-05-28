@@ -407,5 +407,37 @@ public class DatabaseConnection {
         return null;
     }
 
+    public ResultSet getSortedMoviesByGenres(ArrayList<String> chosenGenres)
+    {
+        String temp = "";
+        for (int i = 0; i < chosenGenres.size(); i++) {
+            temp += "MyFlixerJr.GenreRelationship.genre = '" + chosenGenres.get(i) + "'";
+            if (!(i == chosenGenres.size()-1))
+            {
+                temp += " OR ";
+            }
+        }
 
-}
+        String sql = "SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description\n" +
+                "from MyFlixerJr.movie, MyFlixerJr.genrerelationship where ("+ temp +") and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);\n";
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    }

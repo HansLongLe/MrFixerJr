@@ -308,4 +308,28 @@ return movies;
         return actors;
     }
 
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        ResultSet moviesTable = databaseConnection.getSortedMoviesByGenres(chosenGenres);
+
+        ArrayList<Movie> sortedMovies = new ArrayList<>();
+        ArrayList<Object> movieGenres = new ArrayList<>();
+
+        while (moviesTable.next())
+        {
+            ResultSet genres = databaseConnection.getGenresForMovie(moviesTable.getInt("movieID"));
+            while (genres.next())
+            {
+                movieGenres.add(genres.getString("genre"));
+            }
+            ArrayList<String> movieActorsTemp = getActorsForMovie(moviesTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            sortedMovies.add(new Movie(moviesTable.getString("imageURL"), moviesTable.getString("title"), moviesTable.getString("year"),
+                     movieGenres, moviesTable.getString("description"), movieActors));
+            movieGenres.clear();
+        }
+
+        return sortedMovies;
+    }
+
 }
