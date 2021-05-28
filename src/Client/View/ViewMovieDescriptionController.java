@@ -77,7 +77,9 @@ public class ViewMovieDescriptionController {
 
 
     public void loadInformation(int currentMovie, ArrayList<Movie> movies) throws RemoteException {
-        Movie movie = movies.get(currentMovie);
+        Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie);
+        System.out.println(viewModelFactory.getMovieViewModel().getMovies().get(0).getTitle() + "!!!!!!!!!!!!!!!!!!!!!!");
+//        Movie movie = movies.get(currentMovie);
         System.out.println(movie.getTitle());
         System.out.println(currentMovie);
         name.setText(movie.getTitle());

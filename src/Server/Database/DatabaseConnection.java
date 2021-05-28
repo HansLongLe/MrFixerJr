@@ -210,7 +210,7 @@ public class DatabaseConnection {
     public ResultSet loadWatchLater(String username){
         String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
             + "from MyFlixerJr.movie, MyFlixerJr.WatchLaterList\n"
-            + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
+            + "where movie.movieid in (select watchlaterlist.movieid from MyFlixerJr.WatchLaterList) and watchlaterlist.username = '" + username + "';";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);
@@ -547,7 +547,7 @@ public class DatabaseConnection {
     {
         String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
             + "from MyFlixerJr.movie, MyFlixerJr.AlreadyWatchedList\n"
-            + "where movie.movieid in (select favoritelist.movieid from MyFlixerJr.FavoriteList) and favoritelist.username = '" + username + "';";
+            + "where movie.movieid in (select alreadywatchedlist.movieid from MyFlixerJr.AlreadyWatchedList) and alreadywatchedlist.username = '" + username + "';";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(sql);

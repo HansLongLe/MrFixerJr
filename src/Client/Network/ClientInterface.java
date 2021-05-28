@@ -30,9 +30,12 @@ public interface ClientInterface extends Remote {
   void addToWatched(String title, String description, String username)
       throws RemoteException;
   ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException;
+
   void addToFavorite(int id, String username) throws RemoteException;
   int getMovieId(String title, String description) throws RemoteException;
   void addToWatchLater(int id, String username) throws RemoteException;
+  ArrayList<Movie> loadWatchLater(String username) throws RemoteException;
+  ArrayList<Movie> loadAlreadyWatched(String username) throws RemoteException;
   ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException;
 }
 
