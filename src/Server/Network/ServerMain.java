@@ -9,10 +9,10 @@ public class ServerMain
   public static void main(String[] args)
       throws RemoteException, AlreadyBoundException
   {
-    System.out.println("Type in the password: \n");
+    System.out.println("Type in the password: ");
     Scanner scanner = new Scanner(System.in);
-    String password = scanner.nextLine();
-    ServerInterface server = new ServerRMI();
+    String databasePassword = scanner.next();
+    ServerInterface server = new ServerRMI(databasePassword);
     server.start();
   }
 }

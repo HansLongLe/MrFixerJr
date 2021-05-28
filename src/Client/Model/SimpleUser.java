@@ -3,25 +3,46 @@ package Client.Model;
 import Client.Network.ClientInterface;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public class SimpleUser implements User
+public class SimpleUser implements User, Serializable
 {
 
   private String name;
   private String password;
   private String email;
-  public SimpleUser() {}
+  private String role;
+  public SimpleUser()
+  {
+
+  }
 
   public void set(String username, String password, String email){
     this.name = username;
     this.password = password;
      this.email = email;
+     this.role = role;
   }
 
-  @Override public void logIn()
+
+  @Override public String getRole(String username) throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public void chooseThreeGenresForUser(String username,
+      String firstGnere, String secondGnere, String thirdGnere)
   {
 
+  }
+
+
+
+  @Override public ArrayList<User> logIn()
+  {
+    return null;
   }
 
   @Override public void createAccount(String username, String password, String email)
@@ -34,17 +55,17 @@ public class SimpleUser implements User
 
   @Override public String getUserName() throws RemoteException
   {
-    return null;
+    return name;
   }
 
   @Override public String getPassword() throws RemoteException
   {
-    return null;
+    return password;
   }
 
   @Override public String getEmail() throws RemoteException
   {
-    return null;
+    return email;
   }
 
   @Override public void addPropertyChangeListener(String name,

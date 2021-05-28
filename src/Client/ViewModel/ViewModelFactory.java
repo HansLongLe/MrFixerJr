@@ -8,14 +8,16 @@ import java.rmi.RemoteException;
 public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;
-    private HomepageViewModel homepageViewModel;
+    private MovieViewModel movieViewModel;
+    private GenreViewModel genreViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory)
         throws RemoteException, NotBoundException, InterruptedException
     {
-        homepageViewModel=new HomepageViewModel(modelFactory.getDataModel());
         createAccountViewModel=new CreateAccountViewModel(modelFactory.getUser());
-        loginViewModel=new LoginViewModel(modelFactory.getDataModel());
+        loginViewModel=new LoginViewModel(modelFactory.getUser());
+        movieViewModel = new MovieViewModel(modelFactory.getMovieDataModel());
+        genreViewModel = new GenreViewModel(modelFactory.getGenreDataModel());
     }
 
     public CreateAccountViewModel getCreateAccountViewModel() {
@@ -26,7 +28,11 @@ public class ViewModelFactory {
         return loginViewModel;
     }
 
-    public HomepageViewModel getHomepageViewModel(){
-        return homepageViewModel;
+    public MovieViewModel getMovieViewModel() {
+        return movieViewModel;
+    }
+
+    public GenreViewModel getGenreViewModel() {
+        return genreViewModel;
     }
 }
