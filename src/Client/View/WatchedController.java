@@ -22,6 +22,7 @@ public class WatchedController{
     private ViewHandler viewHandler;
     @FXML private ImageView manageImage;
     @FXML private VBox movies0;
+    ArrayList<Movie> watchedMovies;
 
 
 
@@ -56,15 +57,15 @@ public class WatchedController{
     public void getAlreadyWatchedMovies(){
         String username = viewHandler.getUserName();
 
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        movies = viewModelFactory.getMovieViewModel().getListOfAlreadyWatchedMovies(username);
+
+        watchedMovies = viewModelFactory.getMovieViewModel().getListOfAlreadyWatchedMovies(username);
         int count = 0;
         HBox newRow = new HBox();
 
 
 
-        for (int i = 0; i <movies.size() ; i++) {
-            Movie movie0 = movies.get(i);
+        for (int i = 0; i <watchedMovies.size() ; i++) {
+            Movie movie0 = watchedMovies.get(i);
             VBox movie = new VBox();
             int currentMovie = viewModelFactory.getMovieViewModel().getMovieId(movie0.getTitle(), movie0.getDescription());
             System.out.println(currentMovie + " Current movie ID");
@@ -116,6 +117,6 @@ public class WatchedController{
     }
 
     public void openMovie(int currentMovie) throws NotBoundException, IOException {
-        viewHandler.openViewMovieDescription(currentMovie);
+        viewHandler.openViewMovieDescription(currentMovie, watchedMovies);
     }
 }
