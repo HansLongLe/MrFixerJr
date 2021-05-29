@@ -23,11 +23,20 @@ public interface ServerInterface extends Remote {
     String getRole(String username) throws RemoteException;
     void addMovieToDatabase(Movie movie) throws RemoteException, SQLException;
     void removeGenre(String genreName) throws RemoteException;
-  void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
+    void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere) throws RemoteException;
     ArrayList<Movie> loadFavouriteList(String username) throws RemoteException;
-  ArrayList<Movie> getMovies() throws RemoteException;
-  ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
-  ArrayList<String> getGenresForMovie(int id) throws RemoteException;
+    ArrayList<Movie> getMovies() throws RemoteException;
+    ArrayList<Movie> loadMoviesByChosenGenre(String username) throws RemoteException;
+    ArrayList<String> getGenresForMovie(int id) throws RemoteException;
     ArrayList<String> getActorsForMovie(int id) throws RemoteException;
+    ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException;
+    void addToWathced(String title, String description,String username) throws RemoteException;
+    void addTofavorite(int id, String username) throws RemoteException;
+    int getMovieid(String title, String description) throws RemoteException;
+    void addToWatchlater(int id, String username) throws RemoteException;
+    ArrayList<Movie> loadWatchLater(String username) throws RemoteException;
+    ArrayList<Movie> loadAlreadyWatched(String username) throws RemoteException;
+    ArrayList<Movie> searchByTitle(String titleText) throws SQLException, RemoteException;
+
 }
 

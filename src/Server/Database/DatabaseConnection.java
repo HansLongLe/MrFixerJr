@@ -207,6 +207,28 @@ public class DatabaseConnection {
 
         return null;
     }
+    public ResultSet loadWatchLater(String username){
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.WatchLaterList\n"
+            + "where movie.movieid in (select watchlaterlist.movieid from MyFlixerJr.WatchLaterList) and watchlaterlist.username = '" + username + "';";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
 
     public ResultSet getGenresForMovie(int id){
         String sql = "select distinct genre\n"
@@ -231,7 +253,7 @@ public class DatabaseConnection {
 
     public ResultSet getActorsForMovie(int id){
         String sql = "select actor\n" + "from MyFlixerJr.actors\n"
-            + "    where movieid = "+ id+ ";";
+            + "where movieid = "+id+";";
         PreparedStatement preparedStatement = null;
 
         try{
@@ -242,6 +264,7 @@ public class DatabaseConnection {
             throwables.printStackTrace();
         }
         try{
+            System.out.println("Got actors from database!!!!!!!");
            return preparedStatement.executeQuery();
         }
         catch (SQLException throwables)
@@ -285,12 +308,12 @@ public class DatabaseConnection {
       }
   }
 
-  public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
   {
       ArrayList<String> selectedGenres = new ArrayList<>();
-      selectedGenres.add(firstGnere);
-      selectedGenres.add(secondGnere);
-      selectedGenres.add(thirdGnere);
+      selectedGenres.add(firstGenre);
+      selectedGenres.add(secondGenre);
+      selectedGenres.add(thirdGenre);
       for (int i = 0; i < selectedGenres.size(); i++)
       {
           String sql = "Insert into MyFlixerJr.SelectedGenres (username, genre) values('" + username + "','" + selectedGenres.get(i) + "');";
@@ -407,8 +430,175 @@ public class DatabaseConnection {
         return null;
     }
 
+    public ResultSet getSortedMoviesByGenres(ArrayList<String> chosenGenres)
+    {
+        String temp = "";
+        for (int i = 0; i < chosenGenres.size(); i++) {
+            temp += "MyFlixerJr.GenreRelationship.genre = '" + chosenGenres.get(i) + "'";
+            if (!(i == chosenGenres.size()-1))
+            {
+                temp += " OR ";
+            }
+        }
 
+        String sql = "SELECT distinct MyFlixerJr.movie.title, MyFlixerJr.movie.imageurl, MyFlixerJr.movie.movieid, MyFlixerJr.movie.year,MyFlixerJr.movie.averagerating, MyFlixerJr.movie.description\n" +
+                "from MyFlixerJr.movie, MyFlixerJr.genrerelationship where ("+ temp +") and (MyFlixerJr.Movie.movieid = MyFlixerJr.GenreRelationship.movieid);\n";
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
 
+        try{
+            preparedStatement= connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public void addToWatched(String title, String description, String username)
+    {
+        String sql =
+            "INSERT INTO MyFlixerJr.AlreadyWatchedList(movieid, username)\n" + "VALUES ((select movieId from MyFlixerJr.movie where description = '"
+                + description + "' and title = '" + title + "'),'" + username + "' );";
 
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            System.out.println("Added to Watched list))))))))");
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public void addToFavorite(int id, String username)
+    {
+        String sql = "insert into MyFlixerJr.FavoriteList(movieid, username)\n"
+            + "values("+id+", '"+username+"');";
+
+        Statement statement = null;
+        try{
+            statement = connection.createStatement();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            System.out.println("added to the fav list in database");
+
+            statement.execute(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
+
+    public ResultSet getMovieId(String title, String description)
+        throws SQLException
+    {
+        String sql = "select movieid\n" + "from MyFlixerJr.movie\n"
+            + "where title='"+title+"' and description='"+description+"';";
+
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return preparedStatement.executeQuery();
+    }
+
+    public void addToWatchLater(int id, String username)
+    {
+        String sql = "insert into MyFlixerJr.WatchLaterList(movieid, username)\n"
+            + "values("+id+", '"+username+"');";
+
+        Statement statement = null;
+        try{
+            statement = connection.createStatement();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            System.out.println("added to the watch later list in database");
+
+            statement.execute(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
+
+    public ResultSet loadAlreadyWatchedMovies(String username)
+    {
+        String sql = "select distinct imageurl, title, year, movie.movieid, movie.movieid, averagerating, description\n"
+            + "from MyFlixerJr.movie, MyFlixerJr.AlreadyWatchedList\n"
+            + "where movie.movieid in (select alreadywatchedlist.movieid from MyFlixerJr.AlreadyWatchedList) and alreadywatchedlist.username = '" + username + "';";
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        try{
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+
+        return null;
+
+    }
+    public ResultSet SearchMovieByName(String searchText){
+        String temp = "";
+        char[] textLenght = searchText.toCharArray();
+        System.out.println(textLenght.length);
+        String temp2 = "";
+        for (int i = 0; i < textLenght.length; i++) {
+            temp2+= textLenght[i];
+            temp += "title like '%" + temp2 + "%'";
+            if (i != textLenght.length-1)
+            {
+                temp += " OR ";
+            }
+        }
+
+        System.out.println(temp);
+        String sql = "SELECT * from MyFlixerJr.Movie WHERE ("+ temp +");";
+        System.out.println(sql);
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+        }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        try {
+            return preparedStatement.executeQuery();
+        }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 
 }

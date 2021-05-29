@@ -77,8 +77,8 @@ public class ServerRMI implements ServerInterface{
         ResultSet rs = null;
         ResultSet rsGenres = null;
         ResultSet rsActors = null;
-        String[] actors = null;
-        ArrayList<Object> genres = new ArrayList<Object>();
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
         ArrayList<Movie> favouriteListOfMovies = new ArrayList<Movie>();
         rs = databaseConnection.loadFavouriteMovies(username);
         try{
@@ -91,21 +91,29 @@ public class ServerRMI implements ServerInterface{
 
                 int id = rs.getInt("movieid");
 
+
                 rsActors = databaseConnection.getActorsForMovie(id);
                 while(rsActors.next()){
-                    int i=0;
-                    String actor = rs.getString("actor");
-                    actors[i] = actor;
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                  System.out.println(actorsList);
                 }
                 rsGenres = databaseConnection.getGenresForMovie(id);
                     while(rsGenres.next()){
                         String genre = rsGenres.getString("genre");
-                        genres.add(genre);
+                        genresO.add(genre);
                     }
 
 
-                Movie movie = new Movie(imageurl, title, year, genres, description, actors);
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
                     favouriteListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                    genresO.clear();
+                    actorsList.clear();
             }
         }
         catch (SQLException throwables)
@@ -147,9 +155,9 @@ public class ServerRMI implements ServerInterface{
         databaseConnection.removeGenre(genreName);
     }
 
-    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
     {
-        databaseConnection.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+        databaseConnection.chooseThreeGenresForUser(username, firstGenre, secondGenre, thirdGenre);
     }
 
     @Override
@@ -308,4 +316,207 @@ return movies;
         return actors;
     }
 
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        ResultSet moviesTable = databaseConnection.getSortedMoviesByGenres(chosenGenres);
+
+        ArrayList<Movie> sortedMovies = new ArrayList<>();
+        ArrayList<Object> movieGenres = new ArrayList<>();
+
+        while (moviesTable.next())
+        {
+            ResultSet genres = databaseConnection.getGenresForMovie(moviesTable.getInt("movieID"));
+            while (genres.next())
+            {
+                movieGenres.add(genres.getString("genre"));
+            }
+            ArrayList<String> movieActorsTemp = getActorsForMovie(moviesTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            sortedMovies.add(new Movie(moviesTable.getString("imageURL"), moviesTable.getString("title"), moviesTable.getString("year"),
+                     movieGenres, moviesTable.getString("description"), movieActors));
+            movieGenres.clear();
+        }
+
+        return sortedMovies;
+    }
+
+
+        @Override public void addToWathced(String title, String description,
+        String username)
+    {
+        databaseConnection.addToWatched(title, description, username);
+    }
+
+    @Override public void addTofavorite(int id, String username)
+        throws RemoteException
+    {
+        databaseConnection.addToFavorite(id, username);
+        System.out.println("added to the fav list");
+    }
+
+    @Override public int getMovieid(String title, String description)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        try
+        {
+            rs = databaseConnection.getMovieId(title, description);
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        int id = 0;
+        try
+        {
+            while (rs.next())
+            {
+                id = rs.getInt("movieid");
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return id;
+    }
+
+    @Override public void addToWatchlater(int id, String username)
+    {
+        databaseConnection.addToWatchLater(id, username);
+    }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        ResultSet rsGenres = null;
+        ResultSet rsActors = null;
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
+        ArrayList<Movie> WatchLaterListOfMovies = new ArrayList<Movie>();
+        rs = databaseConnection.loadWatchLater(username);
+        try{
+            while(rs.next()){
+                String imageurl = rs.getString("imageurl");
+                String title = rs.getString("title");
+                String year = rs.getString("year");
+                double averagerating = rs.getDouble("averagerating");
+                String description = rs.getString("description");
+
+                int id = rs.getInt("movieid");
+
+
+                rsActors = databaseConnection.getActorsForMovie(id);
+                while(rsActors.next()){
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                    System.out.println(actorsList);
+                }
+                rsGenres = databaseConnection.getGenresForMovie(id);
+                while(rsGenres.next()){
+                    String genre = rsGenres.getString("genre");
+                    genresO.add(genre);
+                }
+
+
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
+                WatchLaterListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                genresO.clear();
+                actorsList.clear();
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return WatchLaterListOfMovies;
+
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        ResultSet rs = null;
+        ResultSet rsGenres = null;
+        ResultSet rsActors = null;
+        ArrayList<Object> genresO = new ArrayList<>();
+        ArrayList<String> actorsList = new ArrayList<>();
+        ArrayList<Movie> alreadyWatchedListOfMovies = new ArrayList<Movie>();
+        rs = databaseConnection.loadAlreadyWatchedMovies(username);
+        try{
+            while(rs.next()){
+                String imageurl = rs.getString("imageurl");
+                String title = rs.getString("title");
+                String year = rs.getString("year");
+                double averagerating = rs.getDouble("averagerating");
+                String description = rs.getString("description");
+
+                int id = rs.getInt("movieid");
+
+
+                rsActors = databaseConnection.getActorsForMovie(id);
+                while(rsActors.next()){
+                    String actor = rsActors.getString("actor");
+                    actorsList.add(actor);
+                    System.out.println(actorsList);
+                }
+                rsGenres = databaseConnection.getGenresForMovie(id);
+                while(rsGenres.next()){
+                    String genre = rsGenres.getString("genre");
+                    genresO.add(genre);
+                }
+
+
+                String[] actors = actorsList.toArray(new String[0]);
+
+                Movie movie = new Movie(imageurl, title, year, genresO, description, actors);
+                alreadyWatchedListOfMovies.add(movie);
+
+                System.out.println(genresO.size() + "genres inside database !!!!!!!!!!@");
+
+                genresO.clear();
+                actorsList.clear();
+            }
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return alreadyWatchedListOfMovies;
+
+    }
+
+    @Override
+    public ArrayList<Movie> searchByTitle(String titleText) throws SQLException, RemoteException {
+        ResultSet movieTable = databaseConnection.SearchMovieByName(titleText);
+        ArrayList<Movie> movies  = new ArrayList<>();
+        ArrayList<Object> genres = new ArrayList<>();
+
+        while (movieTable.next())
+        {
+            ResultSet genreTemp = databaseConnection.getGenresForMovie(movieTable.getInt("movieID"));
+             while (genreTemp.next())
+             {
+                 genres.add(genreTemp.getString("genre"));
+             }
+            ArrayList<String> movieActorsTemp = getActorsForMovie(movieTable.getInt("movieID"));
+            String[] movieActors = movieActorsTemp.toArray(new String[0]);
+            movies.add(new Movie(movieTable.getString("imageURL"), movieTable.getString("title"), movieTable.getString("year"),
+                    genres, movieTable.getString("description"), movieActors));
+            genres.clear();
+        }
+        return movies;
+    }
 }

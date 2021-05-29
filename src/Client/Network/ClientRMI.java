@@ -66,10 +66,10 @@ public class ClientRMI  implements ClientInterface, Serializable
         server.removeGenre(genreName);
     }
 
-    @Override public void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+    @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
         throws RemoteException
     {
-        server.chooseThreeGenresForUser(username, firstGnere, secondGnere, thirdGnere);
+        server.chooseThreeGenresForUser(username, firstGenre, secondGenre, thirdGenre);
     }
 
     @Override
@@ -112,17 +112,7 @@ public class ClientRMI  implements ClientInterface, Serializable
         return null;
     }
 
-    public ArrayList<Movie> getListOfFavouriteMovies(String username){
-        try
-        {
-            return server.loadFavouriteList(username);
-        }
-        catch (RemoteException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     @Override public ArrayList<Movie> loadMoviesByChosenGenre(String username)
     {
@@ -146,6 +136,69 @@ public class ClientRMI  implements ClientInterface, Serializable
     @Override
     public ArrayList<String> getActorsForMovie(int id) throws RemoteException {
         return server.getActorsForMovie(id);
+    }
+
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        server.addToWathced(title,description,username);
+    }
+
+    @Override public void addToFavorite(int id, String username)
+        throws RemoteException
+    {
+        server.addTofavorite(id, username);
+    }
+
+    @Override public int getMovieId(String title, String description)
+        throws RemoteException
+    {
+        return server.getMovieid(title, description);
+    }
+
+    @Override public void addToWatchLater(int id, String username)
+    {
+        try
+        {
+            server.addToWatchlater(id, username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        return server.loadWatchLater(username);
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        return server.loadAlreadyWatched(username);
+    }
+    public ArrayList<Movie> getListOfFavouriteMovies(String username){
+        try
+        {
+            return server.loadFavouriteList(username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException {
+        return server.searchByTitle(searchText);
+    }
+
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return server.sortMoviesByGenres(chosenGenres);
     }
 
 }

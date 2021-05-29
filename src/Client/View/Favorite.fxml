@@ -189,7 +189,7 @@
                 <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                 <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <content>
-                  <VBox prefHeight="434.0" prefWidth="691.0" />
+                  <VBox fx:id="movies0" prefHeight="434.0" prefWidth="691.0" />
                </content></ScrollPane>
             </children>
         </AnchorPane>

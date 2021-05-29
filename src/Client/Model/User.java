@@ -19,6 +19,6 @@ public interface User extends PropertyChangeSubject
   void set(String username, String password, String email) throws RemoteException;
   String getRole(String username) throws RemoteException, NotBoundException;
 
-  void chooseThreeGenresForUser(String username, String firstGnere, String secondGnere, String thirdGnere)
+  void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
       throws RemoteException;
 }

@@ -60,5 +60,56 @@ public class MovieDataModelManager implements MovieDataModel {
         return clientInterface.getActorsForMovie(id);
     }
 
+    @Override public void addToWatched(String title, String description,
+        String username) throws RemoteException
+    {
+        clientInterface.addToWatched(title,description,username);
+    }
+    @Override public void addToFavorite(int id,  String username)
+        throws RemoteException
+    {
+        clientInterface.addToFavorite(id, username);
+    }
+
+    @Override public int getMovieId(String title, String description)
+        throws RemoteException
+    {
+        return clientInterface.getMovieId(title, description);
+    }
+
+    @Override public void addToWatchLater(int id, String username)
+    {
+        try
+        {
+            clientInterface.addToWatchLater(id, username);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override public ArrayList<Movie> loadWatchLater(String username)
+        throws RemoteException
+    {
+        return clientInterface.loadWatchLater(username);
+    }
+
+    @Override public ArrayList<Movie> loadAlreadyWatched(String username)
+        throws RemoteException
+    {
+        return clientInterface.loadAlreadyWatched(username);
+    }
+
+    @Override
+    public ArrayList<Movie> sortMoviesByGenres(ArrayList<String> chosenGenres) throws RemoteException, SQLException {
+        return clientInterface.sortMoviesByGenres(chosenGenres);
+    }
+
+    @Override
+    public ArrayList<Movie> searchByTitle(String searchText) throws RemoteException, SQLException {
+        return clientInterface.searchByTitle(searchText);
+    }
+
 
 }

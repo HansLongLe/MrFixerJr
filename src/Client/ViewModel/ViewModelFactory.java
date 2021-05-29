@@ -4,6 +4,7 @@ import Client.Model.*;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
@@ -35,4 +36,5 @@ public class ViewModelFactory {
     public GenreViewModel getGenreViewModel() {
         return genreViewModel;
     }
+
 }
