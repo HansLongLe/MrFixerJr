@@ -8,12 +8,21 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class UserModelManager implements User, Serializable
+/**
+ * A class used for managing logic part of the login system
+ * this class is connected to ClientInterface which is used for sending and receiving information to/from the server
+ */
+
+public class UserModelManager implements User
 {
   private ClientInterface clientInterface;
-  private ArrayList<User> simpleUsers;
+  private ArrayList<SimpleUser> simpleUsers;
+
+  /**
+   * Constructor that connects this class to clientInterface and creates a list of SimpleUsers
+   */
   public UserModelManager(ClientInterface clientInterface)
-      throws RemoteException, NotBoundException, InterruptedException
+      throws RemoteException, NotBoundException
   {
     this.clientInterface = clientInterface;
     clientInterface = new ClientRMI();
@@ -21,10 +30,11 @@ public class UserModelManager implements User, Serializable
     simpleUsers = new ArrayList<>();
   }
 
+  /**
+   * Method for receiving list of SimpleUsers from the server
+   */
 
-
-
-  @Override public ArrayList<User> logIn()
+  @Override public ArrayList<SimpleUser> logIn()
   {
     try
     {
@@ -37,13 +47,14 @@ public class UserModelManager implements User, Serializable
       return simpleUsers;
     }
 
-
+  /**
+   * A method for creating an account of SimpleUser and sending those information to the server
+   */
 
   @Override public void createAccount(String username, String password, String email)
       throws RemoteException, NotBoundException
   {
-    User user = new SimpleUser();
-    user.set(username, password, email);
+    SimpleUser user = new SimpleUser(username, password, email);
     System.out.println("UMM");
 
     clientInterface.newUser(user);
@@ -52,65 +63,19 @@ public class UserModelManager implements User, Serializable
 
 
 
-
-
-
-
-  @Override public String getUserName() throws RemoteException
-  {
-    return null;
-  }
-
-  @Override public String getPassword() throws RemoteException
-  {
-    return null;
-  }
-
-  @Override public String getEmail() throws RemoteException
-  {
-    return null;
-  }
-
-  @Override public void set(String username, String password, String email)
-      throws RemoteException
-  {
-
-  }
-
   @Override public String getRole(String username)
       throws RemoteException, NotBoundException
   {
     return clientInterface.getRole(username);
   }
 
+  /**
+   * A method for sending 3 preferables genres chosen when creating an account to the server
+   */
+
   @Override public void chooseThreeGenresForUser(String username, String firstGenre, String secondGenre, String thirdGenre)
       throws RemoteException
   {
     clientInterface.chooseThreeGenresForUser(username, firstGenre,secondGenre, thirdGenre);
   }
-
-  @Override public void addPropertyChangeListener(String name,
-      PropertyChangeListener listener) throws RemoteException
-  {
-
-  }
-
-  @Override public void addPropertyChangeListener(
-      PropertyChangeListener listener) throws RemoteException
-  {
-
-  }
-
-  @Override public void removePropertyChangeListener(String name,
-      PropertyChangeListener listener) throws RemoteException
-  {
-
-  }
-
-  @Override public void removePropertyChangeListener(
-      PropertyChangeListener listener) throws RemoteException
-  {
-
-  }
-
 }

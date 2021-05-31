@@ -8,6 +8,5 @@ public interface GenreDataModel {
     void addGenre(String genreName)
         throws RemoteException, NotBoundException;
     void removeGenre(String genreName) throws RemoteException;
-    void changeGenre(String genreName);
     ArrayList<String> getGenre();
 }

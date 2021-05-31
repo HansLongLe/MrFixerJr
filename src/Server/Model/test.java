@@ -8,6 +8,10 @@ import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * A class used for testing database connection
+ */
+
 public class test
 {
   public static void main(String[] args)
@@ -23,15 +27,14 @@ public class test
     String sql = "SELECT username, password FROM MyFlixerJr.GeneralUser WHERE role= 'SimpleUser';";
     PreparedStatement preparedStatement=connection.prepareStatement(sql);
     ResultSet rs= preparedStatement.executeQuery();
-    ArrayList<User> users=new ArrayList<>();
+    ArrayList<SimpleUser> users=new ArrayList<>();
 
     while (rs.next()){
       String username=rs.getString("username");
       String password1=rs.getString("password");
       String role1 = rs.getString("role");
 
-      User user1=new SimpleUser();
-      user1.set(username,password1,"");
+      SimpleUser user1= new SimpleUser(username, password1, "");
       users.add(user1);
     }
 

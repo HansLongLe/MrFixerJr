@@ -6,6 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * A class used for connecting CreateAccount View part with Model part
+ */
+
 public class CreateAccountViewModel {
     private User user;
     private SimpleStringProperty username;

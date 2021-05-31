@@ -3,6 +3,7 @@ package Client.View;
 import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,10 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.util.ArrayList;
+
+/**
+ * A class used for giving functionality to WatchedController FXML
+ */
 
 public class WatchedController{
 
@@ -31,12 +36,6 @@ public class WatchedController{
         this.viewHandler = viewHandler;
         getAlreadyWatchedMovies();
     }
-
-
-    public void openManageWindow() throws IOException {
-       viewHandler.openMovieManager();
-    }
-
 
     public void setSceneToWatchLater() throws IOException {
         viewHandler.openWatchLater();
@@ -67,6 +66,10 @@ public class WatchedController{
         for (int i = 0; i <watchedMovies.size() ; i++) {
             Movie movie0 = watchedMovies.get(i);
             VBox movie = new VBox();
+            movie.setPrefWidth(216);
+            movie.setPrefHeight(143);
+            movie.setPadding(new Insets(15));
+
             int currentMovie = viewModelFactory.getMovieViewModel().getMovieId(movie0.getTitle(), movie0.getDescription());
             System.out.println(currentMovie + " Current movie ID");
             System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
@@ -81,7 +84,7 @@ public class WatchedController{
             });
 
             ImageView image = new ImageView(movie0.getImageURL());
-            image.setFitWidth(150);
+            image.setFitWidth(113);
             image.setFitHeight(150);
             Label title = new Label(movie0.getTitle());
             Label year = new Label(movie0.getYear());

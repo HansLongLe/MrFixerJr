@@ -10,6 +10,10 @@ import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * A class used for connecting the server with database
+ */
+
 public class DatabaseConnection {
     private Connection connection;
 
@@ -36,7 +40,7 @@ public class DatabaseConnection {
 
     }
 
-    public void addUser(User user) throws RemoteException
+    public void addUser(SimpleUser user) throws RemoteException
     {
         System.out.println("Data got to the last class" + user);
         System.out.println(user.getUserName()+ user.getPassword());
@@ -382,6 +386,11 @@ public class DatabaseConnection {
       }
       return null;
   }
+
+    /**
+     * A method used for getting genres used by specific movie
+     */
+
   public ResultSet getGenresFromGenresRelationship()
   {
       String sql = "SELECT * FROM MyFlixerJr.GenreRelationship";

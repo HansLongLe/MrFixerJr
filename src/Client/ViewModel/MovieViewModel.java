@@ -9,6 +9,11 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * A class used for connecting Movie View part with Model part
+ */
+
 public class MovieViewModel {
     private MovieDataModel movieDataModel;
 
@@ -28,18 +33,6 @@ public class MovieViewModel {
     public ArrayList<Movie>  getListOfFavouriteMovies(String username){
         System.out.println(movieDataModel.getListOfFavouriteMovies(username));
         return movieDataModel.getListOfFavouriteMovies(username);
-    }
-
-    public ArrayList<Movie> getListOfWatchLaterMovies(String username){
-        try
-        {
-            return movieDataModel.loadWatchLater(username);
-        }
-        catch (RemoteException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public ArrayList<Movie> getListOfAlreadyWatchedMovies(String username){
@@ -78,14 +71,7 @@ public class MovieViewModel {
         }
         return null;
     }
-    public ArrayList<String> getActorsForMovie(int id){
-        try {
-            return movieDataModel.getActorsForMovie(id);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     public void addToWatched(String title, String description, String username)
         throws RemoteException

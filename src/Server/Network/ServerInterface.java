@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public interface ServerInterface extends Remote {
     void addBroadcast(ClientInterface clientReceiver) throws RemoteException;
-    void newUser(User user) throws RemoteException;
+    void newUser(SimpleUser user) throws RemoteException;
     void start() throws RemoteException, AlreadyBoundException;
-    ArrayList<User> logIn() throws RemoteException;
+    ArrayList<SimpleUser> logIn() throws RemoteException;
     void addGenre(String genre) throws RemoteException;
     ArrayList<String> getGenresFromDatabase() throws RemoteException;
     String getRole(String username) throws RemoteException;

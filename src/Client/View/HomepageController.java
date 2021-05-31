@@ -26,6 +26,10 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * A class used for giving functionality to Homepage FXML
+ */
+
 public class HomepageController {
 
     private ViewModelFactory viewModelFactory;
@@ -36,7 +40,8 @@ public class HomepageController {
     @FXML private CheckComboBox genresToChose;
     @FXML private VBox movies;
     @FXML private TextField searchBar;
-   @FXML private ImageView manageImage;
+    @FXML private ImageView manageImage;
+
 
     public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler)
         throws IOException, NotBoundException
@@ -86,6 +91,11 @@ public class HomepageController {
       viewHandler.start();
     }
 
+
+    /**
+     * A method that loads movies from database to homepage by 3 favorite genres chosen by the user when creating an account
+     */
+
   public void loadMovies() throws RemoteException
   {
     int count = 0;
@@ -101,6 +111,7 @@ public class HomepageController {
       VBox movie = new VBox();
       movie.setPrefWidth(216);
       movie.setPrefHeight(143);
+      movie.setPadding(new Insets(15));
 
       int currentMovie = i;
       System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
@@ -118,7 +129,7 @@ public class HomepageController {
         });
 
                 ImageView image = new ImageView(movie0.getImageURL());
-      image.setFitWidth(150);
+      image.setFitWidth(113);
       image.setFitHeight(150);
       Label title = new Label(movie0.getTitle());
       Label year = new Label(movie0.getYear());
@@ -148,6 +159,10 @@ public class HomepageController {
 
   }
 
+    /**
+     * A method for opening full description of specific movie
+     */
+
   public void openMovie(int currentMovie, ArrayList<Movie> movies) throws NotBoundException, IOException {
       viewHandler.openViewMovieDescription(currentMovie, movies);
   }
@@ -168,6 +183,10 @@ public class HomepageController {
 
           VBox movie = new VBox();
 
+          movie.setPrefWidth(216);
+          movie.setPrefHeight(143);
+          movie.setPadding(new Insets(15));
+
           movie.setOnMouseClicked(new EventHandler<MouseEvent>() {
               @Override
               public void handle(MouseEvent mouseEvent) {
@@ -182,7 +201,7 @@ public class HomepageController {
           });
 
           ImageView image = new ImageView(movie0.getImageURL());
-          image.setFitWidth(150);
+          image.setFitWidth(113);
           image.setFitHeight(150);
           Label title = new Label(movie0.getTitle());
           Label year = new Label(movie0.getYear());
@@ -210,7 +229,12 @@ public class HomepageController {
 
       movies.getChildren().add(newRow);
   }
-  public void searchByTitle() throws SQLException, RemoteException {
+
+    /**
+     * A method used for showing all movies that contain the searched text in their title
+     */
+
+    public void searchByTitle() throws SQLException, RemoteException {
       ArrayList<Movie> movies = viewModelFactory.getMovieViewModel().searchByTitle(searchBar.getText());
 
       this.movies.getChildren().clear();
@@ -222,6 +246,10 @@ public class HomepageController {
           int currentMovie = i;
 
           VBox movie = new VBox();
+
+          movie.setPrefWidth(216);
+          movie.setPrefHeight(143);
+          movie.setPadding(new Insets(15));
 
           movie.setOnMouseClicked(new EventHandler<MouseEvent>() {
               @Override
@@ -237,7 +265,7 @@ public class HomepageController {
           });
 
           ImageView image = new ImageView(movie0.getImageURL());
-          image.setFitWidth(150);
+          image.setFitWidth(113);
           image.setFitHeight(150);
           Label title = new Label(movie0.getTitle());
           Label year = new Label(movie0.getYear());

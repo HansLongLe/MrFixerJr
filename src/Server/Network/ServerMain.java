@@ -4,6 +4,9 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
+/**
+ * A class used for starting the server
+ */
 public class ServerMain
 {
   public static void main(String[] args)

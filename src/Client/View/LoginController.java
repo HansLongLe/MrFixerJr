@@ -15,6 +15,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class used for giving functionality to Login FXML
+ */
+
 public class LoginController
 {
   private LoginViewModel loginViewModel;
@@ -55,7 +59,10 @@ public class LoginController
     return null;
   }
 
-  @FXML
+  /**
+   * A method used to logging in as an User or an Admin
+   */
+
   public void LoginButton() throws IOException, NotBoundException
   {
     String role = loginViewModel.getRole(username.getText());

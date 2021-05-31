@@ -6,13 +6,19 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class used for managing logic part of genre administration
+ */
+
 public class GenreModelManager implements GenreDataModel{
 
     private ClientInterface clientInterface;
+
     public GenreModelManager(ClientInterface clientInterface)
     {
         this.clientInterface = clientInterface;
     }
+
     @Override
     public void addGenre(String genreName)
         throws RemoteException, NotBoundException
@@ -26,10 +32,7 @@ public class GenreModelManager implements GenreDataModel{
         clientInterface.removeGenre(genreName);
     }
 
-    @Override
-    public void changeGenre(String genreName) {
 
-    }
 
     @Override public ArrayList<String> getGenre()
     {

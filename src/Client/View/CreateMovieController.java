@@ -19,6 +19,11 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * A class used for giving functionality to CreateMovie FXML
+ */
+
 public class CreateMovieController {
     @FXML
     private ImageView movieImage;
@@ -45,6 +50,10 @@ public class CreateMovieController {
             genre.getItems().add(viewModelFactory.getMovieViewModel().getGenres().get(i));
         }
     }
+
+    /**
+     * A method for choosing an image from your local repository
+     */
 
     public void uploadImage() {
         FileChooser fileChooser = new FileChooser();
@@ -79,7 +88,7 @@ public class CreateMovieController {
         }
     }
 
-    public void setToMovieManager() throws IOException {
+    public void backToMovieManager() throws IOException {
         viewHandler.openMovieManager();
     }
 

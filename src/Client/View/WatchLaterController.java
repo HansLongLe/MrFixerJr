@@ -3,6 +3,7 @@ package Client.View;
 import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -13,14 +14,14 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
+/**
+ * A class used for giving functionality to WatchedLater FXML
+ */
+
 public class WatchLaterController{
 
     private ViewModelFactory viewModelFactory;
-    private Scene homepageScene;
-    private Scene watchedScene;
-    private Scene favoriteScene;
     private ViewHandler viewHandler;
-    @FXML private ImageView manageImage;
     @FXML private VBox movies0;
     private ArrayList<Movie> watchLaterMovies;
 
@@ -31,12 +32,6 @@ public class WatchLaterController{
         this.viewHandler = viewHandler;
         getWatchLaterMoviesList();
     }
-
-
-    public void openManageWindow() throws IOException {
-       viewHandler.openMovieManager();
-    }
-
 
     public void setSceneToHomepage() throws IOException, NotBoundException
     {
@@ -66,6 +61,10 @@ public class WatchLaterController{
         for (int i = 0; i <watchLaterMovies.size() ; i++) {
             Movie movie0 = watchLaterMovies.get(i);
             VBox movie = new VBox();
+            movie.setPrefWidth(216);
+            movie.setPrefHeight(143);
+            movie.setPadding(new Insets(15));
+
             int currentMovie = viewModelFactory.getMovieViewModel().getMovieId(movie0.getTitle(), movie0.getDescription());
             System.out.println(currentMovie + " Current movie ID");
             System.out.println(movie0.getMovieID()+" !!!!!!!!!!@");
@@ -80,7 +79,7 @@ public class WatchLaterController{
             });
 
             ImageView image = new ImageView(movie0.getImageURL());
-            image.setFitWidth(150);
+            image.setFitWidth(113);
             image.setFitHeight(150);
             Label title = new Label(movie0.getTitle());
             Label year = new Label(movie0.getYear());

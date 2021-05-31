@@ -13,6 +13,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class used for giving functionality to ViewMovieDescription FXML
+ */
+
 public class ViewMovieDescriptionController {
 
     private ViewModelFactory viewModelFactory;
@@ -45,7 +49,6 @@ public class ViewMovieDescriptionController {
         viewHandler.openHomePage();
     }
 
-
     public void logOut() throws IOException
     {
         viewHandler.start();
@@ -75,13 +78,12 @@ public class ViewMovieDescriptionController {
         viewModelFactory.getMovieViewModel().addToFavorite(getMovieId(name.getText(), description.getText()), viewModelFactory.getLoginViewModel().getUsername().getValue());
     }
 
+    /**
+     * A method used to load information about specific movie
+     */
 
     public void loadInformation(int currentMovie, ArrayList<Movie> movies) throws RemoteException {
         Movie movie = viewModelFactory.getMovieViewModel().getMovies().get(currentMovie);
-        System.out.println(viewModelFactory.getMovieViewModel().getMovies().get(0).getTitle() + "!!!!!!!!!!!!!!!!!!!!!!");
-//        Movie movie = movies.get(currentMovie);
-        System.out.println(movie.getTitle());
-        System.out.println(currentMovie);
         name.setText(movie.getTitle());
         year.setText(movie.getYear());
         description.setText(movie.getDescription());

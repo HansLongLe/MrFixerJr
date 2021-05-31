@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 
+/**
+ * A class used for initializing client and everything inside application
+ */
+
 public class MyApplication extends Application
 {
   public void start (Stage primaryStage)
@@ -28,8 +32,6 @@ public class MyApplication extends Application
     ModelFactory modelFactory = new ModelFactory(cf);
     ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
     ViewHandler viewHandler = new ViewHandler(viewModelFactory, primaryStage);
-//    ClientInterface clientInterface = new ClientRMI();
-//    System.out.println(clientInterface);
     viewHandler.start();
   }
 }

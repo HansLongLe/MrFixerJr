@@ -91,7 +91,7 @@
             <AnchorPane prefHeight="18.0" prefWidth="496.0">
                <children>
                   <Button layoutX="412.0" layoutY="8.0" mnemonicParsing="false" onAction="#createMovie" prefHeight="26.0" prefWidth="51.0" text="save" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
-                  <Button mnemonicParsing="false" onAction="#setToMovieManager" prefHeight="26.0" prefWidth="51.0" text="back" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+                  <Button mnemonicParsing="false" onAction="#backToMovieManager" prefHeight="26.0" prefWidth="51.0" text="back" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
                </children>
             </AnchorPane>
          </children>

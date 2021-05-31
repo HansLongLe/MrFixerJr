@@ -8,6 +8,11 @@ import java.awt.*;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 
+/**
+ * A class used for giving functionality to EditMovieDescription FXML
+ * In this version of MyFlixerJr this class has no functionality
+ */
+
 public class EditMovieDescriptionController {
 
     private ViewModelFactory viewModelFactory;
