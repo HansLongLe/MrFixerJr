@@ -1,0 +1,8 @@
+unnamed package
+Client.Model
+Client.Network
+Client.View
+Client.ViewModel
+Server.Database
+Server.Model
+Server.Network
