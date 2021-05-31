@@ -7,6 +7,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+
+/**
+ * A class used for connecting Genre View part with Model part
+ */
+
 public class GenreViewModel {
     private GenreDataModel genreDataModel;
     public GenreViewModel(GenreDataModel genreDataModel)

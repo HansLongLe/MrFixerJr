@@ -6,6 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class for initializing and getting ViewModels
+ */
+
 public class ViewModelFactory {
     private CreateAccountViewModel createAccountViewModel;
     private LoginViewModel loginViewModel;

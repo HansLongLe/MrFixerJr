@@ -4,6 +4,7 @@ import Client.Model.Movie;
 import Client.ViewModel.ViewModelFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,10 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+/**
+ * A class used for giving functionality to MovieManager FXML
+ */
 
 public class MovieManagerController {
 
@@ -57,9 +62,14 @@ public class MovieManagerController {
 
         for (int i = 0; i <viewModelFactory.getMovieViewModel().getMovies().size() ; i++) {
           Movie movie0 = viewModelFactory.getMovieViewModel().getMovies().get(i);
-                VBox movie = new VBox();
+          VBox movie = new VBox();
+
+          movie.setPrefWidth(216);
+          movie.setPrefHeight(143);
+          movie.setPadding(new Insets(15));
+
           ImageView image = new ImageView(movie0.getImageURL());
-          image.setFitWidth(150);
+          image.setFitWidth(113);
           image.setFitHeight(150);
           Label title = new Label(movie0.getTitle());
           Label year = new Label(movie0.getYear());

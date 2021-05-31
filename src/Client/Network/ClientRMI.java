@@ -17,25 +17,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * A class used for initializing client connection
+ */
+
 public class ClientRMI  implements ClientInterface, Serializable
 {
     private ServerInterface server;
-    private ClientInterface broadcastClient;
-    private ViewModelFactory viewModelFactory;
 
-    public ClientRMI()
-    {
-        this.viewModelFactory = viewModelFactory;
-    }
+    /**
+     * A method for getting an object of the server from the registry
+     */
     public void startClient() throws RemoteException, NotBoundException {
         UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
-//       broadcastClient = (ClientInterface) new ClientReceiver();
-        server.addBroadcast(broadcastClient);
     }
 
-    @Override public void newUser(User user) throws RemoteException, NotBoundException
+    /**
+     * A method used for sending information about the user to the server when creating an account
+     */
+
+    @Override public void newUser(SimpleUser user) throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
@@ -45,13 +48,21 @@ public class ClientRMI  implements ClientInterface, Serializable
 
     }
 
-    @Override public ArrayList<User> logIn()
+    /**
+     * A method used for receiving all users from the server, for thr purpose of checking valid username and password, when trying to log in
+     */
+
+    @Override public ArrayList<SimpleUser> logIn()
         throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localHost", 1099);
         server = (ServerInterface) registry.lookup("Server");
         return server.logIn();
     }
+
+    /**
+     * A method used for getting a role of specific user from the server
+     */
 
     @Override public String getRole(String username)
         throws RemoteException, NotBoundException
@@ -149,6 +160,10 @@ public class ClientRMI  implements ClientInterface, Serializable
     {
         server.addTofavorite(id, username);
     }
+
+    /**
+     * A method for getting a specific movie id using 2 elements that will differentiate all the movies from each other
+     */
 
     @Override public int getMovieId(String title, String description)
         throws RemoteException

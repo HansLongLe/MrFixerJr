@@ -18,6 +18,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *  A class used for initializing server connection
+ */
+
 public class ServerRMI implements ServerInterface{
 
     private ArrayList<ClientInterface> connectedUsers;
@@ -30,13 +34,14 @@ public class ServerRMI implements ServerInterface{
         connectedUsers = new ArrayList<>();
         databaseConnection = new DatabaseConnection(databasePassword);
     }
+
     @Override
     public void addBroadcast(ClientInterface clientReceiver) {
         connectedUsers.add(clientReceiver);
     }
 
     @Override
-    public void newUser(User user) throws RemoteException{
+    public void newUser(SimpleUser user) throws RemoteException{
        databaseConnection.addUser(user);
         System.out.println("new user in server");
     }
@@ -49,10 +54,10 @@ public class ServerRMI implements ServerInterface{
 
     }
 
-    @Override public ArrayList<User> logIn()
+    @Override public ArrayList<SimpleUser> logIn()
         throws RemoteException
     {      ResultSet rs = null;
-            ArrayList<User> simpleUsers = new ArrayList<>();
+            ArrayList<SimpleUser> simpleUsers = new ArrayList<>();
 
         rs=databaseConnection.logIn() ;
         try{
@@ -60,8 +65,7 @@ public class ServerRMI implements ServerInterface{
                         String username1 = rs.getString("username");
                         String password1 = rs.getString("password");
 
-                        User temp = new SimpleUser();
-                        temp.set(username1, password1, "");
+                        SimpleUser temp = new SimpleUser(username1, password1, "");
                         simpleUsers.add( temp);
                     }
         }

@@ -5,6 +5,10 @@ import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * A class used for initializing an object of movie
+ */
+
 public class Movie implements Serializable {
     private String title;
     private String year;
@@ -13,6 +17,12 @@ public class Movie implements Serializable {
     private String[] actors;
     private int movieID;
     private String imageURL;
+
+    /**
+     * A constructor initializing the movie
+     * @param imageURL a string of location where the movie image is saved
+     * @param genres a list of genres that are ar being taken from FXML CheckComboBox as an object
+     */
 
     public Movie(String imageURL, String title, String year, ArrayList<Object> genres, String description, String[] actors){
 

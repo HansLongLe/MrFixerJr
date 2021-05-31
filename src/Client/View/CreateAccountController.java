@@ -18,6 +18,10 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * A class used for giving functionality to CreateAccount FXML
+ */
+
 public class CreateAccountController {
   @FXML private TextField username;
   @FXML private Label error;
@@ -37,6 +41,7 @@ public class CreateAccountController {
   private CreateAccountViewModel createAccountViewModel;
   private ViewHandler viewHandler;
   private GenreViewModel genreViewModel;
+
 
   public void init( ViewHandler viewHandler, ViewModelFactory viewModelFactory)
   {
@@ -71,6 +76,10 @@ public class CreateAccountController {
     System.out.println(firstGenre1);
   }
 
+  /**
+   * A method used for creating an account
+   */
+
   public void createButton() throws IOException, NotBoundException {
     if ((password.getText().equals(repeatPassword.getText()))) {
       createAccountViewModel.createAccount(username.getText(), password.getText(), email.getText());
@@ -81,6 +90,10 @@ public class CreateAccountController {
       error.setVisible(true);
     }
   }
+
+  /**
+   *  A method used for going to the Login
+   */
 
   public void goBack() throws IOException {
     viewHandler.openView();

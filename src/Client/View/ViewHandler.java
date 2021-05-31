@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
+/**
+ * A class used for initializing FXMls and switching between them
+ */
+
 public class ViewHandler
 {
   private Stage primaryStage;
@@ -35,6 +39,9 @@ public class ViewHandler
     openView();
   }
 
+  /**
+   * A method that changes the scene to homepage for simple user
+   */
 
   public void openHomePageForSimpleUser() throws IOException, NotBoundException
   {
@@ -261,11 +268,6 @@ public class ViewHandler
     primaryStage.setScene(scene);
     primaryStage.setResizable(false);
     primaryStage.show();
-  }
-
-  public void closeLogIn()
-  {
-    primaryStage.close();
   }
 
   public String getUserName(){

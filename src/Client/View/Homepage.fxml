@@ -202,7 +202,10 @@
             <Pane prefHeight="100.0" prefWidth="694.0" styleClass="topPicture" stylesheets="@CSS/Homepage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="430.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <content>
-                  <VBox fx:id="movies" prefHeight="429.0" prefWidth="694.0" />
+                  <VBox fx:id="movies" prefHeight="429.0" prefWidth="694.0">
+                     <padding>
+                        <Insets left="40.0" right="30.0" top="15.0" />
+                     </padding></VBox>
                </content></ScrollPane>
          </children>
       </AnchorPane>

@@ -24,12 +24,15 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class used for giving functionality to GenreManager FXML
+ */
+
 public class GenreManagerController {
 
     @FXML
     private VBox genreList;
 
-//    private Button delete;
     private Button save;
     private HBox newRow;
     private Label introduceName;
@@ -53,6 +56,11 @@ public class GenreManagerController {
         loadGenres();
     }
 
+    /**
+     * A method for creating a raw where you can write the name of the new genre
+     * this method includes the functionality of deleting the genre by pressing the delete button
+     */
+
     public void addGenre()
     {
         newRow = new HBox();
@@ -68,7 +76,7 @@ public class GenreManagerController {
 
         delete.setOnAction(actionEvent -> {
 
-                genreList.getChildren().clear();
+            genreList.getChildren().clear();
             try
             {
                 genreViewModel.deleteGenreFromDataBase(genreName.getText());
@@ -129,28 +137,6 @@ public class GenreManagerController {
 
 
     }
-//    public void deleteGenre(String genreName, HBox row) throws RemoteException
-//    {
-////        row = newRow;
-//////        genreList.getChildren().clear();
-////        for(int i=0; i<genreList.getChildren().size(); i++)
-////        {
-////            if (rows.get(i).getChildren().get(0).equals("Genre name: " + genreName))
-//////                row.getChildren().clear();
-////            genreViewModel.deleteGenreFromDataBase(genreName);
-////            rows.get(i).getChildren().clear();
-//
-//        }
-////        try
-////        {
-//////            loadGenres();
-////        }
-////        catch (NotBoundException e)
-////        {
-////            e.printStackTrace();
-////        }
-//
-//    }
 
     public void setSceneToUser() throws IOException {
         viewHandler.openUserManager();
@@ -158,6 +144,10 @@ public class GenreManagerController {
     public void setSceneToMovie() throws IOException {
         viewHandler.openMovieManager();
     }
+
+    /**
+     * A method for getting already existing genres from the database
+     */
 
     public void loadGenres() throws RemoteException, NotBoundException
     {
@@ -195,9 +185,6 @@ public class GenreManagerController {
             newRow.setSpacing(10);
             genreList.getChildren().add(newRow);
             rows.add(newRow);
-
-
-
         }
     }
 

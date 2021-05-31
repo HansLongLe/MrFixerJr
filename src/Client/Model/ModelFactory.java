@@ -5,20 +5,16 @@ import Client.Network.ClientFactory;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * A class used for initializing and getting all DataModels
+ */
+
 public class ModelFactory
 {
     private User user;
     private ClientFactory cf;
     private MovieDataModel movie;
     private GenreDataModel genre;
-
-    //    private ClientInterface clientInterface;
-//
-//    public ClientInterface getClientInterface(){
-//        if(clientInterface==null){
-//            clientInterface = new ClientRMI()
-//        }
-//    }
 
     public ModelFactory(ClientFactory cf){
         this.cf = cf;

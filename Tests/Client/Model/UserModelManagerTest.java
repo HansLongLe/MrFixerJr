@@ -15,6 +15,10 @@ import java.rmi.registry.Registry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * A class used for testing UserModelManager functionality
+ */
+
 class UserModelManagerTest
 {
   ServerInterface server = new ServerRMI("Hoytt200117");
@@ -41,8 +45,7 @@ class UserModelManagerTest
     String username = "123";
     String password = "123";
     String email = "123";
-    User user = new SimpleUser();
-    user.set(username, password, email);
+    SimpleUser user = new SimpleUser(username, password, email);
 
     clientInterface.newUser(user);
     assertNotNull(server.logIn());

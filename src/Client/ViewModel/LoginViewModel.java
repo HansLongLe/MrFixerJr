@@ -8,6 +8,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+
+/**
+ * A class used for connecting Login View part with Model part
+ */
+
 public class LoginViewModel {
     private User user;
     private StringProperty username;
