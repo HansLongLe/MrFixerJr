@@ -118,6 +118,7 @@ This section explains how to start the program and which programs are needed.
 ### Prerequisites
 
 Current version can be run only using:
+<br/>
   Software:
   * [Git](https://git-scm.com/)
   * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
