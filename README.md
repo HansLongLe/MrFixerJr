@@ -14,7 +14,7 @@
    <a href="https://github.com/VostaMartinVM/MrFixerJr">
     <img src="src/Client/View/Pictures/logo.png" alt="Logo">
   </a>
-  <h3 align="center">MrFlixerJr</h3>
+  <h3 align="center">MyFlixerJr</h3>
 
   <p align="center">
     The project aims to create a movie management system for the MyFlixer company. The project has been created as a part of VIA university education programme for the second semester
