@@ -121,6 +121,9 @@ Current version can be run only using:
   Software:
   * [Git](https://git-scm.com/)
   * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+  
+  Database:
+  * [Datagrip](https://www.jetbrains.com/datagrip/?source=google&medium=cpc&campaign=15034927873&gclid=Cj0KCQiAk4aOBhCTARIsAFWFP9F_S7aSlIU1wUTeHSKZuw6NdZhdxexiPRblEzRUYKZOM9Awc1bmJKsaAi0VEALw_wcB) or any other softwares with PostrgesSQL
 
 ### Installation
 
