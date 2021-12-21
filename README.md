@@ -149,6 +149,10 @@ Martin Vosta - 304372@via.dk
 Andrei Soldan - 304147@via.dk
 <br/>
 Iana Postolachi - 304119@via.dk
+<br/>
+Chenben Tong - 305594@via.dk
+<br/>
+Junjie Chen - 305558@via.dk
 
 Project Link: [https://github.com/VostaMartinVM/MrFixerJr](https://github.com/VostaMartinVM/MrFixerJr)
 
